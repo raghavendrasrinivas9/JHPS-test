@@ -1,5 +1,8 @@
-॥ శ్రీ రామ స్తోత్రం ॥
-Shri Rama Stotram (Jayakolhapura Nilaye)
+<div style="text-align: center; margin-bottom: 20px;">
+  <h3 style="color: #7c2d12; font-size: 1.5rem; font-weight: 800; border-bottom: 2px solid #fcd34d; display: inline-block; padding-bottom: 5px;">
+    ॥ శ్రీ రమా స్తోత్రం ॥ (Jayakolhapura Nilaye)
+  </h3>
+</div>
 
 జయ కొల్హాపుర నిలయే బజాధిష్టేతరవిలయే ।
 తవ పాదౌ హృది కలయే రత్న రచితవలే ॥
