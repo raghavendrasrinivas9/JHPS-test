@@ -7,7 +7,7 @@ const learningsData = [
         name: "Rig Veda",
         resources: [
           { lang: "Telugu", audio: "#", video: "#", pdf: "downloads/Rigveda-Telugu-Sandyavandana.pdf" },
-          { lang: "Kannada", audio: "#", video: "#", pdf: "#" },
+          { lang: "Kannada", audio: "#", video: "#", pdf: "downloads/Rigveda-Kannada-Sandyavandana.pdf" },
           // Updated path below
           { lang: "Sanskrit", audio: "#", video: "#", pdf: "downloads/Rigveda-Sanskrit-Sandyavandana.pdf" },
 		  { lang: "English", audio: "#", video: "#", pdf: "downloads/Rigveda-English-Sandyavandana.pdf" }
