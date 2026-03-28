@@ -1,5 +1,8 @@
-॥ శ్రీ హరి వాయు స్తుతి ॥
-Shri Hari Vayu Stuti
+<div style="text-align: center; margin-bottom: 20px;">
+  <h3 style="color: #7c2d12; font-size: 1.5rem; font-weight: 800; border-bottom: 2px solid #fcd34d; display: inline-block; padding-bottom: 5px;">
+    ॥ శ్రీ హరి వాయు స్తుతి ॥
+  </h3>
+</div>
 
 ॥ అథ నఖస్తుతిః ॥
 పాన్త్వస్మాన్ పురుహూతవైరిబలవన్మాతఙ్గమాద్యద్ఘటా-కుమ్భోచ్చాద్రివిపాటనాధికపటు ప్రత్యేక వజ్రాయితాః ।
