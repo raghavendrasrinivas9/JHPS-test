@@ -36,9 +36,10 @@ const svPartsData = {
 			{ id: 31, name: "Gayathri Udvaasana", audio: "#", video: "#", desc: "Returning the energy back" },
 			{ id: 32, name: "Pravarasahita Namaskara", audio: "#", video: "#", desc: "Praying by chanting your Rishi, Gotra, Name etc" },
 			{ id: 33, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be/...", desc: "Initial purification with water." },
-			{ id: 34, name: "Sandhya Samarpana", audio: "#", video: "#", desc: "Yasya Smrutya Cha" },
-			{ id: 35, name: "Japa Sthana Prokshanam", audio: "#", video: "#", desc: "Cleansing the place" },
-			{ id: 36, name: "Kshemapana", audio: "#", video: "#", desc: "Mantra Tantra Karma Lopa Prayaschittarta mantra" },
+			{ id: 34, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be/...", desc: "Initial purification with water." },
+			{ id: 35, name: "Sandhya Samarpana", audio: "#", video: "#", desc: "Yasya Smrutya Cha" },
+			{ id: 36, name: "Japa Sthana Prokshanam", audio: "#", video: "#", desc: "Cleansing the place" },
+			{ id: 37, name: "Kshemapana", audio: "#", video: "#", desc: "Mantra Tantra Karma Lopa Prayaschittarta mantra" },
         ]
     },
     yajur: {
@@ -77,9 +78,10 @@ const svPartsData = {
 			{ id: 31, name: "Gayathri Udvaasana", audio: "#", video: "#", desc: "Returning the energy back" },
 			{ id: 32, name: "Pravarasahita Namaskara", audio: "#", video: "#", desc: "Praying by chanting your Rishi, Gotra, Name etc" },
 			{ id: 33, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be/...", desc: "Initial purification with water." },
-			{ id: 34, name: "Sandhya Samarpana", audio: "#", video: "#", desc: "Yasya Smrutya Cha" },
-			{ id: 35, name: "Japa Sthana Prokshanam", audio: "#", video: "#", desc: "Cleansing the place" },
-			{ id: 36, name: "Kshemapana", audio: "#", video: "#", desc: "Mantra Tantra Karma Lopa Prayaschittarta mantra" },
+			{ id: 34, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be/...", desc: "Initial purification with water." },
+			{ id: 35, name: "Sandhya Samarpana", audio: "#", video: "#", desc: "Yasya Smrutya Cha" },
+			{ id: 36, name: "Japa Sthana Prokshanam", audio: "#", video: "#", desc: "Cleansing the place" },
+			{ id: 37, name: "Kshemapana", audio: "#", video: "#", desc: "Mantra Tantra Karma Lopa Prayaschittarta mantra" },
         ]
     }
 };
