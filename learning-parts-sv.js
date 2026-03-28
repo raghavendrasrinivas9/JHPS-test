@@ -3,7 +3,7 @@ const svPartsData = {
     rig: {
         title: "Rig Veda Sandhya Vandana - Step by Step",
         steps: [
-            { id: 1, name: "Suchikarana", audio: "#", video: "#", desc: "Apavithra Pavithropa" },
+            { id: 1, name: "Suchikarana", audio: "media/suchikarana.mp3", video: "#", desc: "Apavithra Pavithropa" },
 			{ id: 2, name: "Gopi Chandrana Nama, Mudhra Dharana", audio: "#", video: "#", desc: "Urdhva pundra and Mudhra Dharana " },
 			{ id: 3, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be", desc: "Initial purification with water." },
 			{ id: 4, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus." },
@@ -44,7 +44,7 @@ const svPartsData = {
     yajur: {
         title: "Yajur Veda Sandhya Vandana - Step by Step",
         steps: [
-            { id: 1, name: "Suchikarana", audio: "#", video: "#", desc: "Apavithra Pavithropa" },
+            { id: 1, name: "Suchikarana", audio: "media/suchikarana.mp3", video: "#", desc: "Apavithra Pavithropa" },
 			{ id: 2, name: "Gopi Chandrana Nama, Mudhra Dharana", audio: "#", video: "#", desc: "Urdhva pundra and Mudhra Dharana " },
 			{ id: 3, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be", desc: "Initial purification with water." },
 			{ id: 4, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus." },
