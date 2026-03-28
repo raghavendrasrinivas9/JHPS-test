@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jaya Hari Parayana Sangha</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+  body { display: flex; flex-direction: column; font-family: sans-serif; min-height: 100vh; background-color: #fffbeb; margin: 0; padding: 0; }
+  @media (min-width: 768px) { body { height: 100vh; overflow: hidden; } }
+  
+  .tab-btn { padding:10px; border-radius:12px; cursor:pointer; font-weight:600; background-color: #fde68a; transition: 0.2s; font-size: 0.85rem; border: 1px solid transparent; color: #92400e; white-space: nowrap; }
+  .tab-btn:hover { background-color: #fb923c; color: white; }
+  .active-tab { background-color: #ea580c !important; color: white !important; border-color: #9a3412; }
+  
+  .top-btn { padding:6px 16px; border-radius:9999px; font-weight:bold; margin-right:8px; background-color: #fde68a; font-size: 0.85rem; color: #92400e; transition: 0.3s; }
+  .top-btn.active { background-color: #ea580c; color: white; }
+
+  .sub-tab-btn { padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; font-weight: bold; background-color: #fef3c7; border: 1px solid #fcd34d; color: #92400e; transition: 0.2s; white-space: nowrap; }
+  .sub-tab-btn.active { background-color: #d97706; color: white; border-color: #9a3412; }
+  
+  .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+  .custom-scroll::-webkit-scrollbar-thumb { background: #fb923c; border-radius: 10px; }
+  .motto-text { font-weight: 800; color: #7c2d12; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.65rem; line-height: 1.2; }
+
+  .stotra-content { font-family: 'Noto Sans Telugu', 'Noto Sans Devanagari', serif; background: #fffcf0; padding: 15px; border-radius: 10px; border: 1px dashed #d97706; }
+  .dropdown-content, .learning-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; background-color: #fffaf0; }
+  .dropdown-content.open, .learning-content.open { max-height: 2000px; padding: 12px; border: 1px solid #fde68a; border-top: none; }
+  
+  .rotate-icon { transition: transform 0.3s; }
+  .rotate-icon.active { transform: rotate(180deg); }
+
+  #audioPlayerBar { position: fixed; bottom: 0; left: 0; right: 0; background: #7c2d12; color: white; padding: 12px 20px; z-index: 10000; display: none; align-items: center; justify-content: space-between; border-top: 2px solid #ea580c; }
+  .spinning-disc { animation: spin 4s linear infinite; }
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  
+  .action-btn { display:inline-block; padding:10px 20px; border-radius:10px; color:white; font-weight:bold; text-decoration:none; font-size: 0.9rem; transition: 0.3s; text-align: center; }
+  .whatsapp { background-color: #16a34a; }
+  .form { background-color: #2563eb; }
+</style>
+</head>
+
+<body>
+
+<header class="bg-yellow-100 p-2 md:p-3 shadow-sm shrink-0 border-b border-yellow-200">
+  <div class="max-w-6xl mx-auto flex justify-between items-center">
+    <div class="w-1/4 md:w-1/3 flex items-center justify-start gap-1 md:gap-3">
+      <img src="images/Ram.jpg" alt="Ram" class="h-10 w-10 md:h-20 md:w-20 rounded-full border-2 border-orange-400 object-cover shadow-sm">
+      <span class="motto-text">Hari Sarvothama</span>
+    </div>
+    <div class="w-2/4 md:w-1/3 flex justify-center">
+      <img src="JHPS.jpg" alt="JHPS Logo" class="h-20 md:h-40 w-auto rounded-xl shadow-lg border-2 border-white bg-white">
+    </div>
+    <div class="w-1/4 md:w-1/3 flex items-center justify-end gap-1 md:gap-3 text-right">
+      <span class="motto-text">Vayu Jeevothama</span>
+      <img src="images/Hanuman.jpg" alt="Hanuman" class="h-10 w-10 md:h-20 md:w-20 rounded-full border-2 border-orange-400 object-cover shadow-sm">
+    </div>
+  </div>
+</header>
+
+<div class="flex flex-col md:flex-row flex-1 overflow-hidden">
+  <aside class="w-full md:w-60 bg-yellow-100 p-3 md:p-4 border-b md:border-r border-yellow-200 flex flex-row md:flex-col shrink-0 overflow-x-auto md:overflow-y-auto custom-scroll gap-2">
+    <div id="parayanaTab" class="tab-btn active-tab" onclick="switchTab('parayana')">📖 Parayana</div>
+    <div id="stotrasTab" class="tab-btn" onclick="switchTab('stotras')">📜 Stotras</div>
+    <div id="bhajanaTab" class="tab-btn" onclick="switchTab('bhajana')">🎵 Bhajana</div>
+    <div id="learningsTab" class="tab-btn" onclick="switchTab('learnings')">🎓 Learnings</div>
+    <div id="sevaTab" class="tab-btn" onclick="switchTab('seva')">❤️ Seva</div>
+    <div id="activitiesTab" class="tab-btn" onclick="switchTab('activities')">📅 Activities</div>
+    <div id="aboutTab" class="tab-btn" onclick="switchTab('about')">ℹ️ About</div>
+    <div id="contactTab" class="tab-btn" onclick="switchTab('contact')">📞 Contact</div>
+  </aside>
+
+  <main class="flex-1 p-4 md:p-6 flex flex-col overflow-hidden relative">
+    <div id="topNav" class="mb-4 flex items-center shrink-0">
+      <button id="infoBtn" class="top-btn active" onclick="showView('info')">Details</button>
+      <button id="galleryBtn" class="top-btn" onclick="showView('gallery')">Gallery</button>
+    </div>
+    <div id="contentArea" class="bg-white p-4 md:p-6 rounded-2xl shadow-md border border-yellow-100 flex-1 overflow-y-auto custom-scroll"></div>
+  </main>
+</div>
+
+<div id="audioPlayerBar">
+    <div class="flex items-center gap-3">
+        <i id="discIcon" class="fa-solid fa-compact-disc text-2xl text-orange-400"></i>
+        <div class="overflow-hidden"><p id="audioName" class="text-xs font-bold truncate w-32 md:w-64">Select Audio</p></div>
+    </div>
+    <audio id="globalAudio"></audio>
+    <div class="flex items-center gap-5">
+        <button onclick="toggleAudio()" class="text-2xl outline-none"><i id="masterPlayIcon" class="fa-solid fa-pause"></i></button>
+        <button onclick="stopAudio()" class="text-lg text-orange-300 outline-none"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+</div>
+
+<script src="learnings.js"></script>
+<script src="learning-parts-sv.js"></script>
+
+<script>
+let activeTab = "parayana";
+let currentView = "info";
+let activeStotra = "vishnu";
+let activeLang = "telugu"; // Default language for text files
+let activePartKey = null;
+
+const WHATSAPP = "919686155558";
+const FORM = "https://docs.google.com/forms/d/1JZgvz4o701VtrCeTcyD5mb1Dl31DC_eAXagFk_2iUck/viewform";
+
+const areaContacts = [
+  { area: "Kondapur", lead: "Pavan Ashrit", phone: WHATSAPP },
+  { area: "Nallagandla", lead: "Pavan Ashrit", phone: WHATSAPP },
+  { area: "Miyapur", lead: "Pavan Ashrit", phone: WHATSAPP },
+  { area: "BHEL", lead: "Pavan Ashrit", phone: WHATSAPP }
+];
+
+const area = document.getElementById('contentArea');
+const gAudio = document.getElementById('globalAudio');
+const aBar = document.getElementById('audioPlayerBar');
+const aName = document.getElementById('audioName');
+const mIcon = document.getElementById('masterPlayIcon');
+const dIcon = document.getElementById('discIcon');
+
+function playStream(url, name) {
+    if (!url || url === "#") return;
+    aName.innerText = name; gAudio.src = url; gAudio.play();
+    aBar.style.display = "flex"; mIcon.className = "fa-solid fa-pause"; dIcon.classList.add('spinning-disc');
+}
+function toggleAudio() {
+    if (gAudio.paused) { gAudio.play(); mIcon.className = "fa-solid fa-pause"; dIcon.classList.add('spinning-disc'); }
+    else { gAudio.pause(); mIcon.className = "fa-solid fa-play"; dIcon.classList.remove('spinning-disc'); }
+}
+function stopAudio() { gAudio.pause(); aBar.style.display = "none"; }
+
+function switchTab(tab){
+  activeTab = tab; currentView = "info"; activePartKey = null;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active-tab'));
+  document.getElementById(tab + "Tab")?.classList.add('active-tab');
+  document.getElementById('topNav').style.display = tab === "stotras" ? "none" : "flex";
+  render();
+  area.scrollTo(0,0);
+}
+
+function showView(view){
+  currentView = view;
+  document.getElementById("infoBtn").classList.toggle("active", view === "info");
+  document.getElementById("galleryBtn").classList.toggle("active", view === "gallery");
+  render();
+}
+
+async function loadStotraText(stotraKey, lang) {
+  const container = document.getElementById('stotraTextContainer');
+  if (!container) return;
+  container.innerHTML = `<div class="p-10 text-center italic text-orange-500">Loading ${stotraKey} (${lang})...</div>`;
+  
+  try {
+    // Correct Path: stotras/vishnu-telugu.txt
+    const response = await fetch(`stotras/${stotraKey}-${lang}.txt`);
+    if (!response.ok) throw new Error();
+    const text = await response.text();
+    container.innerHTML = text;
+  } catch (err) {
+    container.innerHTML = `<div class="p-10 text-center text-red-500">File not found: stotras/${stotraKey}-${lang}.txt</div>`;
+  }
+}
+
+function openSVParts(key) {
+    activePartKey = key;
+    currentView = "sv-parts";
+    document.getElementById('topNav').style.display = "none";
+    render();
+    area.scrollTo(0,0);
+}
+
+function render(){
+  if (currentView === "sv-parts") { renderSVParts(); return; }
+  
+  if (activeTab === "stotras") {
+      const tabNames = { vishnu: "Vishnu Sahasranamam", rama: "Rama Stotram", sundara: "Sundharakanda", vayu: "Hari Vayu Stuthi", rayara: "Raghavendra Stotram" };
+      let html = `
+        <div class="flex flex-wrap gap-2 mb-4">
+            ${['telugu','kannada'].map(l => `<button class="px-3 py-1 rounded-full text-xs font-bold ${activeLang === l ? 'bg-orange-600 text-white' : 'bg-orange-100 text-orange-700'}" onclick="activeLang='${l}'; render();">${l.toUpperCase()}</button>`).join('')}
+        </div>
+        <div class="flex gap-2 mb-4 overflow-x-auto pb-2 custom-scroll">
+            ${['vishnu','rama','sundara','vayu','rayara'].map(s => `<button class="sub-tab-btn ${activeStotra === s ? 'active' : ''}" onclick="activeStotra='${s}'; render();">${tabNames[s]}</button>`).join('')}
+        </div>
+        <div id="stotraTextContainer" class="stotra-content overflow-y-auto"></div>`;
+      area.innerHTML = html;
+      loadStotraText(activeStotra, activeLang);
+  }
+  else if (activeTab === "parayana") {
+      renderParayana();
+  }
+  else if (activeTab === "learnings") {
+      renderLearnings();
+  }
+  else if (activeTab === "contact") {
+      renderContact();
+  }
+  else {
+      let data = { bhajana: ["Jaya Hari Bhajana Mandali"], seva: ["Annadhana"], activities: ["Weekly Events"], about: ["Dharma Practice"] }[activeTab] || [];
+      area.innerHTML = `<h2 class='text-xl font-bold mb-4 text-orange-800'>${activeTab.toUpperCase()}</h2><div class='space-y-2'>${data.map(d => `<div class='bg-yellow-50 p-3 rounded-lg border font-bold text-orange-900'>✦ ${d}</div>`).join('')}</div>`;
+  }
+}
+
+function renderParayana() {
+    const pSeq = { rayara: ["Venkatesha Stotra", "Vishnu Sahasranama", "Manyu Skutha", "Rama Stotra", "Sundarakanda", "Hari Vayu Stuti", "Yantrodharaka Hanumat Stotra", "Jayatheertha Stotra", "Raghuttama Stotra", "Raghavendra Stotra - 3 times"], vayu: ["Venkatesha Stotra", "Vishnu Sahasranama", "Manyu Skutha", "Rama Stotra", "Sundarakanda", "Hari Vayu Stuti - Purascharana", "Yantrodharaka Hanumat Stotra", "Jayatheertha Stotra", "Raghuttama Stotra", "Raghavendra Stotra"], sundara: ["Venkatesha Stotra", "Vishnu Sahasranama", "Manyu Skutha", "Rama Stotra", "Sundarakanda - 3 times", "Hari Vayu Stuti", "Yantrodharaka Hanumat Stotra", "Jayatheertha Stotra", "Raghuttama Stotra", "Raghavendra Stotra"] };
+    let html = `<h2 class='text-xl font-bold mb-4 text-orange-800'>PARAYANA</h2><div class='flex flex-col gap-3'>`;
+    [{ n: "Rayara Ashtottara", k: "rayara" }, { n: "Hari Vayu Stuti Purascharana", k: "vayu" }, { n: "Sundarakanda", k: "sundara" }].forEach(i => {
+      html += `<div class="border border-orange-200 rounded-xl overflow-hidden bg-white shadow-sm">
+          <div onclick="toggleDropdown('${i.k}', 'dropdown')" class='bg-yellow-50 p-4 cursor-pointer flex justify-between items-center'>
+              <span class="font-bold text-gray-800">✦ ${i.n}</span>
+              <i id="icon-dropdown-${i.k}" class="fa-solid fa-chevron-down text-orange-500 rotate-icon"></i>
+          </div>
+          <div id="content-dropdown-${i.k}" class="dropdown-content"><ul class="list-disc list-inside text-sm text-gray-700 p-2">${pSeq[i.k].map(s => `<li>${s}</li>`).join('')}</ul></div>
+        </div>`;
+    });
+    html += `</div><div class='mt-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 rounded-r-xl text-center'>
+                <p class='font-bold text-orange-900 text-sm mb-3 italic underline'>Confirm slots before registering.</p>
+                <div class='flex justify-center gap-2'><a class='action-btn whatsapp' href='https://wa.me/${WHATSAPP}' target='_blank'>WhatsApp</a><a class='action-btn form' href='${FORM}' target='_blank'>Register</a></div>
+            </div>`;
+    area.innerHTML = html;
+}
+
+function renderLearnings() {
+    const lData = window.learningsData || [];
+    let html = `<h2 class='text-xl font-bold mb-4 text-orange-800'>LEARNINGS</h2><div class='flex flex-col gap-4'>`;
+    lData.forEach((cat, index) => {
+        const catId = `learn-${index}`;
+        html += `<div class="border border-orange-200 rounded-xl overflow-hidden bg-white shadow-sm">
+            <div onclick="toggleDropdown('${catId}', 'learning')" class="bg-yellow-50 p-4 cursor-pointer flex justify-between items-center">
+                <span class="font-bold text-orange-900">✦ ${cat.category}</span>
+                <i id="icon-learning-${catId}" class="fa-solid fa-chevron-down text-orange-500 rotate-icon"></i>
+            </div>
+            <div id="content-learning-${catId}" class="learning-content p-4 space-y-6">`;
+        cat.vedas.forEach(v => {
+            const partKey = v.name.toLowerCase().includes('rig') ? 'rig' : 'yajur';
+            const showPartsBtn = (cat.category === "Sandhya Vandana");
+            html += `<div class="bg-orange-50 rounded-lg border border-orange-100 overflow-hidden mb-2">
+                    <div class="bg-orange-200 px-4 py-3 font-bold text-orange-900 flex justify-between items-center">
+                        <span>📖 ${v.name}</span>
+                        ${showPartsBtn ? `<button onclick="event.stopPropagation(); openSVParts('${partKey}')" class="bg-blue-600 text-white text-[10px] px-3 py-1 rounded-full animate-glow">Learn in Parts</button>` : ''}
+                    </div>
+                    <table class="w-full text-xs text-left">
+                        <tbody class="bg-white divide-y divide-orange-50">${v.resources.map(r => `<tr><td class="p-3 font-semibold text-gray-700">${r.lang}</td><td class="p-3 text-center">
+                            <button onclick="playStream('${r.audio}', '${v.name}')" class="text-blue-600 mr-4"><i class="fa-solid fa-circle-play"></i></button>
+                            <a href="${r.pdf}" target="_blank" class="text-green-600"><i class="fa-solid fa-file-pdf"></i></a>
+                        </td></tr>`).join('')}</tbody>
+                    </table></div>`;
+        });
+        html += `</div></div>`;
+    });
+    area.innerHTML = html + "</div>";
+}
+
+function renderContact() {
+    let html = `<h2 class='text-xl font-bold mb-4 text-orange-800'>CONTACT</h2><div class="area-grid">`;
+    areaContacts.forEach(item => {
+        html += `<div class='area-box'><div class='text-xs font-black text-orange-600 border-b pb-1'>${item.area}</div>
+            <div class='mt-2 text-sm font-bold text-gray-800'>${item.lead}</div><a href="tel:${item.phone}" class="call-btn mt-2">Call</a></div>`;
+    });
+    area.innerHTML = html + `</div><div class='bg-green-50 p-5 rounded-2xl border-2 border-dashed border-green-200 text-center mt-8'>
+        <a class='bg-green-600 text-white px-8 py-3 rounded-xl font-bold' href='https://wa.me/${WHATSAPP}' target='_blank'>WhatsApp Community</a></div>`;
+}
+
+function renderSVParts() {
+    const pDB = window.svPartsData || {};
+    const partData = pDB[activePartKey];
+    if (!partData) return;
+    let html = `<button onclick="switchTab('learnings')" class="mb-4 text-blue-700 font-bold"><i class="fa-solid fa-arrow-left"></i> Back</button>
+        <h2 class="text-xl font-black text-orange-900 border-b-4 border-orange-500 pb-2 mb-6">${partData.title}</h2><div class="grid gap-3">`;
+    partData.steps.forEach(step => {
+        html += `<div class="p-4 bg-white border border-orange-100 rounded-xl flex justify-between items-center shadow-sm">
+            <div><h4 class="font-bold text-orange-900">${step.id}. ${step.name}</h4><p class="text-xs text-gray-500">${step.desc}</p></div>
+            <div class="flex gap-4 text-xl">
+                ${step.audio !== '#' ? `<button onclick="playStream('${step.audio}', '${step.name}')" class="text-blue-600"><i class="fa-solid fa-circle-play"></i></button>` : ''}
+                ${step.video !== '#' ? `<a href="${step.video}" target="_blank" class="text-red-600"><i class="fa-brands fa-youtube"></i></a>` : ''}
+            </div></div>`;
+    });
+    area.innerHTML = html + `</div><div class="pb-24"></div>`;
+}
+
+function toggleDropdown(id, type) {
+  const content = document.getElementById(`content-${type}-${id}`);
+  const icon = document.getElementById(`icon-${type}-${id}`);
+  if (!content) return;
+  const isOpen = content.classList.contains('open');
+  document.querySelectorAll('.dropdown-content, .learning-content').forEach(el => el.classList.remove('open'));
+  document.querySelectorAll('.rotate-icon').forEach(el => el.classList.remove('active'));
+  if (!isOpen) { content.classList.add('open'); if (icon) icon.classList.add('active'); }
+}
+
+window.onload = render;
+render();
+</script>
+</body>
+</html>
