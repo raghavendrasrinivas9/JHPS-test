@@ -24,7 +24,6 @@
   .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
   .custom-scroll::-webkit-scrollbar-thumb { background: #fb923c; border-radius: 10px; }
   
-  /* UPDATED MOTTO TEXT SIZE */
   .motto-text { font-weight: 900; color: #7c2d12; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.85rem; line-height: 1.1; }
   @media (min-width: 768px) { .motto-text { font-size: 1.35rem; } }
 
@@ -39,9 +38,13 @@
   .part-card { border-left: 5px solid #2563eb; transition: 0.3s; border-radius: 0 12px 12px 0; background: white; }
   .part-card:hover { background-color: #eff6ff; transform: translateX(8px); }
 
+  /* CONTACT PAGE SPECIFIC STYLES */
   .area-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-top: 10px; }
   .area-box { background: #fff7ed; padding: 12px; border-radius: 12px; border: 1px solid #ffedd5; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-  .call-btn { background: #16a34a; color: white; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: bold; }
+  .contact-row { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; padding-top: 4px; }
+  .call-btn { background: #16a34a; color: white; padding: 3px 8px; border-radius: 6px; font-size: 0.65rem; font-weight: bold; text-decoration: none; }
+  .instagram { background-color: #E1306C !important; }
+  .youtube { background-color: #FF0000 !important; }
 
   #audioPlayerBar { position: fixed; bottom: 0; left: 0; right: 0; background: #7c2d12; color: white; padding: 12px 20px; z-index: 10000; display: none; align-items: center; justify-content: space-between; border-top: 2px solid #ea580c; }
   .spinning-disc { animation: spin 4s linear infinite; }
@@ -215,7 +218,7 @@ function render(){
   else if (activeTab === "learnings") { renderLearnings(); }
   else if (activeTab === "contact") { renderContact(); }
   else {
-      let data = { bhajana: ["Jaya Hari Bhajana Mandali"], seva: ["Annadhana"], activities: ["Weekly Events"], about: ["Nurturing Dharma Through Practice."] }[activeTab] || [];
+      let data = { bhajana: ["Jaya Hari Bhajana Mandali"], seva: ["Annadhana"], activities: ["Weekly Events"], about: ["Nurturing Dharma Through Practice"] }[activeTab] || [];
       area.innerHTML = `<h2 class='text-xl font-bold mb-4 text-orange-800 uppercase'>${activeTab}</h2><div class='space-y-2'>${data.map(d => `<div class='bg-yellow-50 p-3 rounded-lg border font-bold text-orange-900'>✦ ${d}</div>`).join('')}</div>`;
   }
 }
@@ -268,14 +271,44 @@ function renderLearnings() {
 }
 
 function renderContact() {
-    let html = `<h2 class='text-xl font-bold mb-4 text-orange-800 uppercase'>Contact</h2><div class="area-grid">`;
-    areaContacts.forEach(item => {
-        html += `<div class='area-box'><div class='text-xs font-black text-orange-600 border-b pb-1 mb-2 uppercase'>${item.area}</div>
-            <div class='text-sm font-bold text-gray-800'>${item.lead}</div>
-            <div class="mt-2"><a href="tel:${item.phone}" class="call-btn"><i class="fa-solid fa-phone"></i> Call</a></div></div>`;
-    });
-    area.innerHTML = html + `</div><div class='bg-green-50 p-5 rounded-2xl border-2 border-dashed border-green-200 text-center mt-8'>
-        <a class='bg-green-600 text-white px-8 py-3 rounded-xl font-bold shadow-md' href='https://wa.me/${WHATSAPP}' target='_blank'><i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp Community</a></div>`;
+    let html = `<div class='flex flex-col gap-3'>
+        <div class='bg-yellow-50 p-3 rounded-xl border text-sm font-bold shadow-sm'>✦ Jaya Hari Parayana Sangha</div>
+        <div class='bg-yellow-50 p-3 rounded-xl border text-sm font-bold shadow-sm mb-2'>✦ Email: jayahariparayanasangha@gmail.com</div>
+        
+        <h3 class='text-md font-bold text-orange-700 mt-2 mb-2 w-full uppercase'>Area Contacts</h3>
+        <div class="area-grid">
+          ${["Kondapur", "Nallagandla", "Miyapur", "BHEL"].map(place => `
+            <div class='area-box'>
+              <div class='text-[10px] font-black uppercase text-orange-600 tracking-widest mb-1 border-b pb-1'>${place}</div>
+              <div class='contact-row'>
+                <div class='text-xs font-semibold text-gray-800'>Pavan Ashrit</div>
+                <a href="tel:9686155558" class="call-btn">9686155558</a>
+              </div>
+              <div class='contact-row'>
+                <div class='text-xs font-semibold text-gray-800'>Srikanth Joshi</div>
+                <a href="tel:9573313511" class="call-btn">9573313511</a>
+              </div>
+            </div>`).join('')}
+        </div>
+
+        <h3 class='text-md font-bold text-orange-700 mt-4 mb-2 w-full uppercase'>Social Media</h3>
+        <div class="flex flex-col sm:flex-row gap-2">
+          <a href="https://www.instagram.com/jayahariparayanasangha/" target="_blank" class="action-btn instagram shadow-md flex items-center justify-center gap-2" style="padding: 6px 12px; font-size: 0.8rem;">
+            <i class="fa-brands fa-instagram text-lg"></i> Instagram
+          </a>
+          <a href="https://www.youtube.com/@JayaHariParayanaSangha" target="_blank" class="action-btn youtube shadow-md flex items-center justify-center gap-2" style="padding: 6px 12px; font-size: 0.8rem;">
+            <i class="fa-brands fa-youtube text-lg"></i> Youtube
+          </a>
+        </div>
+
+        <div class='bg-green-50 p-5 rounded-2xl border-2 border-dashed border-green-200 text-center mt-6'>
+            <p class='font-bold text-green-900 mb-3'>Join our WhatsApp Community</p>
+            <a class='inline-flex items-center gap-2 bg-green-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:bg-green-700 transition' href='https://wa.me/${WHATSAPP}' target='_blank'>
+              <i class="fa-brands fa-whatsapp text-xl"></i> Chat on WhatsApp
+            </a>
+        </div>
+    </div>`;
+    area.innerHTML = html;
 }
 
 function renderSVParts() {
