@@ -25,17 +25,26 @@
   .custom-scroll::-webkit-scrollbar-thumb { background: #fb923c; border-radius: 10px; }
   .motto-text { font-weight: 800; color: #7c2d12; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.65rem; line-height: 1.2; }
 
-  .stotra-content { font-family: 'Noto Sans Telugu', 'Noto Sans Devanagari', serif; background: #fffcf0; padding: 15px; border-radius: 10px; border: 1px dashed #d97706; }
+  /* PRESERVE TEXT FILE FORMATTING */
+  .stotra-content { 
+    font-family: 'Noto Sans Telugu', 'Noto Sans Devanagari', serif; 
+    background: #fffcf0; 
+    padding: 20px; 
+    border-radius: 10px; 
+    border: 1px dashed #d97706; 
+    white-space: pre-wrap; /* Keeps line breaks */
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #431407;
+  }
+  
   .dropdown-content, .learning-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; background-color: #fffaf0; }
   .dropdown-content.open, .learning-content.open { max-height: 2000px; padding: 12px; border: 1px solid #fde68a; border-top: none; }
-  
   .rotate-icon { transition: transform 0.3s; }
   .rotate-icon.active { transform: rotate(180deg); }
-
   #audioPlayerBar { position: fixed; bottom: 0; left: 0; right: 0; background: #7c2d12; color: white; padding: 12px 20px; z-index: 10000; display: none; align-items: center; justify-content: space-between; border-top: 2px solid #ea580c; }
   .spinning-disc { animation: spin 4s linear infinite; }
   @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-  
   .action-btn { display:inline-block; padding:10px 20px; border-radius:10px; color:white; font-weight:bold; text-decoration:none; font-size: 0.9rem; transition: 0.3s; text-align: center; }
   .whatsapp { background-color: #16a34a; }
   .form { background-color: #2563eb; }
@@ -100,7 +109,7 @@
 let activeTab = "parayana";
 let currentView = "info";
 let activeStotra = "vishnu";
-let activeLang = "telugu"; // Default language for text files
+let activeLang = "telugu"; 
 let activePartKey = null;
 
 const WHATSAPP = "919686155558";
@@ -140,35 +149,20 @@ function switchTab(tab){
   area.scrollTo(0,0);
 }
 
-function showView(view){
-  currentView = view;
-  document.getElementById("infoBtn").classList.toggle("active", view === "info");
-  document.getElementById("galleryBtn").classList.toggle("active", view === "gallery");
-  render();
-}
-
 async function loadStotraText(stotraKey, lang) {
   const container = document.getElementById('stotraTextContainer');
   if (!container) return;
-  container.innerHTML = `<div class="p-10 text-center italic text-orange-500">Loading ${stotraKey} (${lang})...</div>`;
+  container.innerHTML = `<div class="p-10 text-center italic text-orange-500">Loading ${stotraKey}...</div>`;
   
   try {
-    // Correct Path: stotras/vishnu-telugu.txt
-    const response = await fetch(`stotras/${stotraKey}-${lang}.txt`);
+    // Adding timestamp to prevent browser cache issues
+    const response = await fetch(`stotras/${stotraKey}-${lang}.txt?t=${new Date().getTime()}`);
     if (!response.ok) throw new Error();
     const text = await response.text();
     container.innerHTML = text;
   } catch (err) {
-    container.innerHTML = `<div class="p-10 text-center text-red-500">File not found: stotras/${stotraKey}-${lang}.txt</div>`;
+    container.innerHTML = `<div class="p-10 text-center text-red-500 font-bold">File not found.<br><span class="text-xs font-normal">Please ensure "stotras/${stotraKey}-${lang}.txt" exists in your folder.</span></div>`;
   }
-}
-
-function openSVParts(key) {
-    activePartKey = key;
-    currentView = "sv-parts";
-    document.getElementById('topNav').style.display = "none";
-    render();
-    area.scrollTo(0,0);
 }
 
 function render(){
@@ -204,13 +198,10 @@ function render(){
 
 function renderParayana() {
     const pSeq = { rayara: ["Venkatesha Stotra", "Vishnu Sahasranama", "Manyu Skutha", "Rama Stotra", "Sundarakanda", "Hari Vayu Stuti", "Yantrodharaka Hanumat Stotra", "Jayatheertha Stotra", "Raghuttama Stotra", "Raghavendra Stotra - 3 times"], vayu: ["Venkatesha Stotra", "Vishnu Sahasranama", "Manyu Skutha", "Rama Stotra", "Sundarakanda", "Hari Vayu Stuti - Purascharana", "Yantrodharaka Hanumat Stotra", "Jayatheertha Stotra", "Raghuttama Stotra", "Raghavendra Stotra"], sundara: ["Venkatesha Stotra", "Vishnu Sahasranama", "Manyu Skutha", "Rama Stotra", "Sundarakanda - 3 times", "Hari Vayu Stuti", "Yantrodharaka Hanumat Stotra", "Jayatheertha Stotra", "Raghuttama Stotra", "Raghavendra Stotra"] };
-    let html = `<h2 class='text-xl font-bold mb-4 text-orange-800'>PARAYANA</h2><div class='flex flex-col gap-3'>`;
+    let html = `<h2 class='text-xl font-bold mb-4 text-orange-800 uppercase'>Parayana</h2><div class='flex flex-col gap-3'>`;
     [{ n: "Rayara Ashtottara", k: "rayara" }, { n: "Hari Vayu Stuti Purascharana", k: "vayu" }, { n: "Sundarakanda", k: "sundara" }].forEach(i => {
       html += `<div class="border border-orange-200 rounded-xl overflow-hidden bg-white shadow-sm">
-          <div onclick="toggleDropdown('${i.k}', 'dropdown')" class='bg-yellow-50 p-4 cursor-pointer flex justify-between items-center'>
-              <span class="font-bold text-gray-800">✦ ${i.n}</span>
-              <i id="icon-dropdown-${i.k}" class="fa-solid fa-chevron-down text-orange-500 rotate-icon"></i>
-          </div>
+          <div onclick="toggleDropdown('${i.k}', 'dropdown')" class='bg-yellow-50 p-4 cursor-pointer flex justify-between items-center'><span class="font-bold text-gray-800">✦ ${i.n}</span><i id="icon-dropdown-${i.k}" class="fa-solid fa-chevron-down text-orange-500 rotate-icon"></i></div>
           <div id="content-dropdown-${i.k}" class="dropdown-content"><ul class="list-disc list-inside text-sm text-gray-700 p-2">${pSeq[i.k].map(s => `<li>${s}</li>`).join('')}</ul></div>
         </div>`;
     });
@@ -223,14 +214,11 @@ function renderParayana() {
 
 function renderLearnings() {
     const lData = window.learningsData || [];
-    let html = `<h2 class='text-xl font-bold mb-4 text-orange-800'>LEARNINGS</h2><div class='flex flex-col gap-4'>`;
+    let html = `<h2 class='text-xl font-bold mb-4 text-orange-800 uppercase'>Learnings</h2><div class='flex flex-col gap-4'>`;
     lData.forEach((cat, index) => {
         const catId = `learn-${index}`;
         html += `<div class="border border-orange-200 rounded-xl overflow-hidden bg-white shadow-sm">
-            <div onclick="toggleDropdown('${catId}', 'learning')" class="bg-yellow-50 p-4 cursor-pointer flex justify-between items-center">
-                <span class="font-bold text-orange-900">✦ ${cat.category}</span>
-                <i id="icon-learning-${catId}" class="fa-solid fa-chevron-down text-orange-500 rotate-icon"></i>
-            </div>
+            <div onclick="toggleDropdown('${catId}', 'learning')" class="bg-yellow-50 p-4 cursor-pointer flex justify-between items-center"><span class="font-bold text-orange-900">✦ ${cat.category}</span><i id="icon-learning-${catId}" class="fa-solid fa-chevron-down text-orange-500 rotate-icon"></i></div>
             <div id="content-learning-${catId}" class="learning-content p-4 space-y-6">`;
         cat.vedas.forEach(v => {
             const partKey = v.name.toLowerCase().includes('rig') ? 'rig' : 'yajur';
@@ -238,7 +226,7 @@ function renderLearnings() {
             html += `<div class="bg-orange-50 rounded-lg border border-orange-100 overflow-hidden mb-2">
                     <div class="bg-orange-200 px-4 py-3 font-bold text-orange-900 flex justify-between items-center">
                         <span>📖 ${v.name}</span>
-                        ${showPartsBtn ? `<button onclick="event.stopPropagation(); openSVParts('${partKey}')" class="bg-blue-600 text-white text-[10px] px-3 py-1 rounded-full animate-glow">Learn in Parts</button>` : ''}
+                        ${showPartsBtn ? `<button onclick="event.stopPropagation(); openSVParts('${partKey}')" class="bg-blue-600 text-white text-[10px] px-3 py-1 rounded-full">Learn in Parts</button>` : ''}
                     </div>
                     <table class="w-full text-xs text-left">
                         <tbody class="bg-white divide-y divide-orange-50">${v.resources.map(r => `<tr><td class="p-3 font-semibold text-gray-700">${r.lang}</td><td class="p-3 text-center">
@@ -253,7 +241,7 @@ function renderLearnings() {
 }
 
 function renderContact() {
-    let html = `<h2 class='text-xl font-bold mb-4 text-orange-800'>CONTACT</h2><div class="area-grid">`;
+    let html = `<h2 class='text-xl font-bold mb-4 text-orange-800 uppercase'>Contact</h2><div class="area-grid">`;
     areaContacts.forEach(item => {
         html += `<div class='area-box'><div class='text-xs font-black text-orange-600 border-b pb-1'>${item.area}</div>
             <div class='mt-2 text-sm font-bold text-gray-800'>${item.lead}</div><a href="tel:${item.phone}" class="call-btn mt-2">Call</a></div>`;
@@ -278,6 +266,8 @@ function renderSVParts() {
     });
     area.innerHTML = html + `</div><div class="pb-24"></div>`;
 }
+
+function openSVParts(key) { activePartKey = key; currentView = "sv-parts"; document.getElementById('topNav').style.display = "none"; render(); area.scrollTo(0,0); }
 
 function toggleDropdown(id, type) {
   const content = document.getElementById(`content-${type}-${id}`);
