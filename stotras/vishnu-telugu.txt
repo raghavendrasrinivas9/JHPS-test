@@ -1,5 +1,8 @@
-॥ శ్రీ విష్ణు సహస్ర నామ స్తోత్రం ॥
-Shri Vishnu Sahasranama Stotram
+<div style="text-align: center; margin-bottom: 20px;">
+  <h3 style="color: #7c2d12; font-size: 1.5rem; font-weight: 800; border-bottom: 2px solid #fcd34d; display: inline-block; padding-bottom: 5px;">
+    ॥ శ్రీ విష్ణు సహస్ర నామ స్తోత్రం ॥
+  </h3>
+</div>
 
 ఓం నమో భగవతే వాసుదేవాయ !
 విశ్వం విష్ణుర్వషట్కారో భూతభవ్యభవత్ప్రభుః ।
