@@ -206,7 +206,7 @@ function render(){
   }
 
   if (activeTab === "stotras") {
-      const tabNames = { vishnu: "Vishnu Sahasranamam", rama: "Rama Stotram", sundara: "Sundharakanda", vayu: "Hari Vayu Stuthi", rayara: "Raghavendra Stotram" };
+      const tabNames = { vishnu: "Vishnu Sahasranamam", rama: "Ramma Stotram", sundara: "Sundharakanda", vayu: "Hari Vayu Stuthi", rayara: "Raghavendra Stotram" };
       area.innerHTML = `
         <div class="flex gap-2 mb-4 overflow-x-auto pb-2 custom-scroll">
             ${['vishnu','rama','sundara','vayu','rayara'].map(s => `<button class="sub-tab-btn ${activeStotra === s ? 'active' : ''}" onclick="activeStotra='${s}'; render();">${tabNames[s]}</button>`).join('')}
