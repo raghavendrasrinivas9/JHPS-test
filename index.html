@@ -1,100 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jaya Hari Parayana Sangha</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-<style>
-  body { display: flex; flex-direction: column; font-family: sans-serif; min-height: 100vh; background-color: #fffbeb; margin: 0; padding: 0; }
-  @media (min-width: 768px) { body { height: 100vh; overflow: hidden; } }
-  
-  .tab-btn { padding:10px; border-radius:12px; cursor:pointer; font-weight:600; background-color: #fde68a; transition: 0.2s; font-size: 0.85rem; border: 1px solid transparent; color: #92400e; white-space: nowrap; }
-  .tab-btn:hover { background-color: #fb923c; color: white; }
-  .active-tab { background-color: #ea580c !important; color: white !important; border-color: #9a3412; }
-  
-  .top-btn { padding:6px 16px; border-radius:9999px; font-weight:bold; margin-right:8px; background-color: #fde68a; font-size: 0.85rem; color: #92400e; transition: 0.3s; border: 1px solid #fcd34d; }
-  .top-btn.active { background-color: #ea580c !important; color: white !important; border-color: #9a3412; }
-
-  .sub-tab-btn { padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; font-weight: bold; background-color: #fef3c7; border: 1px solid #fcd34d; color: #92400e; transition: 0.2s; white-space: nowrap; }
-  .sub-tab-btn.active { background-color: #d97706; color: white; border-color: #9a3412; }
-  
-  .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
-  .custom-scroll::-webkit-scrollbar-thumb { background: #fb923c; border-radius: 10px; }
-  
-  .motto-text { font-weight: 900; color: #7c2d12; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.85rem; line-height: 1.1; }
-  @media (min-width: 768px) { .motto-text { font-size: 1.35rem; } }
-
-  .stotra-content { font-family: 'Noto Sans Telugu', 'Noto Sans Devanagari', 'Noto Sans Kannada', serif; background: #fffcf0; padding: 20px; border-radius: 10px; border: 1px dashed #d97706; white-space: pre-wrap; line-height: 1.8; font-size: 1.1rem; color: #431407; }
-  
-  .dropdown-content, .learning-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease; background-color: #fffaf0; }
-  .dropdown-content.open, .learning-content.open { max-height: 2000px; padding: 12px; border: 1px solid #fde68a; border-top: none; }
-  
-  .rotate-icon { transition: transform 0.3s; }
-  .rotate-icon.active { transform: rotate(180deg); }
-
-  .part-card { border-left: 5px solid #2563eb; transition: 0.3s; border-radius: 0 12px 12px 0; background: white; }
-  .part-card:hover { background-color: #eff6ff; transform: translateX(8px); }
-
-  .area-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-top: 10px; }
-  .area-box { background: #fff7ed; padding: 12px; border-radius: 12px; border: 1px solid #ffedd5; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-  .contact-row { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; padding-top: 4px; }
-  .call-btn { background: #16a34a; color: white; padding: 3px 8px; border-radius: 6px; font-size: 0.65rem; font-weight: bold; text-decoration: none; }
-  .instagram { background-color: #E1306C !important; }
-  .youtube { background-color: #FF0000 !important; }
-
-  #audioPlayerBar { position: fixed; bottom: 0; left: 0; right: 0; background: #7c2d12; color: white; padding: 12px 20px; z-index: 10000; display: none; align-items: center; justify-content: space-between; border-top: 2px solid #ea580c; }
-  .spinning-disc { animation: spin 4s linear infinite; }
-  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-  
-  .action-btn { display:inline-block; padding:10px 20px; border-radius:10px; color:white; font-weight:bold; text-decoration:none; font-size: 0.9rem; transition: 0.3s; text-align: center; }
-  .whatsapp { background-color: #16a34a; }
-  .form { background-color: #2563eb; }
-  @keyframes pulse-blue { 0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); } 70% { box-shadow: 0 0 0 8px rgba(37, 99, 235, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); } }
-  .animate-glow { animation: pulse-blue 2s infinite; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaya Hari Parayana Sangha</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { display: flex; flex-direction: column; font-family: sans-serif; min-height: 100vh; background-color: #fffbeb; margin: 0; padding: 0; }
+        @media (min-width: 768px) { body { height: 100vh; overflow: hidden; } }
+        .tab-btn { padding:10px; border-radius:12px; cursor:pointer; font-weight:600; background-color: #fde68a; transition: 0.2s; font-size: 0.85rem; border: 1px solid transparent; color: #92400e; white-space: nowrap; }
+        .tab-btn:hover { background-color: #fb923c; color: white; }
+        .active-tab { background-color: #ea580c !important; color: white !important; border-color: #9a3412; }
+        .top-btn { padding:6px 16px; border-radius:9999px; font-weight:bold; margin-right:8px; background-color: #fde68a; font-size: 0.85rem; color: #92400e; transition: 0.3s; border: 1px solid #fcd34d; }
+        .top-btn.active { background-color: #ea580c !important; color: white !important; border-color: #9a3412; }
+        .sub-tab-btn { padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; font-weight: bold; background-color: #fef3c7; border: 1px solid #fcd34d; color: #92400e; transition: 0.2s; white-space: nowrap; }
+        .sub-tab-btn.active { background-color: #d97706; color: white; border-color: #9a3412; }
+        .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #fb923c; border-radius: 10px; }
+        .motto-text { font-weight: 900; color: #7c2d12; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.85rem; line-height: 1.1; }
+        @media (min-width: 768px) { .motto-text { font-size: 1.35rem; } }
+        .stotra-content { font-family: 'Noto Sans Telugu', 'Noto Sans Devanagari', 'Noto Sans Kannada', serif; background: #fffcf0; padding: 20px; border-radius: 10px; border: 1px dashed #d97706; white-space: pre-wrap; line-height: 1.8; font-size: 1.1rem; color: #431407; }
+        .dropdown-content, .learning-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease; background-color: #fffaf0; }
+        .dropdown-content.open, .learning-content.open { max-height: 2000px; padding: 12px; border: 1px solid #fde68a; border-top: none; }
+        .rotate-icon { transition: transform 0.3s; }
+        .rotate-icon.active { transform: rotate(180deg); }
+        .part-card { border-left: 5px solid #2563eb; transition: 0.3s; border-radius: 0 12px 12px 0; background: white; }
+        .part-card:hover { background-color: #eff6ff; transform: translateX(8px); }
+        .area-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-top: 10px; }
+        .area-box { background: #fff7ed; padding: 12px; border-radius: 12px; border: 1px solid #ffedd5; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .contact-row { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; padding-top: 4px; }
+        .call-btn { background: #16a34a; color: white; padding: 3px 8px; border-radius: 6px; font-size: 0.65rem; font-weight: bold; text-decoration: none; }
+        .instagram { background-color: #E1306C !important; }
+        .youtube { background-color: #FF0000 !important; }
+        #audioPlayerBar { position: fixed; bottom: 0; left: 0; right: 0; background: #7c2d12; color: white; padding: 12px 20px; z-index: 10000; display: none; align-items: center; justify-content: space-between; border-top: 2px solid #ea580c; }
+        .spinning-disc { animation: spin 4s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .action-btn { display:inline-block; padding:10px 20px; border-radius:10px; color:white; font-weight:bold; text-decoration:none; font-size: 0.9rem; transition: 0.3s; text-align: center; }
+        .whatsapp { background-color: #16a34a; }
+        .form { background-color: #2563eb; }
+        @keyframes pulse-blue { 0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); } 70% { box-shadow: 0 0 0 8px rgba(37, 99, 235, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); } }
+        .animate-glow { animation: pulse-blue 2s infinite; }
+    </style>
 </head>
 
 <body>
 
 <header class="bg-yellow-100 p-2 md:p-3 shadow-sm shrink-0 border-b border-yellow-200">
-  <div class="max-w-6xl mx-auto flex justify-between items-center">
-    <div class="w-1/4 md:w-1/3 flex items-center justify-start gap-1 md:gap-4">
-      <img src="images/Ram.jpg" alt="Ram" class="h-10 w-10 md:h-20 md:w-20 rounded-full border-2 border-orange-400 object-cover shadow-sm shrink-0">
-      <span class="motto-text">Hari Sarvothama</span>
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <div class="w-1/4 md:w-1/3 flex items-center justify-start gap-1 md:gap-4">
+            <img src="images/Ram.jpg" alt="Ram" class="h-10 w-10 md:h-20 md:w-20 rounded-full border-2 border-orange-400 object-cover shadow-sm shrink-0">
+            <span class="motto-text">Hari Sarvothama</span>
+        </div>
+        <div class="w-2/4 md:w-1/3 flex justify-center">
+            <img src="JHPS.jpg" alt="JHPS Logo" class="h-20 md:h-40 w-auto rounded-xl shadow-lg border-2 border-white bg-white">
+        </div>
+        <div class="w-1/4 md:w-1/3 flex items-center justify-end gap-1 md:gap-4 text-right">
+            <span class="motto-text">Vayu Jeevothama</span>
+            <img src="images/Hanuman.jpg" alt="Hanuman" class="h-10 w-10 md:h-20 md:w-20 rounded-full border-2 border-orange-400 object-cover shadow-sm shrink-0">
+        </div>
     </div>
-    <div class="w-2/4 md:w-1/3 flex justify-center">
-      <img src="JHPS.jpg" alt="JHPS Logo" class="h-20 md:h-40 w-auto rounded-xl shadow-lg border-2 border-white bg-white">
-    </div>
-    <div class="w-1/4 md:w-1/3 flex items-center justify-end gap-1 md:gap-4 text-right">
-      <span class="motto-text">Vayu Jeevothama</span>
-      <img src="images/Hanuman.jpg" alt="Hanuman" class="h-10 w-10 md:h-20 md:w-20 rounded-full border-2 border-orange-400 object-cover shadow-sm shrink-0">
-    </div>
-  </div>
 </header>
 
 <div class="flex flex-col md:flex-row flex-1 overflow-hidden">
-  <aside class="w-full md:w-60 bg-yellow-100 p-3 md:p-4 border-b md:border-r border-yellow-200 flex flex-row md:flex-col shrink-0 overflow-x-auto md:overflow-y-auto custom-scroll gap-2">
-    <div id="parayanaTab" class="tab-btn active-tab" onclick="switchTab('parayana')">📖 Parayana</div>
-    <div id="stotrasTab" class="tab-btn" onclick="switchTab('stotras')">📜 Stotras</div>
-    <div id="bhajanaTab" class="tab-btn" onclick="switchTab('bhajana')">🎵 Bhajana</div>
-    <div id="learningsTab" class="tab-btn" onclick="switchTab('learnings')">🎓 Learnings</div>
-    <div id="sevaTab" class="tab-btn" onclick="switchTab('seva')">❤️ Seva</div>
-    <div id="activitiesTab" class="tab-btn" onclick="switchTab('activities')">📅 Activities</div>
-    <div id="aboutTab" class="tab-btn" onclick="switchTab('about')">ℹ️ About</div>
-    <div id="contactTab" class="tab-btn" onclick="switchTab('contact')">📞 Contact</div>
-  </aside>
+    <aside class="w-full md:w-60 bg-yellow-100 p-3 md:p-4 border-b md:border-r border-yellow-200 flex flex-row md:flex-col shrink-0 overflow-x-auto md:overflow-y-auto custom-scroll gap-2">
+        <div id="parayanaTab" class="tab-btn active-tab" onclick="switchTab('parayana')">📖 Parayana</div>
+        <div id="stotrasTab" class="tab-btn" onclick="switchTab('stotras')">📜 Stotras</div>
+        <div id="bhajanaTab" class="tab-btn" onclick="switchTab('bhajana')">🎵 Bhajana</div>
+        <div id="learningsTab" class="tab-btn" onclick="switchTab('learnings')">🎓 Learnings</div>
+        <div id="sevaTab" class="tab-btn" onclick="switchTab('seva')">❤️ Seva</div>
+        <div id="activitiesTab" class="tab-btn" onclick="switchTab('activities')">📅 Activities</div>
+        <div id="aboutTab" class="tab-btn" onclick="switchTab('about')">ℹ️ About</div>
+        <div id="contactTab" class="tab-btn" onclick="switchTab('contact')">📞 Contact</div>
+    </aside>
 
-  <main class="flex-1 p-4 md:p-6 flex flex-col overflow-hidden relative">
-    <div id="topNav" class="mb-4 flex items-center shrink-0">
-      <button id="lang1Btn" class="top-btn active" onclick="handleTopBtn(1)">Details</button>
-      <button id="lang2Btn" class="top-btn" onclick="handleTopBtn(2)">Gallery</button>
-      <button id="lang3Btn" class="top-btn hidden" onclick="handleTopBtn(3)">Sanskrit</button>
-    </div>
-    <div id="contentArea" class="bg-white p-4 md:p-6 rounded-2xl shadow-md border border-yellow-100 flex-1 overflow-y-auto custom-scroll"></div>
-  </main>
+    <main class="flex-1 p-4 md:p-6 flex flex-col overflow-hidden relative">
+        <div id="topNav" class="mb-4 flex items-center shrink-0">
+            <button id="lang1Btn" class="top-btn active" onclick="handleTopBtn(1)">Details</button>
+            <button id="lang2Btn" class="top-btn" onclick="handleTopBtn(2)">Gallery</button>
+            <button id="lang3Btn" class="top-btn hidden" onclick="handleTopBtn(3)">Sanskrit</button>
+        </div>
+        <div id="contentArea" class="bg-white p-4 md:p-6 rounded-2xl shadow-md border border-yellow-100 flex-1 overflow-y-auto custom-scroll"></div>
+    </main>
 </div>
 
 <div id="audioPlayerBar">
@@ -111,251 +98,212 @@
 
 <script src="learnings.js"></script>
 <script src="learning-parts-sv.js"></script>
+<script src="stotras.js"></script>
 
 <script>
-let activeTab = "parayana";
-let currentView = "info"; // Used for Details/Gallery or Language index
-let activeStotra = "vishnu";
-let activeLang = "telugu"; 
-let activePartKey = null;
+    /* GLOBAL STATE & CONFIG */
+    let activeTab = "parayana";
+    let currentView = "info"; 
+    let activeStotra = "vishnu";
+    let activeLang = "telugu"; 
+    let activePartKey = null;
 
-const WHATSAPP = "919686155558";
-const FORM = "https://docs.google.com/forms/d/1JZgvz4o701VtrCeTcyD5mb1Dl31DC_eAXagFk_2iUck/viewform";
+    const WHATSAPP = "919686155558";
+    const FORM = "https://docs.google.com/forms/d/1JZgvz4o701VtrCeTcyD5mb1Dl31DC_eAXagFk_2iUck/viewform";
 
-const areaContacts = [
-  { area: "Kondapur", lead: "Pavan Ashrit", phone: WHATSAPP },
-  { area: "Nallagandla", lead: "Pavan Ashrit", phone: WHATSAPP },
-  { area: "Miyapur", lead: "Pavan Ashrit", phone: WHATSAPP },
-  { area: "BHEL", lead: "Pavan Ashrit", phone: WHATSAPP }
-];
+    const area = document.getElementById('contentArea');
+    const gAudio = document.getElementById('globalAudio');
+    const aBar = document.getElementById('audioPlayerBar');
+    const aName = document.getElementById('audioName');
+    const mIcon = document.getElementById('masterPlayIcon');
+    const dIcon = document.getElementById('discIcon');
 
-const area = document.getElementById('contentArea');
-const gAudio = document.getElementById('globalAudio');
-const aBar = document.getElementById('audioPlayerBar');
-const aName = document.getElementById('audioName');
-const mIcon = document.getElementById('masterPlayIcon');
-const dIcon = document.getElementById('discIcon');
-
-function playStream(url, name) {
-    if (!url || url === "#") return;
-    aName.innerText = name; gAudio.src = url; gAudio.play();
-    aBar.style.display = "flex"; mIcon.className = "fa-solid fa-pause"; dIcon.classList.add('spinning-disc');
-}
-function toggleAudio() {
-    if (gAudio.paused) { gAudio.play(); mIcon.className = "fa-solid fa-pause"; dIcon.classList.add('spinning-disc'); }
-    else { gAudio.pause(); mIcon.className = "fa-solid fa-play"; dIcon.classList.remove('spinning-disc'); }
-}
-function stopAudio() { gAudio.pause(); aBar.style.display = "none"; }
-
-function switchTab(tab){
-  activeTab = tab; 
-  currentView = "info"; 
-  activePartKey = null;
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active-tab'));
-  document.getElementById(tab + "Tab")?.classList.add('active-tab');
-  
-  const topNav = document.getElementById('topNav');
-  const btn1 = document.getElementById('lang1Btn');
-  const btn2 = document.getElementById('lang2Btn');
-  const btn3 = document.getElementById('lang3Btn');
-  
-  topNav.style.display = (tab === "contact") ? "none" : "flex"; 
-
-  if(tab === "stotras") {
-      btn1.innerText = "Telugu";
-      btn2.innerText = "Kannada";
-      btn3.innerText = "Sanskrit";
-      btn3.classList.remove('hidden');
-      activeLang = "telugu";
-      updateTopBtnUI(1);
-  } else {
-      btn1.innerText = "Details";
-      btn2.innerText = "Gallery";
-      btn3.classList.add('hidden');
-      updateTopBtnUI(1);
-  }
-  
-  render();
-  area.scrollTo(0,0);
-}
-
-function handleTopBtn(num) {
-    if (activeTab === "stotras") {
-        if (num === 1) activeLang = "telugu";
-        if (num === 2) activeLang = "kannada";
-        if (num === 3) activeLang = "sanskrit";
-        currentView = "info"; // stotras always use info view logic
-    } else {
-        currentView = (num === 1) ? "info" : "gallery";
+    /* AUDIO CORE LOGIC */
+    function playStream(url, name) {
+        if (!url || url === "#") return;
+        aName.innerText = name; gAudio.src = url; gAudio.play();
+        aBar.style.display = "flex"; mIcon.className = "fa-solid fa-pause"; dIcon.classList.add('spinning-disc');
     }
-    updateTopBtnUI(num);
-    render();
-}
+    function toggleAudio() {
+        if (gAudio.paused) { gAudio.play(); mIcon.className = "fa-solid fa-pause"; dIcon.classList.add('spinning-disc'); }
+        else { gAudio.pause(); mIcon.className = "fa-solid fa-play"; dIcon.classList.remove('spinning-disc'); }
+    }
+    function stopAudio() { gAudio.pause(); aBar.style.display = "none"; }
 
-function updateTopBtnUI(num) {
-    document.getElementById('lang1Btn').classList.toggle('active', num === 1);
-    document.getElementById('lang2Btn').classList.toggle('active', num === 2);
-    document.getElementById('lang3Btn').classList.toggle('active', num === 3);
-}
-
-async function loadStotraText(stotraKey, lang) {
-  const container = document.getElementById('stotraTextContainer');
-  if (!container) return;
-  container.innerHTML = `<div class="p-10 text-center italic text-orange-500">Loading ${stotraKey}...</div>`;
-  try {
-    const response = await fetch(`stotras/${stotraKey}-${lang}.txt?t=${new Date().getTime()}`);
-    if (!response.ok) throw new Error();
-    const text = await response.text();
-    container.innerHTML = text;
-  } catch (err) {
-    container.innerHTML = `<div class="p-10 text-center text-red-500 font-bold">File not found.<br><span class="text-xs font-normal">Ensure "stotras/${stotraKey}-${lang}.txt" exists.</span></div>`;
-  }
-}
-
-function render(){
-  if (currentView === "sv-parts") { renderSVParts(); return; }
-  
-  if (currentView === "gallery") {
-      area.innerHTML = `<div class="p-10 text-center text-gray-400 italic">Gallery for ${activeTab.toUpperCase()} coming soon...</div>`;
-      return;
-  }
-
-  if (activeTab === "stotras") {
-      const tabNames = { vishnu: "Vishnu Sahasranamam", ramaa: "Ramaa Stotram", sundara: "Sundharakanda", vayu: "Hari Vayu Stuthi", rayara: "Raghavendra Stotram" };
-      area.innerHTML = `
-        <div class="flex gap-2 mb-4 overflow-x-auto pb-2 custom-scroll">
-            ${['vishnu','ramaa','sundara','vayu','rayara'].map(s => `<button class="sub-tab-btn ${activeStotra === s ? 'active' : ''}" onclick="activeStotra='${s}'; render();">${tabNames[s]}</button>`).join('')}
-        </div>
-        <div id="stotraTextContainer" class="stotra-content overflow-y-auto"></div>`;
-      loadStotraText(activeStotra, activeLang);
-  }
-  else if (activeTab === "parayana") { renderParayana(); }
-  else if (activeTab === "learnings") { renderLearnings(); }
-  else if (activeTab === "contact") { renderContact(); }
-  else {
-      let data = { bhajana: ["Jaya Hari Bhajana Mandali"], seva: ["Annadhana"], activities: ["Weekly Events"], about: ["Nurturing Dharma Through Practice"] }[activeTab] || [];
-      area.innerHTML = `<h2 class='text-xl font-bold mb-4 text-orange-800 uppercase'>${activeTab}</h2><div class='space-y-2'>${data.map(d => `<div class='bg-yellow-50 p-3 rounded-lg border font-bold text-orange-900'>✦ ${d}</div>`).join('')}</div>`;
-  }
-}
-
-function renderParayana() {
-    const pSeq = { rayara: ["Venkatesha Stotra", "Vishnu Sahasranama", "Manyu Skutha", "Rama Stotra", "Sundarakanda", "Hari Vayu Stuti", "Yantrodharaka Hanumat Stotra", "Jayatheertha Stotra", "Raghuttama Stotra", "Raghavendra Stotra - 3 times"], vayu: ["Venkatesha Stotra", "Vishnu Sahasranama", "Manyu Skutha", "Rama Stotra", "Sundarakanda", "Hari Vayu Stuti - Purascharana", "Yantrodharaka Hanumat Stotra", "Jayatheertha Stotra", "Raghuttama Stotra", "Raghavendra Stotra"], sundara: ["Venkatesha Stotra", "Vishnu Sahasranama", "Manyu Skutha", "Rama Stotra", "Sundarakanda - 3 times", "Hari Vayu Stuti", "Yantrodharaka Hanumat Stotra", "Jayatheertha Stotra", "Raghuttama Stotra", "Raghavendra Stotra"] };
-    let html = `<h2 class='text-xl font-bold mb-4 text-orange-800 uppercase'>Parayana</h2><div class='flex flex-col gap-3'>`;
-    [{ n: "Rayara Ashtottara", k: "rayara" }, { n: "Hari Vayu Stuti Purascharana", k: "vayu" }, { n: "Sundarakanda", k: "sundara" }].forEach(i => {
-      html += `<div class="border border-orange-200 rounded-xl overflow-hidden bg-white shadow-sm">
-          <div onclick="toggleDropdown('${i.k}', 'dropdown')" class='bg-yellow-50 p-4 cursor-pointer flex justify-between items-center'><span class="font-bold text-gray-800">✦ ${i.n}</span><i id="icon-dropdown-${i.k}" class="fa-solid fa-chevron-down text-orange-500 rotate-icon"></i></div>
-          <div id="content-dropdown-${i.k}" class="dropdown-content"><ul class="list-disc list-inside text-sm text-gray-700 p-2">${pSeq[i.k].map(s => `<li>${s}</li>`).join('')}</ul></div>
-        </div>`;
-    });
-    html += `</div><div class='mt-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 rounded-r-xl text-center'>
-                <p class='font-bold text-orange-900 text-sm mb-3 italic underline'>Please contact us via WhatsApp to confirm slots before registering.</p>
-                <div class='flex justify-center gap-2'><a class='action-btn whatsapp' href='https://wa.me/${WHATSAPP}' target='_blank'><i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp</a><a class='action-btn form' href='${FORM}' target='_blank'><i class="fa-solid fa-file-signature mr-1"></i> Register</a></div>
-            </div>`;
-    area.innerHTML = html;
-}
-
-function renderLearnings() {
-    const lData = window.learningsData || [];
-    let html = `<h2 class='text-xl font-bold mb-4 text-orange-800 uppercase'>Learnings</h2><div class='flex flex-col gap-4'>`;
-    lData.forEach((cat, index) => {
-        const catId = `learn-${index}`;
-        html += `<div class="border border-orange-200 rounded-xl overflow-hidden bg-white shadow-sm">
-            <div onclick="toggleDropdown('${catId}', 'learning')" class="bg-yellow-50 p-4 cursor-pointer flex justify-between items-center"><span class="font-bold text-orange-900">✦ ${cat.category}</span><i id="icon-learning-${catId}" class="fa-solid fa-chevron-down text-orange-500 rotate-icon"></i></div>
-            <div id="content-learning-${catId}" class="learning-content space-y-6">`;
-        cat.vedas.forEach(v => {
-            const partKey = v.name.toLowerCase().includes('rig') ? 'rig' : 'yajur';
-            const showPartsBtn = (cat.category === "Sandhya Vandana");
-            html += `<div class="bg-orange-50 rounded-lg border border-orange-100 overflow-hidden mb-2">
-                    <div class="bg-orange-200 px-3 py-2 font-bold text-orange-900 flex justify-between items-center">
-                        <span class="text-sm md:text-base">📖 ${v.name}</span>
-                        ${showPartsBtn ? `<button onclick="event.stopPropagation(); openSVParts('${partKey}')" class="bg-blue-600 text-white text-[9px] md:text-[10px] px-3 py-1 rounded-full animate-glow leading-none shadow-md">Learn in Parts</button>` : ''}
-                    </div>
-                    <table class="w-full text-xs text-left bg-white">
-                        <tbody class="divide-y divide-orange-50">${v.resources.map(r => `<tr><td class="p-3 font-semibold text-gray-700">${r.lang}</td><td class="p-3 text-center">
-                            <div class="flex justify-center gap-4 text-lg">
-                                ${r.audio && r.audio !== '#' ? `<button onclick="playStream('${r.audio}', '${v.name} - ${r.lang}')" class="text-blue-600" title="Audio"><i class="fa-solid fa-circle-play"></i></button>` : `<i class="fa-solid fa-circle-play text-gray-300"></i>`}
-                                ${r.video && r.video !== '#' ? `<a href="${r.video}" target="_blank" class="text-red-600" title="Video"><i class="fa-brands fa-youtube"></i></a>` : `<i class="fa-brands fa-youtube text-gray-300"></i>`}
-                                ${r.pdf && r.pdf !== '#' ? `<a href="${r.pdf}" target="_blank" class="text-green-600" title="PDF"><i class="fa-solid fa-file-pdf"></i></a>` : `<i class="fa-solid fa-file-pdf text-gray-300"></i>`}
-                            </div>
-                        </td></tr>`).join('')}</tbody>
-                    </table></div>`;
-        });
-        html += `</div></div>`;
-    });
-    area.innerHTML = html + "</div>";
-}
-
-function renderContact() {
-    let html = `<div class='flex flex-col gap-3'>
-        <div class='bg-yellow-50 p-3 rounded-xl border text-sm font-bold shadow-sm'>✦ Jaya Hari Parayana Sangha</div>
-        <div class='bg-yellow-50 p-3 rounded-xl border text-sm font-bold shadow-sm mb-2'>✦ Email: jayahariparayanasangha@gmail.com</div>
+    /* TAB SWITCHING & NAVIGATION */
+    function switchTab(tab){
+        activeTab = tab; 
+        currentView = "info"; 
+        activePartKey = null;
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active-tab'));
+        document.getElementById(tab + "Tab")?.classList.add('active-tab');
         
-        <h3 class='text-md font-bold text-orange-700 mt-2 mb-2 w-full uppercase'>Area Contacts</h3>
-        <div class="area-grid">
-          ${["Kondapur", "Nallagandla", "Miyapur", "BHEL"].map(place => `
-            <div class='area-box'>
-              <div class='text-[10px] font-black uppercase text-orange-600 tracking-widest mb-1 border-b pb-1'>${place}</div>
-              <div class='contact-row'>
-                <div class='text-xs font-semibold text-gray-800'>Pavan Ashrit</div>
-                <a href="tel:9686155558" class="call-btn">9686155558</a>
-              </div>
-              <div class='contact-row'>
-                <div class='text-xs font-semibold text-gray-800'>Srikanth Joshi</div>
-                <a href="tel:9573313511" class="call-btn">9573313511</a>
-              </div>
-            </div>`).join('')}
-        </div>
+        const topNav = document.getElementById('topNav');
+        const btn1 = document.getElementById('lang1Btn');
+        const btn2 = document.getElementById('lang2Btn');
+        const btn3 = document.getElementById('lang3Btn');
+        
+        topNav.style.display = (tab === "contact") ? "none" : "flex"; 
 
-        <h3 class='text-md font-bold text-orange-700 mt-4 mb-2 w-full uppercase'>Social Media</h3>
-        <div class="flex flex-col sm:flex-row gap-2">
-          <a href="https://www.instagram.com/jayahariparayanasangha/" target="_blank" class="action-btn instagram shadow-md flex items-center justify-center gap-2" style="padding: 6px 12px; font-size: 0.8rem;">
-            <i class="fa-brands fa-instagram text-lg"></i> Instagram
-          </a>
-          <a href="https://www.youtube.com/@JayaHariParayanaSangha" target="_blank" class="action-btn youtube shadow-md flex items-center justify-center gap-2" style="padding: 6px 12px; font-size: 0.8rem;">
-            <i class="fa-brands fa-youtube text-lg"></i> Youtube
-          </a>
-        </div>
+        if(tab === "stotras") {
+            btn1.innerText = "Telugu";
+            btn2.innerText = "Kannada";
+            btn3.innerText = "Sanskrit";
+            btn3.classList.remove('hidden');
+            activeLang = "telugu";
+        } else {
+            btn1.innerText = "Details";
+            btn2.innerText = "Gallery";
+            btn3.classList.add('hidden');
+        }
+        updateTopBtnUI(1);
+        render();
+        area.scrollTo(0,0);
+    }
 
-        <div class='bg-green-50 p-5 rounded-2xl border-2 border-dashed border-green-200 text-center mt-6'>
-            <p class='font-bold text-green-900 mb-3'>Join our WhatsApp Community</p>
-            <a class='inline-flex items-center gap-2 bg-green-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:bg-green-700 transition' href='https://wa.me/${WHATSAPP}' target='_blank'>
-              <i class="fa-brands fa-whatsapp text-xl"></i> Chat on WhatsApp
-            </a>
-        </div>
-    </div>`;
-    area.innerHTML = html;
-}
+    function handleTopBtn(num) {
+        if (activeTab === "stotras") {
+            if (num === 1) activeLang = "telugu";
+            if (num === 2) activeLang = "kannada";
+            if (num === 3) activeLang = "sanskrit";
+            currentView = "info"; 
+        } else {
+            currentView = (num === 1) ? "info" : "gallery";
+        }
+        updateTopBtnUI(num);
+        render();
+    }
 
-function renderSVParts() {
-    const pDB = window.svPartsData || {};
-    const partData = pDB[activePartKey];
-    if (!partData) return;
-    let html = `<button onclick="switchTab('learnings')" class="mb-4 text-blue-700 font-bold flex items-center gap-1"><i class="fa-solid fa-arrow-left"></i> Back</button>
-        <h2 class="text-xl font-black text-orange-900 border-b-4 border-orange-500 pb-2 mb-6">${partData.title}</h2><div class="grid gap-3">`;
-    partData.steps.forEach(step => {
-        html += `<div class="p-4 bg-white border border-orange-100 rounded-xl flex justify-between items-center shadow-sm">
-            <div><h4 class="font-bold text-orange-900">${step.id}. ${step.name}</h4><p class="text-xs text-gray-500">${step.desc}</p></div>
-            <div class="flex gap-4 text-xl">
-                ${step.audio && step.audio !== '#' ? `<button onclick="playStream('${step.audio}', '${step.name}')" class="text-blue-600"><i class="fa-solid fa-circle-play"></i></button>` : `<i class="fa-solid fa-circle-play text-gray-300"></i>`}
-                ${step.video && step.video !== '#' ? `<a href="${step.video}" target="_blank" class="text-red-600"><i class="fa-brands fa-youtube"></i></a>` : `<i class="fa-brands fa-youtube text-gray-300"></i>`}
-            </div></div>`;
-    });
-    area.innerHTML = html + `</div><div class="pb-24"></div>`;
-}
+    function updateTopBtnUI(num) {
+        document.getElementById('lang1Btn').classList.toggle('active', num === 1);
+        document.getElementById('lang2Btn').classList.toggle('active', num === 2);
+        document.getElementById('lang3Btn').classList.toggle('active', num === 3);
+    }
 
-function openSVParts(key) { activePartKey = key; currentView = "sv-parts"; document.getElementById('topNav').style.display = "none"; render(); area.scrollTo(0,0); }
+    /* MAIN RENDERER */
+    function render(){
+        if (currentView === "sv-parts") { renderSVParts(); return; }
+        
+        if (currentView === "gallery") {
+            area.innerHTML = `<div class="p-10 text-center text-gray-400 italic">Gallery for ${activeTab.toUpperCase()} coming soon...</div>`;
+            return;
+        }
 
-function toggleDropdown(id, type) {
-  const content = document.getElementById(`content-${type}-${id}`);
-  const icon = document.getElementById(`icon-${type}-${id}`);
-  if (!content) return;
-  const isOpen = content.classList.contains('open');
-  if (!isOpen) { content.classList.add('open'); if (icon) icon.classList.add('active'); }
-  else { content.classList.remove('open'); if (icon) icon.classList.remove('active'); }
-}
+        // Logic split by active tab
+        if (activeTab === "stotras") {
+            renderStotraUI(); // Defined in stotras.js
+        }
+        else if (activeTab === "parayana") { renderParayana(); }
+        else if (activeTab === "learnings") { renderLearnings(); }
+        else if (activeTab === "contact") { renderContact(); }
+        else {
+            let data = { bhajana: ["Jaya Hari Bhajana Mandali"], seva: ["Annadhana"], activities: ["Weekly Events"], about: ["Nurturing Dharma Through Practice"] }[activeTab] || [];
+            area.innerHTML = `<h2 class='text-xl font-bold mb-4 text-orange-800 uppercase'>${activeTab}</h2><div class='space-y-2'>${data.map(d => `<div class='bg-yellow-50 p-3 rounded-lg border font-bold text-orange-900'>✦ ${d}</div>`).join('')}</div>`;
+        }
+    }
 
-window.onload = render;
-render();
+    /* COMPONENT RENDERERS (Remaining tabs) */
+    function renderParayana() {
+        const pSeq = { rayara: ["Venkatesha Stotra", "Vishnu Sahasranama", "Manyu Skutha", "Rama Stotra", "Sundarakanda", "Hari Vayu Stuti", "Yantrodharaka Hanumat Stotra", "Jayatheertha Stotra", "Raghuttama Stotra", "Raghavendra Stotra - 3 times"], vayu: ["Venkatesha Stotra", "Vishnu Sahasranama", "Manyu Skutha", "Rama Stotra", "Sundarakanda", "Hari Vayu Stuti - Purascharana", "Yantrodharaka Hanumat Stotra", "Jayatheertha Stotra", "Raghuttama Stotra", "Raghavendra Stotra"], sundara: ["Venkatesha Stotra", "Vishnu Sahasranama", "Manyu Skutha", "Rama Stotra", "Sundarakanda - 3 times", "Hari Vayu Stuti", "Yantrodharaka Hanumat Stotra", "Jayatheertha Stotra", "Raghuttama Stotra", "Raghavendra Stotra"] };
+        let html = `<h2 class='text-xl font-bold mb-4 text-orange-800 uppercase'>Parayana</h2><div class='flex flex-col gap-3'>`;
+        [{ n: "Rayara Ashtottara", k: "rayara" }, { n: "Hari Vayu Stuti Purascharana", k: "vayu" }, { n: "Sundarakanda", k: "sundara" }].forEach(i => {
+            html += `<div class="border border-orange-200 rounded-xl overflow-hidden bg-white shadow-sm">
+                <div onclick="toggleDropdown('${i.k}', 'dropdown')" class='bg-yellow-50 p-4 cursor-pointer flex justify-between items-center'><span class="font-bold text-gray-800">✦ ${i.n}</span><i id="icon-dropdown-${i.k}" class="fa-solid fa-chevron-down text-orange-500 rotate-icon"></i></div>
+                <div id="content-dropdown-${i.k}" class="dropdown-content"><ul class="list-disc list-inside text-sm text-gray-700 p-2">${pSeq[i.k].map(s => `<li>${s}</li>`).join('')}</ul></div>
+            </div>`;
+        });
+        html += `</div><div class='mt-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 rounded-r-xl text-center'>
+                    <p class='font-bold text-orange-900 text-sm mb-3 italic underline'>Please contact us via WhatsApp to confirm slots before registering.</p>
+                    <div class='flex justify-center gap-2'><a class='action-btn whatsapp' href='https://wa.me/${WHATSAPP}' target='_blank'><i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp</a><a class='action-btn form' href='${FORM}' target='_blank'><i class="fa-solid fa-file-signature mr-1"></i> Register</a></div>
+                </div>`;
+        area.innerHTML = html;
+    }
+
+    function renderLearnings() {
+        const lData = window.learningsData || [];
+        let html = `<h2 class='text-xl font-bold mb-4 text-orange-800 uppercase'>Learnings</h2><div class='flex flex-col gap-4'>`;
+        lData.forEach((cat, index) => {
+            const catId = `learn-${index}`;
+            html += `<div class="border border-orange-200 rounded-xl overflow-hidden bg-white shadow-sm">
+                <div onclick="toggleDropdown('${catId}', 'learning')" class="bg-yellow-50 p-4 cursor-pointer flex justify-between items-center"><span class="font-bold text-orange-900">✦ ${cat.category}</span><i id="icon-learning-${catId}" class="fa-solid fa-chevron-down text-orange-500 rotate-icon"></i></div>
+                <div id="content-learning-${catId}" class="learning-content space-y-6">`;
+            cat.vedas.forEach(v => {
+                const partKey = v.name.toLowerCase().includes('rig') ? 'rig' : 'yajur';
+                const showPartsBtn = (cat.category === "Sandhya Vandana");
+                html += `<div class="bg-orange-50 rounded-lg border border-orange-100 overflow-hidden mb-2">
+                        <div class="bg-orange-200 px-3 py-2 font-bold text-orange-900 flex justify-between items-center">
+                            <span class="text-sm md:text-base">📖 ${v.name}</span>
+                            ${showPartsBtn ? `<button onclick="event.stopPropagation(); openSVParts('${partKey}')" class="bg-blue-600 text-white text-[9px] md:text-[10px] px-3 py-1 rounded-full animate-glow leading-none shadow-md">Learn in Parts</button>` : ''}
+                        </div>
+                        <table class="w-full text-xs text-left bg-white">
+                            <tbody class="divide-y divide-orange-50">${v.resources.map(r => `<tr><td class="p-3 font-semibold text-gray-700">${r.lang}</td><td class="p-3 text-center">
+                                <div class="flex justify-center gap-4 text-lg">
+                                    ${r.audio && r.audio !== '#' ? `<button onclick="playStream('${r.audio}', '${v.name} - ${r.lang}')" class="text-blue-600" title="Audio"><i class="fa-solid fa-circle-play"></i></button>` : `<i class="fa-solid fa-circle-play text-gray-300"></i>`}
+                                    ${r.video && r.video !== '#' ? `<a href="${r.video}" target="_blank" class="text-red-600" title="Video"><i class="fa-brands fa-youtube"></i></a>` : `<i class="fa-brands fa-youtube text-gray-300"></i>`}
+                                    ${r.pdf && r.pdf !== '#' ? `<a href="${r.pdf}" target="_blank" class="text-green-600" title="PDF"><i class="fa-solid fa-file-pdf"></i></a>` : `<i class="fa-solid fa-file-pdf text-gray-300"></i>`}
+                                </div>
+                            </td></tr>`).join('')}</tbody>
+                        </table></div>`;
+            });
+            html += `</div></div>`;
+        });
+        area.innerHTML = html + "</div>";
+    }
+
+    function renderContact() {
+        let html = `<div class='flex flex-col gap-3'>
+            <div class='bg-yellow-50 p-3 rounded-xl border text-sm font-bold shadow-sm'>✦ Jaya Hari Parayana Sangha</div>
+            <div class='bg-yellow-50 p-3 rounded-xl border text-sm font-bold shadow-sm mb-2'>✦ Email: jayahariparayanasangha@gmail.com</div>
+            <h3 class='text-md font-bold text-orange-700 mt-2 mb-2 w-full uppercase'>Area Contacts</h3>
+            <div class="area-grid">
+              ${["Kondapur", "Nallagandla", "Miyapur", "BHEL"].map(place => `
+                <div class='area-box'>
+                  <div class='text-[10px] font-black uppercase text-orange-600 tracking-widest mb-1 border-b pb-1'>${place}</div>
+                  <div class='contact-row'><div class='text-xs font-semibold text-gray-800'>Pavan Ashrit</div><a href="tel:9686155558" class="call-btn">9686155558</a></div>
+                  <div class='contact-row'><div class='text-xs font-semibold text-gray-800'>Srikanth Joshi</div><a href="tel:9573313511" class="call-btn">9573313511</a></div>
+                </div>`).join('')}
+            </div>
+            <h3 class='text-md font-bold text-orange-700 mt-4 mb-2 w-full uppercase'>Social Media</h3>
+            <div class="flex flex-col sm:flex-row gap-2">
+              <a href="https://www.instagram.com/jayahariparayanasangha/" target="_blank" class="action-btn instagram shadow-md flex items-center justify-center gap-2" style="padding: 6px 12px; font-size: 0.8rem;"><i class="fa-brands fa-instagram text-lg"></i> Instagram</a>
+              <a href="https://www.youtube.com/@JayaHariParayanaSangha" target="_blank" class="action-btn youtube shadow-md flex items-center justify-center gap-2" style="padding: 6px 12px; font-size: 0.8rem;"><i class="fa-brands fa-youtube text-lg"></i> Youtube</a>
+            </div>
+            <div class='bg-green-50 p-5 rounded-2xl border-2 border-dashed border-green-200 text-center mt-6'>
+                <p class='font-bold text-green-900 mb-3'>Join our WhatsApp Community</p>
+                <a class='inline-flex items-center gap-2 bg-green-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:bg-green-700 transition' href='https://wa.me/${WHATSAPP}' target='_blank'><i class="fa-brands fa-whatsapp text-xl"></i> Chat on WhatsApp</a>
+            </div>
+        </div>`;
+        area.innerHTML = html;
+    }
+
+    function renderSVParts() {
+        const pDB = window.svPartsData || {};
+        const partData = pDB[activePartKey];
+        if (!partData) return;
+        let html = `<button onclick="switchTab('learnings')" class="mb-4 text-blue-700 font-bold flex items-center gap-1"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h2 class="text-xl font-black text-orange-900 border-b-4 border-orange-500 pb-2 mb-6">${partData.title}</h2><div class="grid gap-3">`;
+        partData.steps.forEach(step => {
+            html += `<div class="p-4 bg-white border border-orange-100 rounded-xl flex justify-between items-center shadow-sm">
+                <div><h4 class="font-bold text-orange-900">${step.id}. ${step.name}</h4><p class="text-xs text-gray-500">${step.desc}</p></div>
+                <div class="flex gap-4 text-xl">
+                    ${step.audio && step.audio !== '#' ? `<button onclick="playStream('${step.audio}', '${step.name}')" class="text-blue-600"><i class="fa-solid fa-circle-play"></i></button>` : `<i class="fa-solid fa-circle-play text-gray-300"></i>`}
+                    ${step.video && step.video !== '#' ? `<a href="${step.video}" target="_blank" class="text-red-600"><i class="fa-brands fa-youtube"></i></a>` : `<i class="fa-brands fa-youtube text-gray-300"></i>`}
+                </div></div>`;
+        });
+        area.innerHTML = html + `</div><div class="pb-24"></div>`;
+    }
+
+    function openSVParts(key) { activePartKey = key; currentView = "sv-parts"; document.getElementById('topNav').style.display = "none"; render(); area.scrollTo(0,0); }
+
+    function toggleDropdown(id, type) {
+        const content = document.getElementById(`content-${type}-${id}`);
+        const icon = document.getElementById(`icon-${type}-${id}`);
+        if (!content) return;
+        if (!content.classList.contains('open')) { content.classList.add('open'); icon?.classList.add('active'); }
+        else { content.classList.remove('open'); icon?.classList.remove('active'); }
+    }
+
+    window.onload = render;
 </script>
 </body>
 </html>
