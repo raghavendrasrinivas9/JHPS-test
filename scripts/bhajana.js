@@ -14,7 +14,7 @@ window.bhajanaData = {
         name: "Vijaya Dasaru",
         songs: [
             { id: "v1", title: "Pavamana Pavamana", file: "lyrics/vijaya-pavamana.txt" },
-            { id: "v2", title: "Vijayadasara Kavacha", file: "lyrics/vijaya-smarisi.txt" }
+            { id: "v2", title: "Vijayadasara Kavacha (Smarisi Badukiro", file: "lyrics/vijaya-smarisi.txt" }
         ]
     },
     jagannatha: {
