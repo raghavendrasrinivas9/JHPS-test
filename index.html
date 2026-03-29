@@ -17,6 +17,25 @@
         .tab-btn:hover { background-color: #fb923c; color: white; }
         .active-tab { background-color: #ea580c !important; color: white !important; border-color: #9a3412; }
         
+		/* Animation for the rotating disc */
+		.rotating {
+		animation: spin 3s linear infinite;
+		}
+
+		@keyframes spin {
+			from { transform: rotate(0deg); }
+			to { transform: rotate(360deg); }
+		}
+
+		/* Pulse for the playing track */
+		.animate-pulse {
+			animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+		}
+		@keyframes pulse {
+			0%, 100% { opacity: 1; }
+			50% { opacity: .5; }
+		}
+		
         .top-btn { padding:6px 16px; border-radius:9999px; font-weight:bold; margin-right:8px; background-color: #fde68a; font-size: 0.85rem; color: #92400e; transition: 0.3s; border: 1px solid #fcd34d; }
         .top-btn.active { background-color: #ea580c !important; color: white !important; border-color: #9a3412; }
 
@@ -87,7 +106,6 @@
         <div id="sevaTab" class="tab-btn" onclick="switchTab('seva')">❤️ Seva</div>
 		<div id="eventsTab" class="tab-btn" onclick="switchTab('events')">📅 Events</div> 
 		<div id="aboutTab" class="tab-btn" onclick="switchTab('about')">ℹ️ About</div>
-        <div id="aboutTab" class="tab-btn" onclick="switchTab('about')">ℹ️ About</div>
         <div id="contactTab" class="tab-btn" onclick="switchTab('contact')">📞 Contact</div>
     </aside>
 
@@ -110,7 +128,9 @@
     <audio id="globalAudio"></audio>
     <div class="flex items-center gap-5">
         <button onclick="toggleAudio()" class="text-2xl outline-none"><i id="masterPlayIcon" class="fa-solid fa-pause"></i></button>
-        <button onclick="stopAudio()" class="text-lg text-orange-300 outline-none"><i class="fa-solid fa-xmark"></i></button>
+        <button onclick="stopAudio()" class="text-lg text-orange-300 outline-none">
+		<i class="fa-solid fa-xmark"></i>
+		</button>
     </div>
 </div>
 
@@ -119,8 +139,10 @@
 <script src="scripts/stotras.js"></script>
 <script src="scripts/contacts.js"></script>
 <script src="scripts/parayana.js"></script>
-<script src="scripts/events.js"></script> <script src="scripts/gallery.js"></script>
-<script src="scripts/main-logic.js"></script>
+<script src="scripts/events.js"></script>
+<script src="scripts/bhajana.js"></script>
+<script src="scripts/seva.js"></script>
+<script src="scripts/gallery.js"></script> <script src="scripts/main-logic.js"></script>
 
 </body>
 </html>
