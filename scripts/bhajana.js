@@ -22,8 +22,8 @@ window.bhajanaData = {
 	jagannatha: {
         name: "Jagannatha Dasaru",
         songs: [
-            { id: "v1", title: "Pavamana Pavamana", file: "lyrics/vijaya-pavamana.txt" },
-            { id: "v2", title: "Vijayadasara Kavacha", file: "lyrics/v2.txt" }
+            { id: "v1", title: "Pavamana Pavamana", file: "lyrics/jagannatha-namisibeduve.txt" },
+            
         ]
     },
 	gopala: {
@@ -48,7 +48,7 @@ window.bhajanaData = {
 	others: {
         name: "others",
         songs: [
-            { id: "k1", title: "coming soon", file: "lyrics/k1.txt" }
+            { id: "k1", title: "Krishna Krishna Krishna", file: "lyrics/others-krishna-krishna.txt" }
         ]
     }
 };
