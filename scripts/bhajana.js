@@ -7,8 +7,8 @@ window.bhajanaData = {
     purandara: {
         name: "Purandara Dasaru",
         songs: [
-            { id: "p1", title: "Pandarapura", file: "lyrics/p1.txt" },
-            { id: "p2", title: "Jagadoddharana", file: "lyrics/p2.txt" },
+            { id: "p1", title: "Pandarapura", file: "lyrics/purandara-ramamantrava-japiso.txt" },
+            { id: "p2", title: "Jagadoddharana", file: "lyrics/purandara-jagadodharana.txt" },
             { id: "p3", title: "Gajavadana Beduve", file: "lyrics/p3.txt" }
         ]
     },
@@ -16,11 +16,37 @@ window.bhajanaData = {
         name: "Vijaya Dasaru",
         songs: [
             { id: "v1", title: "Pavamana Pavamana", file: "lyrics/vijaya-pavamana.txt" },
+            { id: "v2", title: "Vijayadasara Kavacha", file: "lyrics/vijaya-smarisi.txt" }
+        ]
+    },
+	jagannatha: {
+        name: "Jagannatha Dasaru",
+        songs: [
+            { id: "v1", title: "Pavamana Pavamana", file: "lyrics/vijaya-pavamana.txt" },
             { id: "v2", title: "Vijayadasara Kavacha", file: "lyrics/v2.txt" }
         ]
     },
-    kanakadasa: {
+	gopala: {
+        name: "Gopala Dasaru",
+        songs: [
+            { id: "v1", title: "Pavamana Pavamana", file: "lyrics/vijaya-pavamana.txt" },
+            { id: "v2", title: "Vijayadasara Kavacha", file: "lyrics/gopala-barayyababa.txt" }
+        ]
+    },
+    kanaka: {
         name: "Kanaka Dasaru",
+        songs: [
+            { id: "k1", title: "Bagilanu Teredu", file: "lyrics/kanaka-ishaninna.txt.txt" }
+        ]
+    },
+	prasanna: {
+        name: "Prasanna Venkata Dasaru",
+        songs: [
+            { id: "k1", title: "Bagilanu Teredu", file: "lyrics/prasanna-yentha-srimantha.txt" }
+        ]
+    },
+	others: {
+        name: "others",
         songs: [
             { id: "k1", title: "Bagilanu Teredu", file: "lyrics/k1.txt" }
         ]
