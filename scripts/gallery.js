@@ -1,83 +1,55 @@
 /* --- GALLERY DATA --- */
-/* --- GALLERY DATA --- */
 window.galleryData = {
     parayana: [
-        { 
-            type: "photo", 
-            url: "images/Parayana1.jpg", 
-            caption: "Group Parayana" 
-        }
+        { type: "photo", url: "images/Parayana1.jpg", caption: "Group Parayana" },
+		{ type: "photo", url: "images/Parayana2.jpg", caption: "Group Parayana" }
+       
     ],
-    stotras: [],
-    events: [
-        { 
-            type: "photo", 
-            url: "images/Parayana1.jpg", 
-            caption: "Group Parayana" 
-        }, // <--- THIS COMMA WAS MISSING
-        { 
-            type: "video", 
-            url: "https://www.youtube.com/shorts/rlB0LHHOUmw", 
-            caption: "Weekly Parayana Highlights" 
-        }
-    ],
-    learnings: [],
-    contact: []
+    stotras: [], 
+    events: [], 
+    learnings: [
+		{ type: "photo", url: "images/Training1.jpg", caption: "Mantrabyasa " },
+		{ type: "photo", url: "images/Training2.jpg", caption: "Sandhya Vandane Training" },
+		{ type: "photo", url: "images/Training3.jpg", caption: "Sandhya Vandane Training" },
+		{ type: "photo", url: "images/Training4.jpg", caption: "Sandhya Vandane Training" }
+	], 
+    seva: [
+	{ type: "photo", url: "images/Seva1.jpg", caption: "Gow Seva" }
+	],
+	contact: []
 };
 
 /* --- GALLERY RENDERER --- */
 function renderGalleryUI() {
     const area = document.getElementById('contentArea');
-    const mediaItems = window.galleryData[activeTab] || [];
+    if (!area) return;
 
-    if (mediaItems.length === 0) {
-        area.innerHTML = `
-            <div class="p-10 text-center text-gray-400 italic">
-                <i class="fa-solid fa-camera-retro text-4xl mb-3 block opacity-20"></i>
-                No media for ${activeTab.toUpperCase()} yet.
-            </div>`;
-        return;
-    }
+    // Filter only for photos now
+    let items = (window.galleryData[window.activeTab] || []).filter(i => i.type === 'photo');
 
     let html = `
-        <h2 class="text-xl font-bold mb-6 text-orange-800 uppercase tracking-tight flex items-center gap-2">
-            <i class="fa-solid fa-images"></i> ${activeTab} Gallery
-        </h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">`;
+        <div class="mb-8 flex flex-col gap-4">
+            <h2 class="text-2xl font-black text-orange-900 uppercase tracking-tighter italic">
+                ${window.activeTab.replace('-', ' ')} Gallery
+            </h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">`;
 
-    mediaItems.forEach((item, index) => {
-        let thumbUrl = item.url;
-        
-        // If it's a video, use the helper to get the YouTube thumbnail
-        if (item.type === "video") {
-            const vId = getYTID(item.url);
-            thumbUrl = vId ? `https://img.youtube.com/vi/${vId}/hqdefault.jpg` : 'https://via.placeholder.com/400?text=Video+Error';
-        }
+    if (items.length === 0) {
+        html += `<div class="col-span-full py-20 text-center text-gray-400 italic">No photos found in this category yet.</div>`;
+    }
 
+    items.forEach((item, index) => {
         html += `
-            <div class="relative aspect-square overflow-hidden rounded-xl shadow-md border border-orange-100 bg-black group cursor-pointer" 
-                 onclick="openLightbox(${index})">
-                
-                <img src="${thumbUrl}" alt="${item.caption}" 
-                     class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700 opacity-90 group-hover:opacity-100">
-                
-                ${item.type === "video" ? `
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="bg-white/20 backdrop-blur-sm p-3 rounded-full border border-white/30 group-hover:bg-red-600 transition-colors">
-                        <i class="fa-solid fa-play text-white text-xl ml-1"></i>
-                    </div>
+            <div class="relative aspect-square overflow-hidden rounded-3xl shadow-lg border-4 border-white bg-white group cursor-pointer" onclick="openLightbox(${index})">
+                <img src="${item.url}" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-orange-900/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                    <i class="fa-solid fa-expand text-white text-3xl"></i>
                 </div>
-                ` : ''}
-
-                ${item.caption ? `
-                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-3">
-                    <p class="text-white text-[11px] md:text-xs font-medium leading-tight">
-                        ${item.type === "video" ? '<i class="fa-solid fa-video mr-1 text-orange-400"></i>' : ''} ${item.caption}
-                    </p>
-                </div>
-                ` : ''}
             </div>`;
     });
 
-    area.innerHTML = html + `</div><div class="pb-24"></div>`;
+    area.innerHTML = html + `</div><div class="pb-28"></div>`;
 }
+
+// Remove the getYTID function entirely as it is no longer needed

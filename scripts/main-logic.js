@@ -1,194 +1,211 @@
-/* ==========================================================================
-   GLOBAL STATE & HELPERS
-   ========================================================================== */
-let activeTab = "parayana";
-let currentView = "info"; 
-let activePartKey = null;
-let currentPhotoIndex = 0;
+/* ================================================================
+   1. GLOBAL STATE
+================================================================
+*/
+window.activeTab = "parayana"; 
+window.currentView = "info";   
+window.activeStotra = "vishnu"; 
+window.activeLang = "telugu"; 
+window.activePartKey = null; 
 
-const area = document.getElementById('contentArea');
-const gAudio = document.getElementById('globalAudio');
-const aBar = document.getElementById('audioPlayerBar');
-const aName = document.getElementById('audioName');
-const mIcon = document.getElementById('masterPlayIcon');
-const dIcon = document.getElementById('discIcon');
-
-// EXTRACT YOUTUBE ID FROM ANY URL
-function getYTID(url) {
-    if (!url) return null;
-    // Enhanced regex to specifically handle /shorts/ and standard watch?v=
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/)([^#\&\?]*).*/;
-    const match = url.match(regExp);
-    return (match && match[2].length === 11) ? match[2] : null;
-}
-
-/* ==========================================================================
-   NAVIGATION
-   ========================================================================== */
+/* ================================================================
+   2. NAVIGATION ENGINE
+================================================================
+*/
 function switchTab(tab) {
-    activeTab = tab; 
-    currentView = "info"; 
-    activePartKey = null;
+    // Reset view state when switching main tabs
+    if (window.activeTab !== tab) {
+        window.activeTab = tab;
+        window.currentView = "info"; 
+        window.activePartKey = null;
+    }
+    
+    const btn1 = document.getElementById('lang1Btn');
+    const btn2 = document.getElementById('lang2Btn');
+    const btn3 = document.getElementById('lang3Btn');
+    const topNav = document.getElementById('topNav');
 
+    // Update Sidebar Active Class
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active-tab'));
     const targetTab = document.getElementById(tab + "Tab");
     if (targetTab) targetTab.classList.add('active-tab');
-    
-    const topNav = document.getElementById('topNav');
-    if (topNav) topNav.style.display = (tab === "contact") ? "none" : "flex"; 
 
-    const btn1 = document.getElementById('lang1Btn');
-    const btn2 = document.getElementById('lang2Btn');
-    if(btn1) btn1.innerText = "Details";
-    if(btn2) btn2.innerText = "Gallery";
+    // HIDE TOP NAV for specific views/tabs
+    const noNavTabs = ["contact", "bhajana", "about", "events"];
+    if (window.currentView === "sv-parts" || noNavTabs.includes(tab)) {
+        if(topNav) topNav.style.display = "none";
+    } else {
+        if(topNav) topNav.style.display = "flex";
+        
+        // Contextual button labeling
+        if (tab === "stotras") {
+            if(btn1) { btn1.innerText = "Telugu"; btn1.classList.toggle('active', window.activeLang === 'telugu'); }
+            if(btn2) { btn2.innerText = "Kannada"; btn2.classList.toggle('active', window.activeLang === 'kannada'); }
+            if(btn3) {
+                btn3.style.display = "block";
+                btn3.innerText = "Sanskrit";
+                btn3.classList.toggle('active', window.activeLang === 'sanskrit');
+            }
+        } else {
+            if(btn1) { btn1.innerText = "Details"; btn1.classList.toggle('active', window.currentView === 'info'); }
+            if(btn2) { btn2.innerText = "Gallery"; btn2.classList.toggle('active', window.currentView === 'gallery'); }
+            if(btn3) btn3.style.display = "none"; 
+        }
+    }
 
     render();
-    if (area) area.scrollTo(0,0);
 }
 
 function handleTopBtn(num) {
-    currentView = (num === 1) ? "info" : "gallery";
-    const b1 = document.getElementById('lang1Btn');
-    const b2 = document.getElementById('lang2Btn');
-    if(b1) b1.classList.toggle('active', num === 1);
-    if(b2) b2.classList.toggle('active', num === 2);
-    render();
+    if (window.activeTab === "stotras") {
+        const langs = { 1: 'telugu', 2: 'kannada', 3: 'sanskrit' };
+        window.activeLang = langs[num];
+        window.currentView = "info";
+    } else {
+        window.currentView = (num === 1) ? "info" : "gallery";
+    }
+    switchTab(window.activeTab);
 }
 
-/* ==========================================================================
-   MAIN RENDERER
-   ========================================================================== */
+/* ================================================================
+   3. CORE RENDERER
+================================================================
+*/
 function render() {
+    const area = document.getElementById('contentArea');
     if (!area) return;
-    area.innerHTML = ""; 
 
-    if (currentView === "sv-parts") { 
-        if (typeof renderSVParts === 'function') renderSVParts(); 
-        return; 
-    }
-    
-    if (currentView === "gallery") {
-        if (typeof renderGalleryUI === 'function') renderGalleryUI();
-        else area.innerHTML = "<div class='p-10 text-center italic text-orange-500'>Gallery loading...</div>";
+    area.innerHTML = ""; // Clear current content
+
+    // Priority 1: Sub-Views (Learn in Parts)
+    if (window.currentView === "sv-parts") {
+        if (typeof renderSVParts === 'function') renderSVParts();
+        else area.innerHTML = `<div class="p-10 text-center text-red-500 italic">Parts renderer not found.</div>`;
         return;
     }
 
-    switch(activeTab) {
-        case "stotras": if (typeof renderStotraUI === 'function') renderStotraUI(); break;
-        case "learnings": if (typeof renderLearningsUI === 'function') renderLearningsUI(); break;
-        case "contact": if (typeof renderContactUI === 'function') renderContactUI(); break;
-        case "parayana": if (typeof renderParayanaUI === 'function') renderParayanaUI(); break;
-        case "events": if (typeof renderEventsUI === 'function') renderEventsUI(); break;
-        default: renderDefaultTabs();
+    // Priority 2: Gallery View
+    if (window.currentView === "gallery") {
+        if (typeof renderGalleryUI === 'function') renderGalleryUI();
+        else area.innerHTML = `<div class="p-10 text-center text-gray-400 italic">Gallery coming soon...</div>`;
+        return;
+    }
+
+    // Priority 3: Main Tab Views
+    switch (window.activeTab) {
+        case "parayana":  renderParayanaUI(); break;
+        case "stotras":   renderStotraUI();   break;
+        case "learnings": renderLearningsUI(); break;
+        case "events":    renderEventsUI();    break;
+        case "contact":   renderContactUI();   break;
+        case "bhajana":   renderBhajanaUI();   break;
+        case "seva":      renderSevaUI();      break;
+        case "about": 
+            area.innerHTML = `
+                <h2 class='text-xl font-bold mb-4 text-orange-800 uppercase'>About</h2>
+                <div class='space-y-2'>
+                    <div class='bg-yellow-50 p-3 rounded-lg border border-yellow-200 font-bold text-orange-900'>
+                        ✦ Nurturing Dharma Through Practice
+                    </div>
+                </div>`;
+            break;
+        default: 
+            area.innerHTML = `<div class="p-10 text-center text-gray-400">Section coming soon...</div>`;
     }
 }
 
-function renderDefaultTabs() {
-    const dataMap = { bhajana: ["Bhajana Mandali"], seva: ["Annadhana"], about: ["Dharma Practice"] };
-    const items = dataMap[activeTab] || [];
-    area.innerHTML = `<h2 class='text-xl font-bold mb-4 text-orange-800 uppercase'>${activeTab}</h2><div class='space-y-2'>${items.map(d => `<div class='bg-yellow-50 p-3 rounded-lg border font-bold text-orange-900'>✦ ${d}</div>`).join('')}</div>`;
-}
-
-/* ==========================================================================
-   LIGHTBOX & SLIDESHOW
-   ========================================================================== */
-function openLightbox(index) {
-    const items = window.galleryData[activeTab] || [];
-    if (!items.length) return;
+/* ================================================================
+   4. LEARNINGS SUB-VIEW LOGIC
+================================================================
+*/
+function switchToParts(partKey) {
+    window.currentView = "sv-parts";
+    window.activePartKey = partKey;
     
-    currentPhotoIndex = index;
-    const item = items[currentPhotoIndex];
-
-    let overlay = document.getElementById('lightbox-overlay');
-    if (!overlay) {
-        overlay = document.createElement('div');
-        overlay.id = 'lightbox-overlay';
-        overlay.className = "fixed inset-0 bg-black bg-opacity-95 z-[99999] flex items-center justify-center animate-fade-in";
-        overlay.onclick = (e) => { if(e.target === overlay) closeLightbox(); };
-        document.body.appendChild(overlay);
-    }
-
-    let mediaHTML = "";
-    if (item.type === "video") {
-        const vId = getYTID(item.url);
-        mediaHTML = `
-            <div class="w-full max-w-[350px] md:max-w-md aspect-[9/16] mx-auto rounded-lg overflow-hidden shadow-2xl bg-black border border-white/10">
-                <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube-nocookie.com/embed/${vId}?autoplay=1&mute=1&rel=0&modestbranding=1" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-            <div class="mt-4 flex gap-4 justify-center">
-                <a href="${item.url}" target="_blank" class="text-orange-400 text-xs underline font-medium">
-                    <i class="fa-solid fa-external-link"></i> Open in YouTube
-                </a>
-            </div>`;
-    }
-    else {
-        mediaHTML = `<img src="${item.url}" class="max-h-[80vh] max-w-full rounded-lg shadow-2xl border border-white/10">`;
-    }
-
-    overlay.innerHTML = `
-        <div class="relative w-full h-full flex flex-col items-center justify-center p-4">
-            <button onclick="closeLightbox()" class="absolute top-5 right-5 text-white text-5xl font-thin z-[100001] transition">&times;</button>
-            <button onclick="changePhoto(-1)" class="absolute left-2 md:left-10 top-1/2 -translate-y-1/2 text-white/40 hover:text-white text-5xl p-4 z-[100001] transition"><i class="fa-solid fa-angle-left"></i></button>
-            <button onclick="changePhoto(1)" class="absolute right-2 md:right-10 top-1/2 -translate-y-1/2 text-white/40 hover:text-white text-5xl p-4 z-[100001] transition"><i class="fa-solid fa-angle-right"></i></button>
-
-            <div class="w-full flex flex-col items-center" onclick="event.stopPropagation()">
-                ${mediaHTML}
-                <div class="mt-6 text-center">
-                    <p class="text-white text-sm font-medium bg-white/10 px-6 py-2 rounded-full inline-block border border-white/10">${item.caption || ''}</p>
-                    <p class="text-gray-500 text-[10px] mt-3 tracking-widest uppercase font-bold">Item ${currentPhotoIndex + 1} of ${items.length}</p>
-                </div>
-            </div>
-        </div>
-    `;
-
-    document.onkeydown = (e) => {
-        if (e.key === "ArrowLeft") changePhoto(-1);
-        if (e.key === "ArrowRight") changePhoto(1);
-        if (e.key === "Escape") closeLightbox();
-    };
+    const topNav = document.getElementById('topNav');
+    if(topNav) topNav.style.display = "none";
+    
+    render();
+    const area = document.getElementById('contentArea');
+    if (area) area.scrollTo(0,0);
 }
 
-function closeLightbox() {
-    const overlay = document.getElementById('lightbox-overlay');
-    if (overlay) overlay.remove();
-    document.onkeydown = null;
+function goBackToLearnings() {
+    window.currentView = "info";
+    window.activePartKey = null;
+    
+    const topNav = document.getElementById('topNav');
+    if(topNav) topNav.style.display = "flex";
+    
+    switchTab('learnings');
 }
 
-function changePhoto(step) {
-    const items = window.galleryData[activeTab] || [];
-    currentPhotoIndex += step;
-    if (currentPhotoIndex >= items.length) currentPhotoIndex = 0;
-    if (currentPhotoIndex < 0) currentPhotoIndex = items.length - 1;
-    openLightbox(currentPhotoIndex);
-}
-
-/* ==========================================================================
-   AUDIO PLAYER & UTILS
-   ========================================================================== */
+/* ================================================================
+   5. AUDIO PLAYER CONTROLS
+================================================================
+*/
 function playStream(url, name) {
-    if (!url || url === "#") return;
-    if (aName) aName.innerText = name; 
-    if (gAudio) { gAudio.src = url; gAudio.play(); }
-    if (aBar) aBar.style.display = "flex"; 
-    if (mIcon) mIcon.className = "fa-solid fa-pause"; 
-    if (dIcon) dIcon.classList.add('spinning-disc');
+    const gAudio = document.getElementById('globalAudio');
+    const dIcon = document.getElementById('discIcon');
+    
+    window.currentPlayingUrl = url;
+
+    if (gAudio) {
+        if (gAudio.src.includes(url)) {
+            toggleAudio();
+            return;
+        }
+        gAudio.src = url;
+        gAudio.play();
+    }
+    
+    if (dIcon) dIcon.classList.add('rotating');
+    document.getElementById('audioPlayerBar').style.display = "flex";
+    document.getElementById('audioName').innerText = name;
+    document.getElementById('masterPlayIcon').className = "fa-solid fa-pause";
+
+    if (window.currentView === "sv-parts") renderSVParts();
+}
+
+function stopAudio() {
+    const gAudio = document.getElementById('globalAudio');
+    const aBar = document.getElementById('audioPlayerBar');
+    const dIcon = document.getElementById('discIcon');
+    const mIcon = document.getElementById('masterPlayIcon');
+
+    if (gAudio) {
+        gAudio.pause();
+        gAudio.currentTime = 0;
+        gAudio.src = "";
+    }
+    if (aBar) aBar.style.display = "none";
+    if (dIcon) dIcon.classList.remove('rotating');
+    if (mIcon) mIcon.className = "fa-solid fa-play";
+    
+    window.currentPlayingUrl = null;
+    if (window.currentView === "sv-parts") renderSVParts();
 }
 
 function toggleAudio() {
-    if (!gAudio) return;
-    if (gAudio.paused) { gAudio.play(); mIcon.className = "fa-solid fa-pause"; dIcon.classList.add('spinning-disc'); } 
-    else { gAudio.pause(); mIcon.className = "fa-solid fa-play"; dIcon.classList.remove('spinning-disc'); }
+    const gAudio = document.getElementById('globalAudio');
+    const dIcon = document.getElementById('discIcon');
+    const mIcon = document.getElementById('masterPlayIcon');
+    
+    if (gAudio.paused) {
+        gAudio.play();
+        if(dIcon) dIcon.classList.add('rotating');
+        if(mIcon) mIcon.className = "fa-solid fa-pause";
+    } else {
+        gAudio.pause();
+        if(dIcon) dIcon.classList.remove('rotating');
+        if(mIcon) mIcon.className = "fa-solid fa-play";
+    }
 }
 
-function stopAudio() { if (gAudio) gAudio.pause(); if (aBar) aBar.style.display = "none"; }
-
+/* ================================================================
+   6. UI HELPERS
+================================================================
+*/
 function toggleDropdown(id, type) {
     const content = document.getElementById(`content-${type}-${id}`);
     const icon = document.getElementById(`icon-${type}-${id}`);
@@ -196,4 +213,44 @@ function toggleDropdown(id, type) {
     if (icon) icon.classList.toggle('active');
 }
 
-window.onload = render;
+function openLightbox(index) {
+    if (typeof window.galleryData === 'undefined') return;
+    const items = (window.galleryData[window.activeTab] || []).filter(i => i.type === 'photo');
+    if(!items[index]) return;
+
+    let overlay = document.getElementById('lightbox-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'lightbox-overlay';
+        overlay.className = "fixed inset-0 bg-black bg-opacity-95 z-[99999] flex items-center justify-center p-4";
+        document.body.appendChild(overlay);
+    }
+
+    const item = items[index];
+    const hasPrev = index > 0;
+    const hasNext = index < items.length - 1;
+
+    overlay.innerHTML = `
+        <div class="relative max-w-5xl w-full flex flex-col items-center">
+            <button onclick="document.getElementById('lightbox-overlay').remove()" class="absolute -top-12 right-0 text-white text-3xl hover:text-orange-400 transition">&times;</button>
+            
+            ${hasPrev ? `<button onclick="event.stopPropagation(); openLightbox(${index - 1})" class="absolute left-0 md:-left-16 top-1/2 -translate-y-1/2 text-white text-5xl hover:text-orange-400 p-2 transition"><i class="fa-solid fa-chevron-left"></i></button>` : ''}
+            ${hasNext ? `<button onclick="event.stopPropagation(); openLightbox(${index + 1})" class="absolute right-0 md:-right-16 top-1/2 -translate-y-1/2 text-white text-5xl hover:text-orange-400 p-2 transition"><i class="fa-solid fa-chevron-right"></i></button>` : ''}
+            
+            <img src="${item.url}" class="max-h-[80vh] rounded-lg shadow-2xl border-4 border-white/10 object-contain" onclick="event.stopPropagation()">
+            
+            <div class="mt-6 text-center">
+                <p class="text-orange-400 text-xs font-black uppercase tracking-[0.2em] mb-1">JHPS Gallery</p>
+                <p class="text-white text-xl font-bold">${item.caption || 'Sacred Moment'}</p>
+                <p class="text-gray-400 text-sm mt-2">${index + 1} / ${items.length}</p>
+            </div>
+        </div>
+    `;
+
+    overlay.onclick = () => overlay.remove();
+}
+
+// Global Initialization
+window.onload = () => {
+    switchTab(window.activeTab);
+};

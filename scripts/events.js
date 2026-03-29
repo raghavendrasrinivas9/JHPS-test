@@ -9,7 +9,7 @@ window.eventsData = {
             status: "On-Going" 
         }
     ],
-    upcoming: [], // Empty arrays instead of commented out code
+    upcoming: [], 
     festivals: [], 
     past: [
         { 
@@ -38,10 +38,12 @@ window.eventsData = {
 
 /* --- EVENTS RENDERER --- */
 function renderEventsUI() {
-    const area = document.getElementById('contentArea');
+    // FIX: Define area inside the function so it can find the container
+    const area = document.getElementById('contentArea'); 
+    if (!area) return; 
+
     const data = window.eventsData;
 
-    // Helper function to create event cards
     const createCard = (ev, type) => {
         const isPast = type === 'past';
         const statusColor = ev.status === "On-Going" ? "bg-green-100 text-green-700" : "bg-orange-100 text-orange-700";
@@ -71,7 +73,6 @@ function renderEventsUI() {
             <i class="fa-solid fa-calendar-check"></i> Events & Activities
         </h2>`;
 
-    // Smart Section: Weekly
     if (data.weekly && data.weekly.length > 0) {
         html += `
             <h3 class="text-xs font-black text-orange-600 uppercase tracking-widest mb-3 flex items-center gap-2">
@@ -80,36 +81,12 @@ function renderEventsUI() {
             <div class="mb-8">${data.weekly.map(e => createCard(e, 'weekly')).join('')}</div>`;
     }
 
-    // Smart Section: Upcoming
-    if (data.upcoming && data.upcoming.length > 0) {
-        html += `
-            <h3 class="text-xs font-black text-orange-600 uppercase tracking-widest mb-3 flex items-center gap-2">
-                <i class="fa-solid fa-star"></i> Upcoming Events
-            </h3>
-            <div class="mb-8">${data.upcoming.map(e => createCard(e, 'upcoming')).join('')}</div>`;
-    }
-
-    // Smart Section: Festivals
-    if (data.festivals && data.festivals.length > 0) {
-        html += `
-            <h3 class="text-xs font-black text-orange-600 uppercase tracking-widest mb-3 flex items-center gap-2">
-                <i class="fa-solid fa-om"></i> Festivals
-            </h3>
-            <div class="mb-8">${data.festivals.map(e => createCard(e, 'festivals')).join('')}</div>`;
-    }
-
-    // Smart Section: Past (Always shows if data exists)
     if (data.past && data.past.length > 0) {
         html += `
             <h3 class="text-xs font-black text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-2">
                 <i class="fa-solid fa-history"></i> Past Events
             </h3>
             <div class="mb-10">${data.past.map(e => createCard(e, 'past')).join('')}</div>`;
-    }
-
-    // Catch-all if everything is empty
-    if ([...data.weekly, ...data.upcoming, ...data.festivals, ...data.past].length === 0) {
-        html += `<p class="p-10 text-center text-gray-400 italic">No events currently listed.</p>`;
     }
 
     area.innerHTML = html + `<div class="pb-20"></div>`;

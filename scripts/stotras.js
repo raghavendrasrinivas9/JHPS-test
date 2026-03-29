@@ -8,9 +8,10 @@ const STOTRA_MAP = {
 
 function renderStotraUI() {
     const area = document.getElementById('contentArea');
+    
     const navHtml = Object.keys(STOTRA_MAP).map(key => `
-        <button class="sub-tab-btn ${activeStotra === key ? 'active' : ''}" 
-                onclick="activeStotra='${key}'; render();">
+        <button class="sub-tab-btn ${window.activeStotra === key ? 'active' : ''}" 
+                onclick="window.activeStotra='${key}'; render();">
             ${STOTRA_MAP[key]}
         </button>
     `).join('');
@@ -19,21 +20,25 @@ function renderStotraUI() {
         <div class="flex gap-2 mb-4 overflow-x-auto pb-2 custom-scroll">
             ${navHtml}
         </div>
-        <div id="stotraTextContainer" class="stotra-content overflow-y-auto"></div>
+        <div id="stotraTextContainer" class="stotra-content bg-white p-6 rounded-2xl shadow-inner border border-orange-100 min-h-[400px]">
+            </div>
     `;
 
-    loadStotraContent(activeStotra, activeLang);
+    loadStotraContent(window.activeStotra, window.activeLang);
 }
 
 async function loadStotraContent(stotraKey, lang) {
     const container = document.getElementById('stotraTextContainer');
     if (!container) return;
-    container.innerHTML = `<div class="p-10 text-center italic text-orange-500">Loading ${STOTRA_MAP[stotraKey]}...</div>`;
+    
+    container.innerHTML = `<div class="p-10 text-center italic text-orange-400">Loading...</div>`;
+    
     try {
         const response = await fetch(`stotras/${stotraKey}-${lang}.txt?t=${new Date().getTime()}`);
         if (!response.ok) throw new Error();
-        container.innerHTML = await response.text();
+        const text = await response.text();
+        container.innerHTML = `<div class="animate-fade-in whitespace-pre-wrap leading-relaxed text-lg">${text}</div>`;
     } catch (err) {
-        container.innerHTML = `<div class="p-10 text-center text-red-500 font-bold">File not found.</div>`;
+        container.innerHTML = `<div class="p-10 text-center text-red-500 font-bold">File not found: ${stotraKey}-${lang}.txt</div>`;
     }
 }

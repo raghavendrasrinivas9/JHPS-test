@@ -6,26 +6,57 @@ window.learningsData = [
             {
                 name: "Rigveda Sandhya Vandana",
                 resources: [
-                    { lang: "Telugu", audio: "audio/rig-tel.mp3", video: "https://youtube.com/...", pdf: "docs/rig.pdf" },
-                    { lang: "Kannada", audio: "#", video: "#", pdf: "#" }
+                    { lang: "Telugu", audio: "#", video: "#", pdf: "downloads/Rigveda-Telugu-Sandyavandana.pdf" },
+                    { lang: "Kannada", audio: "#", video: "#", pdf: "downloads/Rigveda-Kannada-Sandyavandana.pdf" },
+					{ lang: "Sanskrit", audio: "#", video: "#", pdf: "downloads/Rigveda-Sanskrit-Sandyavandana.pdf" },
+					{ lang: "English", audio: "#", video: "#", pdf: "downloads/Rigveda-English-Sandyavandana.pdf" }
                 ]
             },
             {
                 name: "Yajurveda Sandhya Vandana",
                 resources: [
-                    { lang: "Telugu", audio: "audio/yajur-tel.mp3", video: "#", pdf: "#" }
+                    { lang: "Telugu", audio: "#", video: "#", pdf: "downloads/Yajurveda-Telugu-Sandyavandana.pdf" },
+                    { lang: "Kannada", audio: "#", video: "#", pdf: "downloads/Yajurveda-Kannada-Sandyavandana.pdf" },
+					{ lang: "Sanskrit", audio: "#", video: "#", pdf: "downloads/Yajurveda-Sanskrit-Sandyavandana.pdf" },
+					{ lang: "English", audio: "#", video: "#", pdf: "downloads/Rigveda-English-Sandyavandana.pdf" }
                 ]
             }
         ]
     },
     {
-        category: "Veda Parayana",
+        category: "Sakshipta Deva Pooja",
+        vedas: [
+            {
+                name: "Sankshipta Deva Pooja",
+                resources: [
+                    { lang: "Telugu", audio: "#", video: "#", pdf: "#" },
+					{ lang: "Kannada", audio: "#", video: "#", pdf: "#" }
+                ]
+            }
+        ]
+    }, // Added missing comma here
+    {
+        category: "Pancha Skuktha",
         vedas: [
             {
                 name: "Purusha Suktam",
-                resources: [
-                    { lang: "Sanskrit", audio: "audio/purusha.mp3", video: "#", pdf: "#" }
-                ]
+                resources: [{ lang: "Sanskrit", audio: "#", video: "#", pdf: "#" }]
+            },
+            {
+                name: "Sri Suktam",
+                resources: [{ lang: "Sanskrit", audio: "#", video: "#", pdf: "#" }]
+            },
+            {
+                name: "Manyu Suktam",
+                resources: [{ lang: "Sanskrit", audio: "#", video: "#", pdf: "#" }]
+            },
+            {
+                name: "Ambrani Suktam",
+                resources: [{ lang: "Sanskrit", audio: "#", video: "#", pdf: "#" }]
+            },
+            {
+                name: "Bhaliktha Suktam",
+                resources: [{ lang: "Sanskrit", audio: "#", video: "#", pdf: "#" }]
             }
         ]
     }
@@ -63,7 +94,7 @@ function renderLearningsUI() {
                 <div class="bg-orange-50 rounded-lg border border-orange-100 overflow-hidden mb-2 mx-2">
                     <div class="bg-orange-100 px-3 py-2 font-bold text-orange-900 flex justify-between items-center">
                         <span class="text-sm">📖 ${v.name}</span>
-                        ${showPartsBtn ? `<button onclick="event.stopPropagation(); openSVParts('${partKey}')" class="bg-blue-600 text-white text-[10px] px-3 py-1 rounded-full animate-glow shadow-md">Learn in Parts</button>` : ''}
+                        ${showPartsBtn ? `<button onclick="event.stopPropagation(); switchToParts('${partKey}')" class="bg-blue-600 text-white text-[10px] px-3 py-1 rounded-full animate-glow shadow-md">Learn in Parts</button>` : ''}
                     </div>
                     <table class="w-full text-xs text-left bg-white">
                         <tbody class="divide-y divide-orange-50">${v.resources.map(r => `
