@@ -98,6 +98,7 @@ window.expandedStepId = null;
 window.stepTextContent = "";
 
 /* --- THE RENDERER FOR PARTS --- */
+/* --- Render SV Parts UI --- */
 async function renderSVParts() {
     const area = document.getElementById('contentArea');
     const pDB = window.svPartsData || {};
@@ -159,8 +160,9 @@ async function renderSVParts() {
                                 `<i class="fa-brands fa-youtube text-gray-200"></i>`}
                         </div>
 
-                        <div class="w-7 h-7 rounded-full flex items-center justify-center transition-all shadow-sm ${isExpanded ? 'bg-yellow-400 rotate-90' : 'bg-yellow-100 group-hover:bg-yellow-400'}">
-                            <i class="fa-solid fa-chevron-right text-[10px] ${isExpanded ? 'text-white' : 'text-yellow-600 group-hover:text-white'} transition-transform group-hover:translate-x-0.5"></i>
+                        <div class="w-7 h-7 flex items-center justify-center">
+                            <i class="fa-solid fa-chevron-right text-black text-sm transition-transform duration-300 inline-block" 
+                               style="${isExpanded ? 'transform: rotate(90deg);' : ''}"></i>
                         </div>
                     </div>
                 </div>
@@ -177,22 +179,23 @@ async function renderSVParts() {
     area.innerHTML = html + `</div><div class="pb-24"></div>`;
 }
 
-/* --- Toggle logic with Fetch --- */
+/* --- Updated Toggle logic with "Coming Soon" --- */
 async function toggleStepDetails(id, filePath) {
     if (window.expandedStepId === id) {
         window.expandedStepId = null;
         window.stepTextContent = "";
     } else {
         window.expandedStepId = id;
-        window.stepTextContent = ""; // Clear old content immediately
-        renderSVParts(); // Render spinner
+        window.stepTextContent = ""; 
+        renderSVParts(); 
 
         try {
-            const response = await fetch(filePath);
-            if (!response.ok) throw new Error("File not found");
+            if(!filePath || filePath === "#") throw new Error();
+            const response = await fetch(`${filePath}?t=${new Date().getTime()}`);
+            if (!response.ok) throw new Error();
             window.stepTextContent = await response.text();
         } catch (err) {
-            window.stepTextContent = "Details for this step are coming soon...";
+            window.stepTextContent = `<div class="text-orange-400 text-center py-2 font-bold uppercase tracking-widest">Coming Soon</div>`;
         }
     }
     renderSVParts();
