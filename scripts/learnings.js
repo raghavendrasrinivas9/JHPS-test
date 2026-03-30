@@ -40,23 +40,23 @@ window.learningsData = [
         vedas: [
             {
                 name: "Purusha Suktam",
-                resources: [{ lang: "Sanskrit", audio: "#", video: "#", pdf: "#" }]
+                resources: [{ lang: "Sanskrit", audio: "#", video: "https://www.youtube.com/watch?v=kyYfT94hNU4", pdf: "#" }]
             },
             {
                 name: "Sri Suktam",
-                resources: [{ lang: "Sanskrit", audio: "#", video: "#", pdf: "#" }]
+                resources: [{ lang: "Sanskrit", audio: "#", video: "https://www.youtube.com/watch?v=_yQs6-v0584", pdf: "#" }]
             },
             {
                 name: "Manyu Suktam",
-                resources: [{ lang: "Sanskrit", audio: "#", video: "#", pdf: "#" }]
+                resources: [{ lang: "Sanskrit", audio: "#", video: "https://www.youtube.com/watch?v=IG3J5iLzc_Y", pdf: "#" }]
             },
             {
-                name: "Ambrani Suktam",
-                resources: [{ lang: "Sanskrit", audio: "#", video: "#", pdf: "#" }]
+                name: "Ambruni Suktam",
+                resources: [{ lang: "Sanskrit", audio: "#", video: "https://www.youtube.com/watch?v=Jyw3--vT0lY", pdf: "#" }]
             },
             {
-                name: "Bhaliktha Suktam",
-                resources: [{ lang: "Sanskrit", audio: "#", video: "#", pdf: "#" }]
+                name: "Balittha Suktam",
+                resources: [{ lang: "Sanskrit", audio: "#", video: "https://www.youtube.com/watch?v=K4Q5Brf1PM4", pdf: "#" }]
             }
         ]
     }
