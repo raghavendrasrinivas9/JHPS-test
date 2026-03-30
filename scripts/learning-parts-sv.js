@@ -2,7 +2,7 @@ window.svPartsData = {
     rig: {
         title: "Rigveda Sandhya Vandana",
         steps: [
-            { id: 1, name: "Suchikarana", audio: "media/suchikarana.mp3", video: "#", desc: "Apavithra Pavithropa", file: "learnings/l1.txt" },
+            { id: 1, name: "Suchikarana", audio: "media/suchikarana.mp3", video: "#", desc: "Apavithra Pavithropa", file: "learnings/sv-suchikarana.txt" },
 			{ id: 2, name: "Gopi Chandana Nama Dharane, Mudhra Dharana", audio: "#", video: "#", desc: "Urdhva pundra and Mudhra Dharana ", file: "learnings/l2.txt" },
 			{ id: 3, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be", desc: "Initial purification with water.", file: "learnings/l3.txt" },
 			{ id: 4, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus.", file: "learnings/l4.txt" },
