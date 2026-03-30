@@ -1,6 +1,7 @@
 const STOTRA_MAP = {
     vishnu: "Vishnu Sahasranamam",
-    ramaa: "Ramaa Stotram",
+    manyu: "Manyu Suktam",
+	ramaa: "Ramaa Stotram",
     sundara: "Sundharakanda",
     vayu: "Hari Vayu Stuthi",
     sumadhwa: "Sumadhwa Vijaya",
