@@ -138,7 +138,6 @@ async function renderBhajanaUI() {
 
     html += `</div></div>`;
 
-    // Filter Logic
     let displaySongs = [];
     if (window.bhajanaSearchQuery) {
         Object.keys(window.bhajanaData).forEach(key => {
@@ -170,29 +169,29 @@ async function renderBhajanaUI() {
     if (displaySongs.length === 0) {
         html += `<div class="p-12 text-center text-gray-400 italic bg-white rounded-3xl border-2 border-dashed border-orange-50">No songs match your search.</div>`;
     } else {
-        displaySongs.forEach((song, index) => {
+        displaySongs.forEach((song) => {
             html += `
                 <div onclick="openSong('${song.id}', '${song.catKey}')" 
                      class="group relative flex items-center justify-between p-4 cursor-pointer 
-                            bg-gradient-to-r from-orange-50/40 to-white 
-                            hover:from-orange-100/60 hover:to-orange-50 
-                            border border-orange-100 rounded-2xl 
+                            bg-white hover:bg-yellow-50/80 
+                            border border-orange-100 hover:border-yellow-400
+                            rounded-2xl 
                             transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5">
                     
                     <div class="flex items-center gap-4">
-                        <div class="w-8 h-8 rounded-full bg-white border border-orange-100 flex items-center justify-center shadow-sm group-hover:border-orange-400 transition-colors">
-                            <i class="fa-solid fa-music text-[10px] text-orange-300 group-hover:text-orange-600"></i>
+                        <div class="w-8 h-8 rounded-full bg-orange-50/50 flex items-center justify-center border border-orange-50 group-hover:bg-yellow-100 group-hover:border-yellow-300 transition-colors">
+                            <i class="fa-solid fa-music text-[10px] text-orange-300 group-hover:text-yellow-700"></i>
                         </div>
 
                         <div class="flex flex-col">
-                            <span class="font-bold text-gray-800 group-hover:text-orange-900 transition-colors">
+                            <span class="font-bold text-gray-800 group-hover:text-yellow-900 transition-colors">
                                 ${song.title}
                             </span>
                         </div>
                     </div>
 
-                    <div class="w-7 h-7 rounded-full flex items-center justify-center bg-orange-50 group-hover:bg-orange-500 transition-all">
-                        <i class="fa-solid fa-chevron-right text-[10px] text-orange-300 group-hover:text-white transition-transform group-hover:translate-x-0.5"></i>
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center bg-yellow-100 group-hover:bg-yellow-400 transition-all shadow-sm">
+                        <i class="fa-solid fa-chevron-right text-[10px] text-yellow-600 group-hover:text-white transition-transform group-hover:translate-x-1"></i>
                     </div>
                 </div>`;
         });
@@ -201,7 +200,6 @@ async function renderBhajanaUI() {
     html += `</div><div class="pb-20"></div>`;
     area.innerHTML = html;
 
-    // Restore Focus & Cursor Position
     const input = document.getElementById('bhajanaSearchInput');
     if (input && window.bhajanaSearchQuery !== "") {
         input.focus();

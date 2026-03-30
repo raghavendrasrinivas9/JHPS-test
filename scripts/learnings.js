@@ -94,7 +94,7 @@ function renderLearningsUI() {
                 <div class="bg-orange-50 rounded-lg border border-orange-100 overflow-hidden mb-2 mx-2">
                     <div class="bg-orange-100 px-3 py-2 font-bold text-orange-900 flex justify-between items-center">
                         <span class="text-sm">📖 ${v.name}</span>
-                        ${showPartsBtn ? `<button onclick="event.stopPropagation(); switchToParts('${partKey}')" class="bg-blue-600 text-white text-[10px] px-3 py-1 rounded-full animate-glow shadow-md">Learn in Parts</button>` : ''}
+                        ${showPartsBtn ? `<button onclick="event.stopPropagation(); switchToParts('${partKey}')" class="bg-blue-600 text-white text-[10px] px-4 py-1.5 rounded-full animate-glow shadow-md hover:bg-blue-700 transition-colors">Click here to learn step by step</button>` : ''}
                     </div>
                     <table class="w-full text-xs text-left bg-white">
                         <tbody class="divide-y divide-orange-50">${v.resources.map(r => `
