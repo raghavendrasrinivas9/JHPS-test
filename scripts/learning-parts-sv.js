@@ -2,107 +2,109 @@ window.svPartsData = {
     rig: {
         title: "Rigveda Sandhya Vandana",
         steps: [
-            { id: 1, name: "Suchikarana", audio: "media/suchikarana.mp3", video: "#", desc: "Apavithra Pavithropa" },
-			{ id: 2, name: "Gopi Chandana Nama Dharane, Mudhra Dharana", audio: "#", video: "#", desc: "Urdhva pundra and Mudhra Dharana " },
-			{ id: 3, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be", desc: "Initial purification with water." },
-			{ id: 4, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus." },
-			{ id: 5, name: "Sankalpam", audio: "#", video: "#", desc: "Setting the intention for the ritual." },
-			{ id: 6, name: "Prathama Marjanam", audio: "#", video: "#", desc: "Sprinkling of water for external purity." },
-			{ id: 7, name: "Manthrachamana (Prathah Sandhya)", audio: "#", video: "#", desc: "Morning only" },
-			{ id: 8, name: "Manthrachamana (Madhyana Sandhya)", audio: "#", video: "#", desc: "Afternoon only" },
-			{ id: 9, name: "Manthrachamana (Sayam Sandhya)", audio: "#", video: "#", desc: "Evening only" },
-			{ id: 10, name: "Dwitheeya Marjanam", audio: "#", video: "#", desc: "Sprinkling of water for external purity." },
-            { id: 11, name: "Papapurusha Visarjana", audio: "#", video: "#", desc: "Agamarshanam" },
-			{ id: 12, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be", desc: "Initial purification with water." },
-			{ id: 13, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus." },
-			{ id: 14, name: "Lagu Sankalpa", audio: "#", video: "#", desc: "Breath control and mental focus." },
-			{ id: 15, name: "Surya Arghya Pradhanam", audio: "#", video: "#", desc: "Offering water to Sun God" },
-            { id: 16, name: "Keshavadi Tarpanam (Sukla Paksha)", audio: "#", video: "#", desc: "Sukla Paksha only" },
-			{ id: 17, name: "Sankarshanadi Tarpanam (Krishna Paksha)", audio: "#", video: "#", desc: "Krishna Paksha only" },
-            { id: 18, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be/...", desc: "Initial purification with water." },
-			{ id: 19, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus." },
-			{ id: 20, name: "Bhootochhatanam", audio: "#", video: "#", desc: "To avoid disturbances from external forces" },
-			{ id: 21, name: "Aasanam", audio: "#", video: "#", desc: "Aasana Sudhi" },
-			{ id: 22, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus." },
-			{ id: 23, name: "Karanyaasa", audio: "#", video: "#", desc: "Touching hands" },
-			{ id: 24, name: "Anganyaasa", audio: "#", video: "#", desc: "Touching Angas (Heart, Head, Shika, Sholders, Eyes, etc" },
-            { id: 25, name: "Aavahanam", audio: "#", video: "#", desc: "Welcoming God" },
-			{ id: 26, name: "Dhyaanam", audio: "#", video: "#", desc: "Praying God" },
-            { id: 27, name: "Gayatri Japa", audio: "#", video: "#", desc: "Meditation on the sacred Gayatri Mantra." },
-			{ id: 28, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus." },
-			{ id: 29, name: "Karanyaasa", audio: "#", video: "#", desc: "Touching hands" },
-			{ id: 30, name: "Anganyaasa", audio: "#", video: "#", desc: "Touching Angas (Heart, Head, Shika, Sholders, Eyes, etc" },
-            { id: 31, name: "Dhyaanam", audio: "#", video: "#", desc: "Praying God" },
-			{ id: 32, name: "Japa Samarpana", audio: "#", video: "#", desc: "Offering to God" },
-			{ id: 33, name: "Sooryopasthaana", audio: "#", video: "#", desc: "Standing near to God" },
-			{ id: 34, name: "Dhik Namaskaara", audio: "#", video: "#", desc: "Praying to all directions" },
-			{ id: 35, name: "Gayathri Udvaasana", audio: "#", video: "#", desc: "Returning the energy back" },
-			{ id: 36, name: "Pravarasahita Namaskara", audio: "#", video: "#", desc: "Praying by chanting your Rishi, Gotra, Name etc" },
-			{ id: 37, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be/...", desc: "Initial purification with water." },
-			{ id: 38, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be/...", desc: "Initial purification with water." },
-			{ id: 39, name: "Sandhya Samarpana", audio: "#", video: "#", desc: "Yasya Smrutya Cha" },
-			{ id: 40, name: "Japa Sthana Prokshanam", audio: "#", video: "#", desc: "Cleansing the place" },
-			{ id: 41, name: "Kshemapana", audio: "#", video: "#", desc: "Mantra Tantra Karma Lopa Prayaschittarta mantra" },
+            { id: 1, name: "Suchikarana", audio: "media/suchikarana.mp3", video: "#", desc: "Apavithra Pavithropa", file: "learnings/l1.txt" },
+			{ id: 2, name: "Gopi Chandana Nama Dharane, Mudhra Dharana", audio: "#", video: "#", desc: "Urdhva pundra and Mudhra Dharana ", file: "learnings/l2.txt" },
+			{ id: 3, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be", desc: "Initial purification with water.", file: "learnings/l3.txt" },
+			{ id: 4, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus.", file: "learnings/l4.txt" },
+			{ id: 5, name: "Sankalpam", audio: "#", video: "#", desc: "Setting the intention for the ritual.", file: "learnings/l5.txt" },
+			{ id: 6, name: "Prathama Marjanam", audio: "#", video: "#", desc: "Sprinkling of water for external purity.", file: "learnings/l6.txt" },
+			{ id: 7, name: "Manthrachamana (Prathah Sandhya)", audio: "#", video: "#", desc: "Morning only", file: "learnings/l7.txt" },
+			{ id: 8, name: "Manthrachamana (Madhyana Sandhya)", audio: "#", video: "#", desc: "Afternoon only", file: "learnings/l8.txt" },
+			{ id: 9, name: "Manthrachamana (Sayam Sandhya)", audio: "#", video: "#", desc: "Evening only", file: "learnings/l9.txt" },
+			{ id: 10, name: "Dwitheeya Marjanam", audio: "#", video: "#", desc: "Sprinkling of water for external purity.", file: "learnings/l10.txt" },
+            { id: 11, name: "Papapurusha Visarjana", audio: "#", video: "#", desc: "Agamarshanam", file: "learnings/l11.txt" },
+			{ id: 12, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be", desc: "Initial purification with water.", file: "learnings/l12.txt" },
+			{ id: 13, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus.", file: "learnings/l13.txt" },
+			{ id: 14, name: "Lagu Sankalpa", audio: "#", video: "#", desc: "Breath control and mental focus.", file: "learnings/l14.txt" },
+			{ id: 15, name: "Surya Arghya Pradhanam", audio: "#", video: "#", desc: "Offering water to Sun God", file: "learnings/l15.txt" },
+            { id: 16, name: "Keshavadi Tarpanam (Sukla Paksha)", audio: "#", video: "#", desc: "Sukla Paksha only", file: "learnings/l16.txt" },
+			{ id: 17, name: "Sankarshanadi Tarpanam (Krishna Paksha)", audio: "#", video: "#", desc: "Krishna Paksha only", file: "learnings/l17.txt" },
+            { id: 18, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be/...", desc: "Initial purification with water.", file: "learnings/l18.txt" },
+			{ id: 19, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus.", file: "learnings/l19.txt" },
+			{ id: 20, name: "Bhootochhatanam", audio: "#", video: "#", desc: "To avoid disturbances from external forces", file: "learnings/l20.txt" },
+			{ id: 21, name: "Aasanam", audio: "#", video: "#", desc: "Aasana Sudhi", file: "learnings/l21.txt" },
+			{ id: 22, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus.", file: "learnings/l22.txt" },
+			{ id: 23, name: "Karanyaasa", audio: "#", video: "#", desc: "Touching hands", file: "learnings/l23.txt" },
+			{ id: 24, name: "Anganyaasa", audio: "#", video: "#", desc: "Touching Angas (Heart, Head, Shika, Sholders, Eyes, etc", file: "learnings/l24.txt" },
+            { id: 25, name: "Aavahanam", audio: "#", video: "#", desc: "Welcoming God", file: "learnings/l25.txt" },
+			{ id: 26, name: "Dhyaanam", audio: "#", video: "#", desc: "Praying God", file: "learnings/l26.txt" },
+            { id: 27, name: "Gayatri Japa", audio: "#", video: "#", desc: "Meditation on the sacred Gayatri Mantra.", file: "learnings/l27.txt" },
+			{ id: 28, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus.", file: "learnings/l28.txt" },
+			{ id: 29, name: "Karanyaasa", audio: "#", video: "#", desc: "Touching hands", file: "learnings/l29.txt" },
+			{ id: 30, name: "Anganyaasa", audio: "#", video: "#", desc: "Touching Angas (Heart, Head, Shika, Sholders, Eyes, etc", file: "learnings/l30.txt" },
+            { id: 31, name: "Dhyaanam", audio: "#", video: "#", desc: "Praying God", file: "learnings/l31.txt" },
+			{ id: 32, name: "Japa Samarpana", audio: "#", video: "#", desc: "Offering to God", file: "learnings/l32.txt" },
+			{ id: 33, name: "Sooryopasthaana", audio: "#", video: "#", desc: "Standing near to God", file: "learnings/l33.txt" },
+			{ id: 34, name: "Dhik Namaskaara", audio: "#", video: "#", desc: "Praying to all directions", file: "learnings/l34.txt" },
+			{ id: 35, name: "Gayathri Udvaasana", audio: "#", video: "#", desc: "Returning the energy back", file: "learnings/l35.txt" },
+			{ id: 36, name: "Pravarasahita Namaskara", audio: "#", video: "#", desc: "Praying by chanting your Rishi, Gotra, Name etc", file: "learnings/l36.txt" },
+			{ id: 37, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be/...", desc: "Initial purification with water.", file: "learnings/l37.txt" },
+			{ id: 38, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be/...", desc: "Initial purification with water.", file: "learnings/l38.txt" },
+			{ id: 39, name: "Sandhya Samarpana", audio: "#", video: "#", desc: "Yasya Smrutya Cha", file: "learnings/l39.txt" },
+			{ id: 40, name: "Japa Sthana Prokshanam", audio: "#", video: "#", desc: "Cleansing the place", file: "learnings/l40.txt" },
+			{ id: 41, name: "Kshemapana", audio: "#", video: "#", desc: "Mantra Tantra Karma Lopa Prayaschittarta mantra", file: "learnings/l41.txt" },
         ]
     },
     yajur: {
         title: "Yajurveda Sandhya Vandana",
         steps: [
-            { id: 1, name: "Suchikarana", audio: "media/suchikarana.mp3", video: "#", desc: "Apavithra Pavithropa" },
-			{ id: 2, name: "Gopi Chandana Nama Dharane, Mudhra Dharana", audio: "#", video: "#", desc: "Urdhva pundra and Mudhra Dharana " },
-			{ id: 3, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be", desc: "Initial purification with water." },
-			{ id: 4, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus." },
-			{ id: 5, name: "Sankalpam", audio: "#", video: "#", desc: "Setting the intention for the ritual." },
-			{ id: 6, name: "Prathama Marjanam", audio: "#", video: "#", desc: "Sprinkling of water for external purity." },
-			{ id: 7, name: "Manthrachamana (Prathah Sandhya)", audio: "#", video: "#", desc: "Morning only" },
-			{ id: 8, name: "Manthrachamana (Madhyana Sandhya)", audio: "#", video: "#", desc: "Afternoon only" },
-			{ id: 9, name: "Manthrachamana (Sayam Sandhya)", audio: "#", video: "#", desc: "Evening only" },
-			{ id: 10, name: "Dwitheeya Marjanam", audio: "#", video: "#", desc: "Sprinkling of water for external purity." },
-            { id: 11, name: "Papapurusha Visarjana", audio: "#", video: "#", desc: "Agamarshanam" },
-			{ id: 12, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be", desc: "Initial purification with water." },
-			{ id: 13, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus." },
-			{ id: 14, name: "Lagu Sankalpa", audio: "#", video: "#", desc: "Breath control and mental focus." },
-			{ id: 15, name: "Surya Arghya Pradhanam", audio: "#", video: "#", desc: "Offering water to Sun God" },
-            { id: 16, name: "Keshavadi Tarpanam (Sukla Paksha)", audio: "#", video: "#", desc: "Sukla Paksha only" },
-			{ id: 17, name: "Sankarshanadi Tarpanam (Krishna Paksha)", audio: "#", video: "#", desc: "Krishna Paksha only" },
-            { id: 18, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be/...", desc: "Initial purification with water." },
-			{ id: 19, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus." },
-			{ id: 20, name: "Bhootochhatanam", audio: "#", video: "#", desc: "To avoid disturbances from external forces" },
-			{ id: 21, name: "Aasanam", audio: "#", video: "#", desc: "Aasana Sudhi" },
-			{ id: 22, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus." },
-			{ id: 23, name: "Karanyaasa", audio: "#", video: "#", desc: "Touching hands" },
-			{ id: 24, name: "Anganyaasa", audio: "#", video: "#", desc: "Touching Angas (Heart, Head, Shika, Sholders, Eyes, etc" },
-            { id: 25, name: "Aavahanam", audio: "#", video: "#", desc: "Welcoming God" },
-			{ id: 26, name: "Dhyaanam", audio: "#", video: "#", desc: "Praying God" },
-            { id: 27, name: "Gayatri Japa", audio: "#", video: "#", desc: "Meditation on the sacred Gayatri Mantra." },
-			{ id: 28, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus." },
-			{ id: 29, name: "Karanyaasa", audio: "#", video: "#", desc: "Touching hands" },
-			{ id: 30, name: "Anganyaasa", audio: "#", video: "#", desc: "Touching Angas (Heart, Head, Shika, Sholders, Eyes, etc" },
-            { id: 31, name: "Dhyaanam", audio: "#", video: "#", desc: "Praying God" },
-			{ id: 32, name: "Japa Samarpana", audio: "#", video: "#", desc: "Offering to God" },
-			{ id: 33, name: "Sooryopasthaana", audio: "#", video: "#", desc: "Standing near to God" },
-			{ id: 34, name: "Dhik Namaskaara", audio: "#", video: "#", desc: "Praying to all directions" },
-			{ id: 35, name: "Gayathri Udvaasana", audio: "#", video: "#", desc: "Returning the energy back" },
-			{ id: 36, name: "Pravarasahita Namaskara", audio: "#", video: "#", desc: "Praying by chanting your Rishi, Gotra, Name etc" },
-			{ id: 37, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be/...", desc: "Initial purification with water." },
-			{ id: 38, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be/...", desc: "Initial purification with water." },
-			{ id: 39, name: "Sandhya Samarpana", audio: "#", video: "#", desc: "Yasya Smrutya Cha" },
-			{ id: 40, name: "Japa Sthana Prokshanam", audio: "#", video: "#", desc: "Cleansing the place" },
-			{ id: 41, name: "Kshemapana", audio: "#", video: "#", desc: "Mantra Tantra Karma Lopa Prayaschittarta mantra" },
+            { id: 1, name: "Suchikarana", audio: "media/suchikarana.mp3", video: "#", desc: "Apavithra Pavithropa", file: "learnings/l1.txt" },
+			{ id: 2, name: "Gopi Chandana Nama Dharane, Mudhra Dharana", audio: "#", video: "#", desc: "Urdhva pundra and Mudhra Dharana ", file: "learnings/l2.txt" },
+			{ id: 3, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be", desc: "Initial purification with water.", file: "learnings/l3.txt" },
+			{ id: 4, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus.", file: "learnings/l4.txt" },
+			{ id: 5, name: "Sankalpam", audio: "#", video: "#", desc: "Setting the intention for the ritual.", file: "learnings/l5.txt" },
+			{ id: 6, name: "Prathama Marjanam", audio: "#", video: "#", desc: "Sprinkling of water for external purity.", file: "learnings/l6.txt" },
+			{ id: 7, name: "Manthrachamana (Prathah Sandhya)", audio: "#", video: "#", desc: "Morning only", file: "learnings/l7.txt" },
+			{ id: 8, name: "Manthrachamana (Madhyana Sandhya)", audio: "#", video: "#", desc: "Afternoon only", file: "learnings/l8.txt" },
+			{ id: 9, name: "Manthrachamana (Sayam Sandhya)", audio: "#", video: "#", desc: "Evening only", file: "learnings/l9.txt" },
+			{ id: 10, name: "Dwitheeya Marjanam", audio: "#", video: "#", desc: "Sprinkling of water for external purity.", file: "learnings/l10.txt" },
+            { id: 11, name: "Papapurusha Visarjana", audio: "#", video: "#", desc: "Agamarshanam", file: "learnings/l11.txt" },
+			{ id: 12, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be", desc: "Initial purification with water.", file: "learnings/l12.txt" },
+			{ id: 13, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus.", file: "learnings/l13.txt" },
+			{ id: 14, name: "Lagu Sankalpa", audio: "#", video: "#", desc: "Breath control and mental focus.", file: "learnings/l14.txt" },
+			{ id: 15, name: "Surya Arghya Pradhanam", audio: "#", video: "#", desc: "Offering water to Sun God", file: "learnings/l15.txt" },
+            { id: 16, name: "Keshavadi Tarpanam (Sukla Paksha)", audio: "#", video: "#", desc: "Sukla Paksha only", file: "learnings/l16.txt" },
+			{ id: 17, name: "Sankarshanadi Tarpanam (Krishna Paksha)", audio: "#", video: "#", desc: "Krishna Paksha only", file: "learnings/l17.txt" },
+            { id: 18, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be/...", desc: "Initial purification with water.", file: "learnings/l18.txt" },
+			{ id: 19, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus.", file: "learnings/l19.txt" },
+			{ id: 20, name: "Bhootochhatanam", audio: "#", video: "#", desc: "To avoid disturbances from external forces", file: "learnings/l20.txt" },
+			{ id: 21, name: "Aasanam", audio: "#", video: "#", desc: "Aasana Sudhi", file: "learnings/l21.txt" },
+			{ id: 22, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus.", file: "learnings/l22.txt" },
+			{ id: 23, name: "Karanyaasa", audio: "#", video: "#", desc: "Touching hands", file: "learnings/l23.txt" },
+			{ id: 24, name: "Anganyaasa", audio: "#", video: "#", desc: "Touching Angas (Heart, Head, Shika, Sholders, Eyes, etc", file: "learnings/l24.txt" },
+            { id: 25, name: "Aavahanam", audio: "#", video: "#", desc: "Welcoming God", file: "learnings/l25.txt" },
+			{ id: 26, name: "Dhyaanam", audio: "#", video: "#", desc: "Praying God", file: "learnings/l26.txt" },
+            { id: 27, name: "Gayatri Japa", audio: "#", video: "#", desc: "Meditation on the sacred Gayatri Mantra.", file: "learnings/l27.txt" },
+			{ id: 28, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus.", file: "learnings/l28.txt" },
+			{ id: 29, name: "Karanyaasa", audio: "#", video: "#", desc: "Touching hands", file: "learnings/l29.txt" },
+			{ id: 30, name: "Anganyaasa", audio: "#", video: "#", desc: "Touching Angas (Heart, Head, Shika, Sholders, Eyes, etc", file: "learnings/l30.txt" },
+            { id: 31, name: "Dhyaanam", audio: "#", video: "#", desc: "Praying God", file: "learnings/l31.txt" },
+			{ id: 32, name: "Japa Samarpana", audio: "#", video: "#", desc: "Offering to God", file: "learnings/l32.txt" },
+			{ id: 33, name: "Sooryopasthaana", audio: "#", video: "#", desc: "Standing near to God", file: "learnings/l33.txt" },
+			{ id: 34, name: "Dhik Namaskaara", audio: "#", video: "#", desc: "Praying to all directions", file: "learnings/l34.txt" },
+			{ id: 35, name: "Gayathri Udvaasana", audio: "#", video: "#", desc: "Returning the energy back", file: "learnings/l35.txt" },
+			{ id: 36, name: "Pravarasahita Namaskara", audio: "#", video: "#", desc: "Praying by chanting your Rishi, Gotra, Name etc", file: "learnings/l36.txt" },
+			{ id: 37, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be/...", desc: "Initial purification with water.", file: "learnings/l37.txt" },
+			{ id: 38, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be/...", desc: "Initial purification with water.", file: "learnings/l38.txt" },
+			{ id: 39, name: "Sandhya Samarpana", audio: "#", video: "#", desc: "Yasya Smrutya Cha", file: "learnings/l39.txt" },
+			{ id: 40, name: "Japa Sthana Prokshanam", audio: "#", video: "#", desc: "Cleansing the place", file: "learnings/l40.txt" },
+			{ id: 41, name: "Kshemapana", audio: "#", video: "#", desc: "Mantra Tantra Karma Lopa Prayaschittarta mantra", file: "learnings/l41.txt" },
         ]
     }
 };
 
+/* --- State for Expandable Text --- */
+window.expandedStepId = null;
+window.stepTextContent = "";
+
 /* --- THE RENDERER FOR PARTS --- */
-/* --- THE RENDERER FOR PARTS (With Audio Feedback) --- */
-function renderSVParts() {
+async function renderSVParts() {
     const area = document.getElementById('contentArea');
     const pDB = window.svPartsData || {};
     const partData = pDB[window.activePartKey];
     
     if (!partData) return;
 
-    // We check what's currently playing to show the "Pause" icon
     const gAudio = document.getElementById('globalAudio');
     const isPlaying = gAudio && !gAudio.paused;
 
@@ -118,42 +120,80 @@ function renderSVParts() {
         <div class="grid gap-3">`;
 
     partData.steps.forEach(step => {
-        // Check if this specific step is the one playing
         const isThisTrackActive = (window.currentPlayingUrl === step.audio && isPlaying);
+        const isExpanded = (window.expandedStepId === step.id);
 
         html += `
-            <div class="p-4 bg-white border ${isThisTrackActive ? 'border-blue-200 shadow-md ring-1 ring-blue-100' : 'border-orange-100 shadow-sm'} rounded-xl flex justify-between items-center transition-all">
-                <div class="flex items-center gap-3">
-                    ${isThisTrackActive ? 
-                        `<div class="flex gap-0.5 items-end h-3 mb-1">
-                            <div class="w-1 bg-blue-500 animate-music-bar-1"></div>
-                            <div class="w-1 bg-blue-500 animate-music-bar-2"></div>
-                            <div class="w-1 bg-blue-500 animate-music-bar-3"></div>
-                         </div>` : ''}
-                    <div>
-                        <h4 class="font-bold ${isThisTrackActive ? 'text-blue-900' : 'text-orange-900'}">
-                            ${step.id}. ${step.name}
-                        </h4>
-                        <p class="text-xs text-gray-500 font-medium italic">${step.desc}</p>
+            <div class="group overflow-hidden bg-white border ${isExpanded ? 'border-yellow-400 shadow-md ring-1 ring-yellow-100' : (isThisTrackActive ? 'border-blue-200 shadow-md' : 'border-orange-100 shadow-sm')} rounded-xl transition-all duration-300">
+                <div onclick="toggleStepDetails(${step.id}, '${step.file}')" 
+                     class="p-4 cursor-pointer flex justify-between items-center transition-colors ${isExpanded ? 'bg-yellow-50/80' : 'hover:bg-yellow-50/50'}">
+                    
+                    <div class="flex items-center gap-3">
+                        ${isThisTrackActive ? 
+                            `<div class="flex gap-0.5 items-end h-3 mb-1">
+                                <div class="w-1 bg-blue-500 animate-music-bar-1"></div>
+                                <div class="w-1 bg-blue-500 animate-music-bar-2"></div>
+                                <div class="w-1 bg-blue-500 animate-music-bar-3"></div>
+                             </div>` : ''}
+                        <div>
+                            <h4 class="font-bold ${isExpanded ? 'text-yellow-900' : (isThisTrackActive ? 'text-blue-900' : 'text-orange-900')}">
+                                ${step.id}. ${step.name}
+                            </h4>
+                            <p class="text-xs text-gray-500 font-medium italic">${step.desc}</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="flex gap-3 text-xl" onclick="event.stopPropagation()">
+                            ${step.audio && step.audio !== '#' ? 
+                                `<button onclick="playStream('${step.audio}', '${step.name}')" 
+                                         class="${isThisTrackActive ? 'text-blue-600 scale-110' : 'text-blue-500'} transition-transform active:scale-90">
+                                    <i class="fa-solid ${isThisTrackActive ? 'fa-circle-pause' : 'fa-circle-play'}"></i>
+                                 </button>` : 
+                                `<i class="fa-solid fa-circle-play text-gray-200"></i>`}
+                            
+                            ${step.video && step.video !== '#' ? 
+                                `<a href="${step.video}" target="_blank" class="text-red-600 hover:scale-110 transition-transform">
+                                    <i class="fa-brands fa-youtube"></i>
+                                 </a>` : 
+                                `<i class="fa-brands fa-youtube text-gray-200"></i>`}
+                        </div>
+
+                        <div class="w-7 h-7 rounded-full flex items-center justify-center transition-all shadow-sm ${isExpanded ? 'bg-yellow-400 rotate-90' : 'bg-yellow-100 group-hover:bg-yellow-400'}">
+                            <i class="fa-solid fa-chevron-right text-[10px] ${isExpanded ? 'text-white' : 'text-yellow-600 group-hover:text-white'} transition-transform group-hover:translate-x-0.5"></i>
+                        </div>
                     </div>
                 </div>
 
-                <div class="flex gap-5 text-2xl">
-                    ${step.audio && step.audio !== '#' ? 
-                        `<button onclick="playStream('${step.audio}', '${step.name}')" 
-                                 class="${isThisTrackActive ? 'text-blue-600 scale-110' : 'text-blue-500'} transition-transform active:scale-90">
-                            <i class="fa-solid ${isThisTrackActive ? 'fa-circle-pause' : 'fa-circle-play'}"></i>
-                         </button>` : 
-                        `<i class="fa-solid fa-circle-play text-gray-200"></i>`}
-                    
-                    ${step.video && step.video !== '#' ? 
-                        `<a href="${step.video}" target="_blank" class="text-red-600 hover:scale-110 transition-transform">
-                            <i class="fa-brands fa-youtube"></i>
-                         </a>` : 
-                        `<i class="fa-brands fa-youtube text-gray-200"></i>`}
-                </div>
+                ${isExpanded ? `
+                <div class="px-4 pb-4 animate-fade-in border-t border-yellow-100 pt-3">
+                    <div class="bg-yellow-50/30 p-4 rounded-lg border border-yellow-100 text-sm italic leading-relaxed text-gray-800 whitespace-pre-wrap">
+                        ${window.stepTextContent || '<div class="flex items-center gap-2 text-yellow-600"><i class="fa-solid fa-spinner fa-spin"></i> Loading content...</div>'}
+                    </div>
+                </div>` : ''}
             </div>`;
     });
 
     area.innerHTML = html + `</div><div class="pb-24"></div>`;
+}
+
+/* --- Toggle logic with Fetch --- */
+async function toggleStepDetails(id, filePath) {
+    if (window.expandedStepId === id) {
+        window.expandedStepId = null;
+        window.stepTextContent = "";
+    } else {
+        window.expandedStepId = id;
+        window.stepTextContent = ""; // Clear old content immediately
+        renderSVParts(); // Render spinner
+
+        try {
+            const response = await fetch(filePath);
+            if (!response.ok) throw new Error("File not found");
+            window.stepTextContent = await response.text();
+        } catch (err) {
+            window.stepTextContent = "Details for this step are coming soon...";
+        }
+    }
+    renderSVParts();
 }
