@@ -3,8 +3,8 @@ const STOTRA_MAP = {
     ramaa: "Ramaa Stotram",
     sundara: "Sundharakanda",
     vayu: "Hari Vayu Stuthi",
-    rayara: "Raghavendra Stotram",
     sumadhwa: "Sumadhwa Vijaya",
+	rayara: "Raghavendra Stotram",
     gita: "Bhagavad Gita"
 };
 
@@ -41,7 +41,6 @@ function renderStotraUI() {
     const area = document.getElementById('contentArea');
     if (!area) return;
 
-    // 1. Filter Navigation
     const filteredKeys = Object.keys(STOTRA_MAP).filter(key => 
         STOTRA_MAP[key].toLowerCase().includes(window.stotraSearchQuery.toLowerCase())
     );
@@ -53,20 +52,17 @@ function renderStotraUI() {
         </button>
     `).join('');
 
-    // 2. Build Base Layout
     area.innerHTML = `
         <div class="mb-6 px-2">
             <h2 class="text-xl font-bold mb-6 text-orange-800 uppercase tracking-tight flex items-center gap-2">
                 <i class="fa-solid fa-scroll"></i> Stotras & Parayana
             </h2>
-
             <div class="relative mb-6">
                 <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-orange-300"></i>
                 <input type="text" id="stotraSearchInput" placeholder="Search stotras..." 
                        value="${window.stotraSearchQuery}" oninput="handleStotraSearch(this)"
                        class="w-full pl-12 pr-4 py-3 rounded-2xl border-2 border-orange-50 focus:border-orange-400 focus:bg-white outline-none transition-all shadow-sm bg-orange-50/30 text-gray-800 text-sm">
             </div>
-
             <div class="flex gap-2 overflow-x-auto pb-4 no-scrollbar border-b border-orange-50">
                 ${navHtml.length > 0 ? navHtml : '<p class="text-gray-400 italic text-sm py-2">No stotras found.</p>'}
             </div>
@@ -74,14 +70,12 @@ function renderStotraUI() {
         <div id="stotraContainer" class="animate-fade-in px-2"></div>
     `;
 
-    // Restore search focus
     const input = document.getElementById('stotraSearchInput');
     if (input && window.stotraSearchQuery !== "") {
         input.focus();
         input.setSelectionRange(window.stotraCursorPos, window.stotraCursorPos);
     }
 
-    // 3. Render Specific Content
     const container = document.getElementById('stotraContainer');
     if (window.activeStotra === 'sumadhwa') {
         renderSumadhwaBoxes(container);
@@ -93,7 +87,7 @@ function renderStotraUI() {
     }
 }
 
-/* --- Sumadhwa Renderer --- */
+/* --- Improved Arrow Logic for Sumadhwa --- */
 function renderSumadhwaBoxes(container) {
     let html = `<div class="grid gap-4">`;
     [1, 2, 3, 4].forEach(id => {
@@ -102,14 +96,13 @@ function renderSumadhwaBoxes(container) {
             <div class="group overflow-hidden bg-white border ${isExpanded ? 'border-yellow-400 shadow-md ring-1 ring-yellow-100' : 'border-orange-100 shadow-sm'} rounded-2xl transition-all duration-300">
                 <div onclick="toggleSumadhwa(${id})" class="p-4 cursor-pointer flex justify-between items-center transition-colors ${isExpanded ? 'bg-yellow-50/80' : 'hover:bg-yellow-50/50'}">
                     <div class="flex items-center gap-4">
-                        <div class="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center border border-orange-100 group-hover:bg-yellow-100 group-hover:border-yellow-300">
+                        <div class="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center border border-orange-100 group-hover:bg-yellow-100">
                             <i class="fa-solid fa-book-open text-[10px] text-orange-400 group-hover:text-yellow-700"></i>
                         </div>
                         <span class="font-bold ${isExpanded ? 'text-yellow-900' : 'text-orange-900'}">Sumadhwa Vijaya - ${id}</span>
                     </div>
-                    <div class="w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-sm ${isExpanded ? 'bg-yellow-400 rotate-90' : 'bg-yellow-100 group-hover:bg-yellow-400'}">
-                        <i class="fa-solid fa-chevron-right text-[10px] ${isExpanded ? 'text-white' : 'text-yellow-600 group-hover:text-white'}"></i>
-                    </div>
+                    <i class="fa-solid fa-chevron-right text-black text-sm transition-transform duration-300 inline-block" 
+                       style="${isExpanded ? 'transform: rotate(90deg);' : ''}"></i>
                 </div>
                 ${isExpanded ? `<div class="px-5 pb-6 animate-fade-in border-t border-yellow-100 pt-4"><div class="stotra-content whitespace-pre-wrap leading-relaxed text-lg text-gray-800 italic">${window.sumadhwaTextContent || 'Loading...'}</div></div>` : ''}
             </div>`;
@@ -117,7 +110,7 @@ function renderSumadhwaBoxes(container) {
     container.innerHTML = html + `</div><div class="pb-20"></div>`;
 }
 
-/* --- Gita Renderer --- */
+/* --- Improved Arrow Logic for Gita --- */
 function renderGitaBoxes(container) {
     let html = `<div class="grid gap-3">`;
     for (let i = 1; i <= 18; i++) {
@@ -126,7 +119,7 @@ function renderGitaBoxes(container) {
             <div class="group overflow-hidden bg-white border ${isExpanded ? 'border-yellow-400 shadow-md ring-1 ring-yellow-100' : 'border-orange-100 shadow-sm'} rounded-2xl transition-all duration-300">
                 <div onclick="toggleGita(${i})" class="p-4 cursor-pointer flex justify-between items-center transition-colors ${isExpanded ? 'bg-yellow-50/80' : 'hover:bg-yellow-50/50'}">
                     <div class="flex items-center gap-4">
-                        <div class="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center border border-orange-100 group-hover:bg-yellow-100 group-hover:border-yellow-300">
+                        <div class="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center border border-orange-100 group-hover:bg-yellow-100">
                             <i class="fa-solid fa-dharmachakra text-[12px] text-orange-400 group-hover:text-yellow-700"></i>
                         </div>
                         <div>
@@ -134,9 +127,8 @@ function renderGitaBoxes(container) {
                             <span class="text-[10px] text-gray-500 italic">${GITA_DESCRIPTIONS[i]}</span>
                         </div>
                     </div>
-                    <div class="w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-sm ${isExpanded ? 'bg-yellow-400 rotate-90' : 'bg-yellow-100 group-hover:bg-yellow-400'}">
-                        <i class="fa-solid fa-chevron-right text-[10px] ${isExpanded ? 'text-white' : 'text-yellow-600 group-hover:text-white'}"></i>
-                    </div>
+                    <i class="fa-solid fa-chevron-right text-black text-sm transition-transform duration-300 inline-block" 
+                       style="${isExpanded ? 'transform: rotate(90deg);' : ''}"></i>
                 </div>
                 ${isExpanded ? `<div class="px-5 pb-6 animate-fade-in border-t border-yellow-100 pt-4"><div class="stotra-content whitespace-pre-wrap leading-relaxed text-lg text-gray-800 italic">${window.gitaTextContent || 'Loading...'}</div></div>` : ''}
             </div>`;
@@ -145,19 +137,6 @@ function renderGitaBoxes(container) {
 }
 
 /* --- Logic Helpers --- */
-function handleStotraSearch(inputElement) {
-    window.stotraSearchQuery = inputElement.value;
-    window.stotraCursorPos = inputElement.selectionStart;
-    renderStotraUI();
-}
-
-function resetExpansions() {
-    window.expandedSumadhwaId = null;
-    window.sumadhwaTextContent = "";
-    window.expandedGitaId = null;
-    window.gitaTextContent = "";
-}
-
 async function toggleSumadhwa(id) {
     if (window.expandedSumadhwaId === id) {
         window.expandedSumadhwaId = null;
@@ -167,8 +146,9 @@ async function toggleSumadhwa(id) {
         renderSumadhwaBoxes(document.getElementById('stotraContainer'));
         try {
             const resp = await fetch(`stotras/sumadhwavijaya${id}-${window.activeLang}.txt?t=${new Date().getTime()}`);
+            if (!resp.ok) throw new Error();
             window.sumadhwaTextContent = await resp.text();
-        } catch { window.sumadhwaTextContent = "Text not available."; }
+        } catch { window.sumadhwaTextContent = `<div class="text-orange-400 text-center py-4 font-bold uppercase tracking-widest">Coming Soon</div>`; }
     }
     renderSumadhwaBoxes(document.getElementById('stotraContainer'));
 }
@@ -182,8 +162,9 @@ async function toggleGita(id) {
         renderGitaBoxes(document.getElementById('stotraContainer'));
         try {
             const resp = await fetch(`stotras/bg-chapter${id}.txt?t=${new Date().getTime()}`);
+            if (!resp.ok) throw new Error();
             window.gitaTextContent = await resp.text();
-        } catch { window.gitaTextContent = "Text not available."; }
+        } catch { window.gitaTextContent = `<div class="text-orange-400 text-center py-4 font-bold uppercase tracking-widest">Coming Soon</div>`; }
     }
     renderGitaBoxes(document.getElementById('stotraContainer'));
 }
@@ -194,9 +175,23 @@ async function loadStotraContent(stotraKey, lang) {
     container.innerHTML = `<div class="p-10 text-center italic text-orange-400">Loading...</div>`;
     try {
         const response = await fetch(`stotras/${stotraKey}-${lang}.txt?t=${new Date().getTime()}`);
+        if (!response.ok) throw new Error();
         const text = await response.text();
         container.innerHTML = `<div class="animate-fade-in whitespace-pre-wrap leading-relaxed text-lg">${text}</div>`;
     } catch {
-        container.innerHTML = `<div class="p-10 text-center text-red-500 font-bold">File not found.</div>`;
+        container.innerHTML = `<div class="p-20 text-center text-orange-400 font-bold text-xl uppercase tracking-widest">Coming Soon</div>`;
     }
+}
+
+function handleStotraSearch(inputElement) {
+    window.stotraSearchQuery = inputElement.value;
+    window.stotraCursorPos = inputElement.selectionStart;
+    renderStotraUI();
+}
+
+function resetExpansions() {
+    window.expandedSumadhwaId = null;
+    window.sumadhwaTextContent = "";
+    window.expandedGitaId = null;
+    window.gitaTextContent = "";
 }
