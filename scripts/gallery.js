@@ -14,7 +14,13 @@ window.galleryData = {
 		{ type: "photo", url: "images/Training4.jpg", caption: "Sandhya Vandane Training" }
 	], 
     seva: [
-	{ type: "photo", url: "images/Seva1.jpg", caption: "Gow Seva" }
+	{ type: "photo", url: "images/Seva1.jpg", caption: "Gow Seva" },
+	{ type: "photo", url: "images/Seva2.jpg", caption: "Gow Seva" },
+	{ type: "photo", url: "images/Seva3.jpg", caption: "Gow Seva" },
+	{ type: "photo", url: "images/Seva4.jpg", caption: "Gow Seva" },
+	{ type: "photo", url: "images/Seva5.jpg", caption: "Gow Seva" },
+	{ type: "photo", url: "images/Seva6.jpg", caption: "Gow Seva" },
+	{ type: "photo", url: "images/Seva7.jpg", caption: "Gow Seva" }
 	],
 	contact: []
 };
