@@ -155,26 +155,31 @@ async function toggleSumadhwa(id) {
 }
 
 async function toggleGita(id) {
-    if (window.expandedGitaId === id) {
+    // If clicking the same chapter, close it
+    if (window.expandedGitaId === id && window.gitaTextContent !== "") {
         window.expandedGitaId = null;
+        window.gitaTextContent = "";
     } else {
         window.expandedGitaId = id;
-        window.gitaTextContent = "";
+        window.gitaTextContent = ""; // Clear old language text
         
-        // Force a re-render to show "Loading..."
+        // Show loading state immediately
         renderGitaBoxes(document.getElementById('stotraContainer'));
         
         try {
-            // Convert language to lowercase to match filename "telugu"
+            // Ensure language is lowercase to match file names
             const lang = window.activeLang.toLowerCase(); 
             const resp = await fetch(`stotras/bg-chapter${id}-${lang}.txt?t=${new Date().getTime()}`);
             
-            if (!resp.ok) throw new Error();
+            if (!resp.ok) throw new Error("File not found");
+            
             window.gitaTextContent = await resp.text();
-        } catch (err) { 
-            window.gitaTextContent = `<div class="text-orange-400 text-center py-4 font-bold uppercase tracking-widest">Coming Soon</div>`; 
+        } catch (err) {
+            console.error(err);
+            window.gitaTextContent = `<div class="text-orange-400 text-center py-4 font-bold uppercase tracking-widest">Coming Soon (${window.activeLang})</div>`;
         }
     }
+    // Re-render the list to show the content or the "Coming Soon" message
     renderGitaBoxes(document.getElementById('stotraContainer'));
 }
 

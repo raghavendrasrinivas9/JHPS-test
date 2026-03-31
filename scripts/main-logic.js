@@ -65,6 +65,13 @@ function handleTopBtn(num) {
         window.currentView = (num === 1) ? "info" : "gallery";
     }
     switchTab(window.activeTab);
+	// 2. Clear existing expanded content so it re-fetches for the new language
+    if (typeof resetExpansions === 'function') {
+        resetExpansions();
+    }
+
+    // 3. Re-render the UI
+    render();
 }
 
 /* ================================================================
