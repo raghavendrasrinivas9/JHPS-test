@@ -155,31 +155,27 @@ async function toggleSumadhwa(id) {
 }
 
 async function toggleGita(id) {
-    // If clicking the same chapter, close it
+    // Only close if the user clicks the EXACT same chapter that is already open
     if (window.expandedGitaId === id && window.gitaTextContent !== "") {
         window.expandedGitaId = null;
         window.gitaTextContent = "";
     } else {
         window.expandedGitaId = id;
-        window.gitaTextContent = ""; // Clear old language text
-        
-        // Show loading state immediately
-        renderGitaBoxes(document.getElementById('stotraContainer'));
-        
-        try {
-            // Ensure language is lowercase to match file names
-            const lang = window.activeLang.toLowerCase(); 
-            const resp = await fetch(`stotras/bg-chapter${id}-${lang}.txt?t=${new Date().getTime()}`);
-            
-            if (!resp.ok) throw new Error("File not found");
-            
-            window.gitaTextContent = await resp.text();
-        } catch (err) {
-            console.error(err);
-            window.gitaTextContent = `<div class="text-orange-400 text-center py-4 font-bold uppercase tracking-widest">Coming Soon (${window.activeLang})</div>`;
-        }
+        // Proceed to fetch content as usual...
+        await refreshGitaContent(id); 
     }
-    // Re-render the list to show the content or the "Coming Soon" message
+    renderGitaBoxes(document.getElementById('stotraContainer'));
+}
+
+async function refreshGitaContent(id) {
+    const lang = window.activeLang.toLowerCase();
+    try {
+        const resp = await fetch(`stotras/bg-chapter${id}-${lang}.txt?t=${new Date().getTime()}`);
+        if (!resp.ok) throw new Error();
+        window.gitaTextContent = await resp.text();
+    } catch {
+        window.gitaTextContent = `<div class="text-orange-400 text-center py-4 font-bold uppercase tracking-widest">Coming Soon</div>`;
+    }
     renderGitaBoxes(document.getElementById('stotraContainer'));
 }
 

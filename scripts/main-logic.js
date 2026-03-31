@@ -65,8 +65,12 @@ function handleTopBtn(num) {
         window.currentView = (num === 1) ? "info" : "gallery";
     }
     switchTab(window.activeTab);
-	// 2. Clear existing expanded content so it re-fetches for the new language
-    if (typeof resetExpansions === 'function') {
+	// If a Gita chapter is already open, don't reset. Just refresh the content.
+    if (window.activeStotra === 'gita' && window.expandedGitaId !== null) {
+        // Call toggleGita with the current ID to force a refresh with the new language
+        // We pass the same ID; our updated toggleGita (below) will handle the swap
+        refreshGitaContent(window.expandedGitaId);
+    } else {
         resetExpansions();
     }
 
