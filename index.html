@@ -8,33 +8,88 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* Base Layout */
+        /* --- NEW ANIMATION GRAPHICS --- */
+        #intro-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: #fffbeb;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            pointer-events: none;
+            animation: fadeOutOverlay 1s forwards 2.5s;
+        }
+
+        .intro-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .intro-text {
+            font-weight: 900;
+            color: #7c2d12;
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            position: absolute;
+            white-space: nowrap;
+        }
+
+        .intro-hari {
+            animation: slideLeft 1.5s cubic-bezier(0.87, 0, 0.13, 1) forwards 1s;
+        }
+
+        .intro-vayu {
+            animation: slideRight 1.5s cubic-bezier(0.87, 0, 0.13, 1) forwards 1s;
+        }
+
+        .intro-logo {
+            width: 150px;
+            z-index: 10;
+            transform: scale(0);
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            animation: zoomInLogo 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.2s;
+        }
+
+        @keyframes zoomInLogo {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes slideLeft {
+            0% { transform: translateX(0); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateX(-150%); opacity: 0; }
+        }
+
+        @keyframes slideRight {
+            0% { transform: translateX(0); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateX(150%); opacity: 0; }
+        }
+
+        @keyframes fadeOutOverlay {
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        /* --- EXISTING STYLES --- */
         body { display: flex; flex-direction: column; font-family: sans-serif; min-height: 100vh; background-color: #fffbeb; margin: 0; padding: 0; }
         @media (min-width: 768px) { body { height: 100vh; overflow: hidden; } }
         
-        /* Navigation & Buttons */
         .tab-btn { padding:10px; border-radius:12px; cursor:pointer; font-weight:600; background-color: #fde68a; transition: 0.2s; font-size: 0.85rem; border: 1px solid transparent; color: #92400e; white-space: nowrap; }
         .tab-btn:hover { background-color: #fb923c; color: white; }
         .active-tab { background-color: #ea580c !important; color: white !important; border-color: #9a3412; }
         
-		/* Animation for the rotating disc */
-		.rotating {
-		animation: spin 3s linear infinite;
-		}
+		.rotating { animation: spin 3s linear infinite; }
+		@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-		@keyframes spin {
-			from { transform: rotate(0deg); }
-			to { transform: rotate(360deg); }
-		}
-
-		/* Pulse for the playing track */
-		.animate-pulse {
-			animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-		}
-		@keyframes pulse {
-			0%, 100% { opacity: 1; }
-			50% { opacity: .5; }
-		}
+		.animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+		@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
 		
         .top-btn { padding:6px 16px; border-radius:9999px; font-weight:bold; margin-right:8px; background-color: #fde68a; font-size: 0.85rem; color: #92400e; transition: 0.3s; border: 1px solid #fcd34d; }
         .top-btn.active { background-color: #ea580c !important; color: white !important; border-color: #9a3412; }
@@ -42,52 +97,40 @@
         .sub-tab-btn { padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; font-weight: bold; background-color: #fef3c7; border: 1px solid #fcd34d; color: #92400e; transition: 0.2s; white-space: nowrap; }
         .sub-tab-btn.active { background-color: #d97706; color: white; border-color: #9a3412; }
         
-        /* Utilities */
         .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #fb923c; border-radius: 10px; }
-        /* Update these lines in your <style> section */
+
 		.motto-text { 
 			font-weight: 900; 
 			color: #7c2d12; 
 			text-transform: uppercase; 
-			letter-spacing: 0.02em; /* Reduced for better fit */
-			font-size: 0.65rem;    /* Smaller base size for mobile */
+			letter-spacing: 0.02em;
+			font-size: 0.65rem;
 			line-height: 1.2; 
-			max-width: 60px;       /* Prevents overlapping on small screens */
+			max-width: 60px;
 			display: block;
 		}
 
 		@media (min-width: 768px) { 
-			.motto-text { 
-				font-size: 1.35rem; 
-				max-width: none;   /* Remove restriction on desktop */
-				letter-spacing: 0.05em;
-			} 
+			.motto-text { font-size: 1.35rem; max-width: none; letter-spacing: 0.05em; } 
 		}
 
-        /* Content Specific */
         .stotra-content { font-family: 'Noto Sans Telugu', 'Noto Sans Devanagari', 'Noto Sans Kannada', serif; background: #fffcf0; padding: 20px; border-radius: 10px; border: 1px dashed #d97706; white-space: pre-wrap; line-height: 1.8; font-size: 1.1rem; color: #431407; }
         .dropdown-content, .learning-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease; background-color: #fffaf0; }
         .dropdown-content.open, .learning-content.open { max-height: 2000px; padding: 12px; border: 1px solid #fde68a; border-top: none; }
         .rotate-icon { transition: transform 0.3s; }
         .rotate-icon.active { transform: rotate(180deg); }
 
-        /* Area Grid & Contacts */
         .area-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-top: 10px; }
         .area-box { background: #fff7ed; padding: 12px; border-radius: 12px; border: 1px solid #ffedd5; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
         .contact-row { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; padding-top: 4px; }
         .call-btn { background: #16a34a; color: white; padding: 3px 8px; border-radius: 6px; font-size: 0.65rem; font-weight: bold; text-decoration: none; }
         
-        /* Social Media Colors */
         .instagram { background-color: #E1306C !important; }
         .youtube { background-color: #FF0000 !important; }
 
-        /* Audio Player Bar */
         #audioPlayerBar { position: fixed; bottom: 0; left: 0; right: 0; background: #7c2d12; color: white; padding: 12px 20px; z-index: 10000; display: none; align-items: center; justify-content: space-between; border-top: 2px solid #ea580c; }
-        .spinning-disc { animation: spin 4s linear infinite; }
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         
-        /* Action Buttons */
         .action-btn { display:inline-block; padding:10px 20px; border-radius:10px; color:white; font-weight:bold; text-decoration:none; font-size: 0.9rem; transition: 0.3s; text-align: center; }
         .whatsapp { background-color: #16a34a; }
         .form { background-color: #2563eb; }
@@ -97,6 +140,14 @@
 </head>
 
 <body>
+
+<div id="intro-overlay">
+    <div class="intro-container">
+        <span class="intro-text intro-hari">Hari Sarvothama</span>
+        <img src="JHPS.jpg" alt="Logo" class="intro-logo">
+        <span class="intro-text intro-vayu">Vayu Jeevothama</span>
+    </div>
+</div>
 
 <header class="bg-yellow-100 p-2 md:p-3 shadow-sm shrink-0 border-b border-yellow-200">
     <div class="max-w-6xl mx-auto flex justify-between items-center gap-2">
@@ -161,7 +212,18 @@
 <script src="scripts/events.js"></script>
 <script src="scripts/bhajana.js"></script>
 <script src="scripts/seva.js"></script>
-<script src="scripts/gallery.js"></script> <script src="scripts/main-logic.js"></script>
+<script src="scripts/gallery.js"></script> 
+<script src="scripts/main-logic.js"></script>
+
+<script>
+    // Remove the overlay from DOM after animation completes to keep it clean
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const overlay = document.getElementById('intro-overlay');
+            if (overlay) overlay.style.display = 'none';
+        }, 3500);
+    });
+</script>
 
 </body>
 </html>
