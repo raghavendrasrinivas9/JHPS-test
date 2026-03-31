@@ -170,7 +170,7 @@ async function toggleGita(id) {
 async function refreshGitaContent(id) {
     const lang = window.activeLang.toLowerCase();
     try {
-        const resp = await fetch(`stotras/bg-chapter${id}-${lang}.txt?t=${new Date().getTime()}`);
+        const resp = await fetch(`stotras/bhagavad-gita/bg-chapter${id}-${lang}.txt?t=${new Date().getTime()}`);
         if (!resp.ok) throw new Error();
         window.gitaTextContent = await resp.text();
     } catch {
