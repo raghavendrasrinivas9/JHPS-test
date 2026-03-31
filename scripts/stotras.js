@@ -160,12 +160,20 @@ async function toggleGita(id) {
     } else {
         window.expandedGitaId = id;
         window.gitaTextContent = "";
+        
+        // Force a re-render to show "Loading..."
         renderGitaBoxes(document.getElementById('stotraContainer'));
+        
         try {
-            const resp = await fetch(`stotras/bg-chapter${id}-${window.activeLang}.txt?t=${new Date().getTime()}`);
+            // Convert language to lowercase to match filename "telugu"
+            const lang = window.activeLang.toLowerCase(); 
+            const resp = await fetch(`stotras/bg-chapter${id}-${lang}.txt?t=${new Date().getTime()}`);
+            
             if (!resp.ok) throw new Error();
             window.gitaTextContent = await resp.text();
-        } catch { window.gitaTextContent = `<div class="text-orange-400 text-center py-4 font-bold uppercase tracking-widest">Coming Soon</div>`; }
+        } catch (err) { 
+            window.gitaTextContent = `<div class="text-orange-400 text-center py-4 font-bold uppercase tracking-widest">Coming Soon</div>`; 
+        }
     }
     renderGitaBoxes(document.getElementById('stotraContainer'));
 }
