@@ -5,7 +5,7 @@ window.svPartsData = {
             { id: 1, name: "Suchikarana", audio: "media/suchikarana.mp3", video: "#", desc: "Apavithra Pavithropa", file: "learnings/sv-suchikarana.txt" },
 			{ id: 2, name: "Gopi Chandana Nama Dharane, Mudhra Dharana", audio: "#", video: "#", desc: "Urdhva pundra and Mudhra Dharana ", file: "learnings/l2.txt" },
 			{ id: 3, name: "Achamanam", audio: "media/achamana.mp3", video: "https://youtu.be", desc: "Initial purification with water.", file: "learnings/sv-achamanam.txt" },
-			{ id: 4, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus.", file: "learnings/l4.txt" },
+			{ id: 4, name: "Pranayamam", audio: "#", video: "#", desc: "Breath control and mental focus.", file: "learnings/sv-pranayamam.txt" },
 			{ id: 5, name: "Sankalpam", audio: "#", video: "#", desc: "Setting the intention for the ritual.", file: "learnings/l5.txt" },
 			{ id: 6, name: "Prathama Marjanam", audio: "#", video: "#", desc: "Sprinkling of water for external purity.", file: "learnings/l6.txt" },
 			{ id: 7, name: "Manthrachamana (Prathah Sandhya)", audio: "#", video: "#", desc: "Morning only", file: "learnings/l7.txt" },
