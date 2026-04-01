@@ -67,6 +67,10 @@
         .top-btn { padding:6px 16px; border-radius:9999px; font-weight:bold; margin-right:8px; background-color: #fde68a; font-size: 0.85rem; color: #92400e; transition: 0.3s; border: 1px solid #fcd34d; }
         .top-btn.active { background-color: #ea580c !important; color: white !important; border-color: #9a3412; }
 
+        /* RESTORED SUB-TAB STYLES */
+        .sub-tab-btn { padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; font-weight: bold; background-color: #fef3c7; border: 1px solid #fcd34d; color: #92400e; transition: 0.2s; white-space: nowrap; }
+        .sub-tab-btn.active { background-color: #d97706; color: white; border-color: #9a3412; }
+
         .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #fb923c; border-radius: 10px; }
 
@@ -74,8 +78,8 @@
         @media (min-width: 768px) { .motto-text { font-size: 1.35rem; max-width: none; letter-spacing: 0.05em; } }
 
         /* Expansion/Toggle Styles */
-        .dropdown-content, .learning-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
-        .dropdown-content.open, .learning-content.open { max-height: 2000px; }
+        .dropdown-content, .learning-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease; background-color: #fffaf0; }
+        .dropdown-content.open, .learning-content.open { max-height: 2000px; padding: 12px; border: 1px solid #fde68a; border-top: none; }
 
         /* Action Buttons - RESTORED ORIGINAL STYLES */
         .action-btn { display:inline-block; padding:10px 20px; border-radius:10px; color:white; font-weight:bold; text-decoration:none; font-size: 0.9rem; transition: 0.3s; text-align: center; }
@@ -88,7 +92,7 @@
         @media (max-width: 767px) {
             #sidebar {
                 position: fixed;
-                top: 84px; /* Aligned below the header to show Ram.jpg */
+                top: 84px; /* Matches header height */
                 left: 0;
                 z-index: 100;
                 width: 85%;
@@ -108,15 +112,17 @@
             }
         }
 
+        /* Menu Button aligned under Ram image */
         .mobile-menu-btn {
             background-color: #c2410c; 
             color: #000000;            
             border: 2px solid #7c2d12;  
             font-weight: 800;
-            padding: 4px 12px;
+            padding: 4px 10px;
             border-radius: 8px;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-top: 4px;
         }
 
         #audioPlayerBar { position: fixed; bottom: 0; left: 0; right: 0; background: #7c2d12; color: white; padding: 12px 20px; z-index: 10000; display: none; align-items: center; justify-content: space-between; border-top: 2px solid #ea580c; }
@@ -134,14 +140,15 @@
 </div>
 
 <header id="mainHeader" class="bg-yellow-100 p-2 md:p-3 shadow-sm shrink-0 border-b border-yellow-200 relative z-50">
-    <button onclick="toggleMobileMenu()" class="md:hidden absolute top-2 left-2 mobile-menu-btn">
-        <i class="fa-solid fa-bars mr-1"></i> MENU
-    </button>
-
     <div class="max-w-6xl mx-auto flex justify-between items-center gap-2">
-        <div class="flex-1 flex items-center justify-start gap-2">
-            <img src="images/Ram.jpg" alt="Ram" class="h-10 w-10 md:h-20 md:w-20 rounded-full border-2 border-orange-400 object-cover shadow-sm shrink-0">
-            <span class="motto-text">Hari Sarvothama</span>
+        <div class="flex-1 flex flex-col items-start gap-1">
+            <div class="flex items-center gap-2">
+                <img src="images/Ram.jpg" alt="Ram" class="h-10 w-10 md:h-20 md:w-20 rounded-full border-2 border-orange-400 object-cover shadow-sm shrink-0">
+                <span class="motto-text">Hari Sarvothama</span>
+            </div>
+            <button onclick="toggleMobileMenu()" class="md:hidden mobile-menu-btn">
+                <i class="fa-solid fa-bars mr-1"></i> MENU
+            </button>
         </div>
 
         <div class="shrink-0">
@@ -207,7 +214,6 @@
 <script src="scripts/main-logic.js"></script>
 
 <script>
-    // Expansion logic fix for Parayana and Learnings
     function toggleSection(id, iconId) {
         const content = document.getElementById(id);
         const icon = document.getElementById(iconId);
