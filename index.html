@@ -64,10 +64,7 @@
         .tab-btn:hover { background-color: #fb923c; color: white; }
         .active-tab { background-color: #ea580c !important; color: white !important; border-color: #9a3412; }
         
-        /* Desktop specific button size reduction */
-        @media (min-width: 768px) {
-            .tab-btn { padding: 10px; font-size: 0.85rem; }
-        }
+        @media (min-width: 768px) { .tab-btn { padding: 10px; font-size: 0.85rem; } }
 
         .top-btn { padding:6px 16px; border-radius:9999px; font-weight:bold; margin-right:8px; background-color: #fde68a; font-size: 0.85rem; color: #92400e; transition: 0.3s; border: 1px solid #fcd34d; }
         .top-btn.active { background-color: #ea580c !important; color: white !important; border-color: #9a3412; }
@@ -78,7 +75,7 @@
 		.motto-text { font-weight: 900; color: #7c2d12; text-transform: uppercase; letter-spacing: 0.02em; font-size: 0.65rem; line-height: 1.2; max-width: 60px; display: block; }
 		@media (min-width: 768px) { .motto-text { font-size: 1.35rem; max-width: none; letter-spacing: 0.05em; } }
 
-        /* MOBILE MENU FULLSCREEN OVERLAY */
+        /* --- MOBILE MENU SLIDE ANIMATION --- */
         @media (max-width: 767px) {
             #sidebar {
                 position: fixed;
@@ -87,14 +84,28 @@
                 z-index: 100;
                 width: 100%;
                 height: 100%;
-                background: #fffbeb;
-                display: none;
+                background: linear-gradient(180deg, #fffbeb 0%, #ffedd5 100%);
+                display: flex;
                 flex-direction: column;
                 padding: 24px;
                 overflow-y: auto;
+                
+                /* Start hidden above the screen */
+                transform: translateY(-100%);
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                visibility: hidden;
             }
-            #sidebar.active-mobile { display: flex !important; }
-            .tab-btn { font-size: 1.25rem; padding: 18px; margin-bottom: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+            #sidebar.active-mobile { 
+                transform: translateY(0); 
+                visibility: visible;
+            }
+            .tab-btn { 
+                font-size: 1.25rem; 
+                padding: 18px; 
+                margin-bottom: 12px; 
+                box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+                border: 1px solid #fcd34d;
+            }
         }
 
         .mobile-menu-btn {
@@ -106,7 +117,9 @@
             border-radius: 9999px;
             font-size: 0.85rem;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
         }
+        .mobile-menu-btn:active { transform: scale(0.9); }
 
         #audioPlayerBar { position: fixed; bottom: 0; left: 0; right: 0; background: #7c2d12; color: white; padding: 12px 20px; z-index: 10000; display: none; align-items: center; justify-content: space-between; border-top: 2px solid #ea580c; }
     </style>
@@ -145,9 +158,9 @@
 
 <div class="flex flex-col md:flex-row flex-1 overflow-hidden relative">
     <aside id="sidebar" class="hidden md:flex w-full md:w-60 bg-yellow-100 p-3 md:p-4 border-b md:border-r border-yellow-200 flex-col shrink-0 overflow-x-auto md:overflow-y-auto custom-scroll gap-2">
-        <div class="md:hidden flex justify-between items-center mb-6">
-            <span class="text-xl font-black text-orange-900">MAIN MENU</span>
-            <button onclick="toggleMobileMenu()" class="text-3xl text-orange-800"><i class="fa-solid fa-circle-xmark"></i></button>
+        <div class="md:hidden flex justify-between items-center mb-8 border-b border-orange-200 pb-4">
+            <span class="text-2xl font-black text-orange-900">Select Category</span>
+            <button onclick="toggleMobileMenu()" class="text-4xl text-orange-700"><i class="fa-solid fa-circle-xmark"></i></button>
         </div>
         
         <div id="parayanaTab" class="tab-btn active-tab" onclick="handleMenuClick('parayana')"><span>📖</span> Parayana</div>
@@ -204,13 +217,16 @@
         if (typeof switchTab === "function") {
             switchTab(tab);
         }
+        // Close with a slight delay for better UX after click
         if (window.innerWidth < 768) {
-            document.getElementById('sidebar').classList.remove('active-mobile');
+            setTimeout(() => {
+                document.getElementById('sidebar').classList.remove('active-mobile');
+            }, 150);
         }
     }
 
     window.addEventListener('load', () => {
-        // Auto-show menu on mobile immediately after intro
+        // Slide menu down automatically on mobile after intro
         if (window.innerWidth < 768) {
             setTimeout(() => {
                 document.getElementById('sidebar').classList.add('active-mobile');
