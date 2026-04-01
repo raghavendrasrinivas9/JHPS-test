@@ -60,7 +60,6 @@
         body { display: flex; flex-direction: column; font-family: sans-serif; min-height: 100vh; background-color: #fffbeb; margin: 0; padding: 0; }
         @media (min-width: 768px) { body { height: 100vh; overflow: hidden; } }
         
-        /* Compact tabs as requested */
         .tab-btn { padding:10px; border-radius:12px; cursor:pointer; font-weight:600; background-color: #fde68a; transition: 0.2s; font-size: 0.85rem; border: 1px solid transparent; color: #92400e; white-space: nowrap; display: flex; align-items: center; gap: 8px; }
         .tab-btn:hover { background-color: #fb923c; color: white; }
         .active-tab { background-color: #ea580c !important; color: white !important; border-color: #9a3412; }
@@ -78,22 +77,27 @@
         .dropdown-content, .learning-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
         .dropdown-content.open, .learning-content.open { max-height: 2000px; }
 
-        /* --- MOBILE MENU SLIDE FROM LEFT --- */
+        /* Action Buttons - RESTORED ORIGINAL STYLES */
+        .action-btn { display:inline-block; padding:10px 20px; border-radius:10px; color:white; font-weight:bold; text-decoration:none; font-size: 0.9rem; transition: 0.3s; text-align: center; }
+        .whatsapp { background-color: #16a34a; }
+        .form { background-color: #2563eb; }
+        .animate-glow { animation: pulse-blue 2s infinite; }
+        @keyframes pulse-blue { 0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); } 70% { box-shadow: 0 0 0 8px rgba(37, 99, 235, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); } }
+
+        /* --- MOBILE MENU ALIGNMENT --- */
         @media (max-width: 767px) {
             #sidebar {
                 position: fixed;
-                top: 0;
+                top: 84px; /* Aligned below the header to show Ram.jpg */
                 left: 0;
                 z-index: 100;
-                width: 80%; /* Partial width for slide-out look */
-                height: 100%;
+                width: 85%;
+                height: calc(100% - 84px);
                 background: linear-gradient(180deg, #fffbeb 0%, #ffedd5 100%);
                 display: flex;
                 flex-direction: column;
-                padding: 20px;
+                padding: 15px;
                 box-shadow: 4px 0 15px rgba(0,0,0,0.2);
-                
-                /* Start hidden to the left */
                 transform: translateX(-100%);
                 transition: transform 0.3s ease-in-out;
                 visibility: hidden;
@@ -129,7 +133,7 @@
     </div>
 </div>
 
-<header class="bg-yellow-100 p-2 md:p-3 shadow-sm shrink-0 border-b border-yellow-200 relative z-50">
+<header id="mainHeader" class="bg-yellow-100 p-2 md:p-3 shadow-sm shrink-0 border-b border-yellow-200 relative z-50">
     <button onclick="toggleMobileMenu()" class="md:hidden absolute top-2 left-2 mobile-menu-btn">
         <i class="fa-solid fa-bars mr-1"></i> MENU
     </button>
@@ -153,9 +157,9 @@
 
 <div class="flex flex-col md:flex-row flex-1 overflow-hidden relative">
     <aside id="sidebar" class="hidden md:flex w-full md:w-60 bg-yellow-100 p-3 md:p-4 border-b md:border-r border-yellow-200 flex-col shrink-0 overflow-x-auto md:overflow-y-auto custom-scroll gap-2">
-        <div class="md:hidden flex justify-between items-center mb-6">
-            <span class="text-lg font-bold text-orange-900">Main Menu</span>
-            <button onclick="toggleMobileMenu()" class="text-2xl text-orange-700"><i class="fa-solid fa-xmark"></i></button>
+        <div class="md:hidden flex justify-between items-center mb-4">
+            <span class="text-md font-bold text-orange-900">Categories</span>
+            <button onclick="toggleMobileMenu()" class="text-xl text-orange-700"><i class="fa-solid fa-xmark"></i></button>
         </div>
         
         <div id="parayanaTab" class="tab-btn active-tab" onclick="handleMenuClick('parayana')">📖 Parayana</div>
@@ -203,7 +207,7 @@
 <script src="scripts/main-logic.js"></script>
 
 <script>
-    // FIXED TOGGLE LOGIC: Global toggle function for parayana/learnings
+    // Expansion logic fix for Parayana and Learnings
     function toggleSection(id, iconId) {
         const content = document.getElementById(id);
         const icon = document.getElementById(iconId);
@@ -233,7 +237,6 @@
     }
 
     window.addEventListener('load', () => {
-        // Home page is menu for mobile
         if (window.innerWidth < 768) {
             setTimeout(() => {
                 document.getElementById('sidebar').classList.add('active-mobile');
