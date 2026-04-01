@@ -136,6 +136,19 @@
         .form { background-color: #2563eb; }
         .animate-glow { animation: pulse-blue 2s infinite; }
         @keyframes pulse-blue { 0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); } 70% { box-shadow: 0 0 0 8px rgba(37, 99, 235, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); } }
+
+        /* MOBILE MENU OVERLAY FIX */
+        @media (max-width: 767px) {
+            #sidebar {
+                position: absolute;
+                top: 70px; /* Aligned with header height */
+                left: 0;
+                z-index: 50;
+                width: 100%;
+                background: #fffbeb;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            }
+        }
     </style>
 </head>
 
@@ -149,15 +162,18 @@
     </div>
 </div>
 
-<header class="bg-yellow-100 p-2 md:p-3 shadow-sm shrink-0 border-b border-yellow-200">
+<header class="bg-yellow-100 p-2 md:p-3 shadow-sm shrink-0 border-b border-yellow-200 relative z-50">
     <div class="max-w-6xl mx-auto flex justify-between items-center gap-2">
         <div class="flex-1 flex items-center justify-start gap-2">
             <img src="images/Ram.jpg" alt="Ram" class="h-10 w-10 md:h-20 md:w-20 rounded-full border-2 border-orange-400 object-cover shadow-sm shrink-0">
             <span class="motto-text">Hari Sarvothama</span>
         </div>
 
-        <div class="shrink-0">
+        <div class="shrink-0 flex flex-col items-center">
             <img src="JHPS.jpg" alt="JHPS Logo" class="h-16 md:h-40 w-auto rounded-xl shadow-lg border-2 border-white bg-white">
+            <button onclick="toggleMobileMenu()" class="md:hidden mt-2 bg-orange-600 text-white px-4 py-1 rounded-full text-xs font-bold shadow-md">
+                <i class="fa-solid fa-bars mr-1"></i> MENU
+            </button>
         </div>
 
         <div class="flex-1 flex items-center justify-end gap-2 text-right">
@@ -167,16 +183,16 @@
     </div>
 </header>
 
-<div class="flex flex-col md:flex-row flex-1 overflow-hidden">
-    <aside class="w-full md:w-60 bg-yellow-100 p-3 md:p-4 border-b md:border-r border-yellow-200 flex flex-row md:flex-col shrink-0 overflow-x-auto md:overflow-y-auto custom-scroll gap-2">
-        <div id="parayanaTab" class="tab-btn active-tab" onclick="switchTab('parayana')">📖 Parayana</div>
-        <div id="stotrasTab" class="tab-btn" onclick="switchTab('stotras')">📜 Stotras</div>
-        <div id="bhajanaTab" class="tab-btn" onclick="switchTab('bhajana')">🎵 Bhajana</div>
-        <div id="learningsTab" class="tab-btn" onclick="switchTab('learnings')">🎓 Learnings</div>
-        <div id="sevaTab" class="tab-btn" onclick="switchTab('seva')">❤️ Seva</div>
-		<div id="eventsTab" class="tab-btn" onclick="switchTab('events')">📅 Events</div> 
-		<div id="aboutTab" class="tab-btn" onclick="switchTab('about')">ℹ️ About</div>
-        <div id="contactTab" class="tab-btn" onclick="switchTab('contact')">📞 Contact</div>
+<div class="flex flex-col md:flex-row flex-1 overflow-hidden relative">
+    <aside id="sidebar" class="hidden md:flex w-full md:w-60 bg-yellow-100 p-3 md:p-4 border-b md:border-r border-yellow-200 flex-col shrink-0 overflow-x-auto md:overflow-y-auto custom-scroll gap-2">
+        <div id="parayanaTab" class="tab-btn active-tab" onclick="handleMenuClick('parayana')">📖 Parayana</div>
+        <div id="stotrasTab" class="tab-btn" onclick="handleMenuClick('stotras')">📜 Stotras</div>
+        <div id="bhajanaTab" class="tab-btn" onclick="handleMenuClick('bhajana')">🎵 Bhajana</div>
+        <div id="learningsTab" class="tab-btn" onclick="handleMenuClick('learnings')">🎓 Learnings</div>
+        <div id="sevaTab" class="tab-btn" onclick="handleMenuClick('seva')">❤️ Seva</div>
+		<div id="eventsTab" class="tab-btn" onclick="handleMenuClick('events')">📅 Events</div> 
+		<div id="aboutTab" class="tab-btn" onclick="handleMenuClick('about')">ℹ️ About</div>
+        <div id="contactTab" class="tab-btn" onclick="handleMenuClick('contact')">📞 Contact</div>
     </aside>
 
     <main class="flex-1 p-4 md:p-6 flex flex-col overflow-hidden relative">
@@ -216,7 +232,33 @@
 <script src="scripts/main-logic.js"></script>
 
 <script>
-    // Remove the overlay from DOM after animation completes to keep it clean
+    // Toggle menu visibility on mobile
+    function toggleMobileMenu() {
+        const sidebar = document.getElementById('sidebar');
+        if (sidebar.classList.contains('hidden')) {
+            sidebar.classList.remove('hidden');
+            sidebar.classList.add('flex');
+        } else {
+            sidebar.classList.add('hidden');
+            sidebar.classList.remove('flex');
+        }
+    }
+
+    // Combined function to switch tab AND close menu on mobile
+    function handleMenuClick(tab) {
+        // Call your existing switch logic from main-logic.js
+        if (typeof switchTab === "function") {
+            switchTab(tab);
+        }
+        
+        // Hide menu after selection if on mobile
+        if (window.innerWidth < 768) {
+            document.getElementById('sidebar').classList.add('hidden');
+            document.getElementById('sidebar').classList.remove('flex');
+        }
+    }
+
+    // Remove the intro overlay
     window.addEventListener('load', () => {
         setTimeout(() => {
             const overlay = document.getElementById('intro-overlay');
