@@ -12,6 +12,37 @@ window.activePartKey = null;
    2. NAVIGATION ENGINE
 ================================================================
 */
+
+/**
+ * handleMenuClick is the primary entry point for both the 
+ * Web Sidebar and the Median Native Mobile Sidebar.
+ */
+function handleMenuClick(tab) {
+    // 1. Execute the existing tab switching logic
+    switchTab(tab);
+
+    // 2. Web-specific: Close the mobile sidebar overlay if it's open
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar) {
+        sidebar.classList.remove('mobile-open');
+    }
+
+    // 3. Optional: Add a small vibration for haptic feedback in the app
+    if (window.median && window.median.haptic) {
+        window.median.haptic.vibrate();
+    }
+}
+
+/**
+ * Toggles the mobile sidebar visibility for direct URL/Browser access.
+ */
+function toggleMobileSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar) {
+        sidebar.classList.toggle('mobile-open');
+    }
+}
+
 function switchTab(tab) {
     // Reset view state when switching main tabs
     if (window.activeTab !== tab) {
@@ -65,16 +96,13 @@ function handleTopBtn(num) {
         window.currentView = (num === 1) ? "info" : "gallery";
     }
     switchTab(window.activeTab);
-	// If a Gita chapter is already open, don't reset. Just refresh the content.
+    
     if (window.activeStotra === 'gita' && window.expandedGitaId !== null) {
-        // Call toggleGita with the current ID to force a refresh with the new language
-        // We pass the same ID; our updated toggleGita (below) will handle the swap
         refreshGitaContent(window.expandedGitaId);
     } else {
-        resetExpansions();
+        if (typeof resetExpansions === "function") resetExpansions();
     }
 
-    // 3. Re-render the UI
     render();
 }
 
@@ -86,23 +114,20 @@ function render() {
     const area = document.getElementById('contentArea');
     if (!area) return;
 
-    area.innerHTML = ""; // Clear current content
+    area.innerHTML = ""; 
 
-    // Priority 1: Sub-Views (Learn in Parts)
     if (window.currentView === "sv-parts") {
         if (typeof renderSVParts === 'function') renderSVParts();
         else area.innerHTML = `<div class="p-10 text-center text-red-500 italic">Parts renderer not found.</div>`;
         return;
     }
 
-    // Priority 2: Gallery View
     if (window.currentView === "gallery") {
         if (typeof renderGalleryUI === 'function') renderGalleryUI();
         else area.innerHTML = `<div class="p-10 text-center text-gray-400 italic">Gallery coming soon...</div>`;
         return;
     }
 
-    // Priority 3: Main Tab Views
     switch (window.activeTab) {
         case "parayana":  renderParayanaUI(); break;
         case "stotras":   renderStotraUI();   break;
@@ -264,4 +289,22 @@ function openLightbox(index) {
 // Global Initialization
 window.onload = () => {
     switchTab(window.activeTab);
+
+    // Initialize the Median Sidebar Bridge if running in app
+    if (window.median) {
+        median.sidebar.setItems({
+            "items": [
+                { label: "📖 Parayana", url: "javascript:handleMenuClick('parayana')", icon: "fas fa-book-open" },
+                { label: "📜 Stotras", url: "javascript:handleMenuClick('stotras')", icon: "fas fa-scroll" },
+                { label: "🎵 Bhajana", url: "javascript:handleMenuClick('bhajana')", icon: "fas fa-music" },
+                { label: "🎓 Learnings", url: "javascript:handleMenuClick('learnings')", icon: "fas fa-graduation-cap" },
+                { label: "❤️ Seva", url: "javascript:handleMenuClick('seva')", icon: "fas fa-heart" },
+                { label: "📅 Events", url: "javascript:handleMenuClick('events')", icon: "fas fa-calendar-alt" },
+                { label: "ℹ️ About", url: "javascript:handleMenuClick('about')", icon: "fas fa-info-circle" },
+                { label: "📞 Contact", url: "javascript:handleMenuClick('contact')", icon: "fas fa-phone" }
+            ],
+            "enabled": true,
+            "persist": true
+        });
+    }
 };
