@@ -286,25 +286,38 @@ function openLightbox(index) {
     overlay.onclick = () => overlay.remove();
 }
 
-// Global Initialization
+// Global Initialization - Unified to prevent conflicts
 window.onload = () => {
+    // 1. Initialize default tab
     switchTab(window.activeTab);
 
-    // Initialize the Median Sidebar Bridge if running in app
-    if (window.median) {
-        median.sidebar.setItems({
-            "items": [
-                { label: "📖 Parayana", url: "javascript:handleMenuClick('parayana')", icon: "fas fa-book-open" },
-                { label: "📜 Stotras", url: "javascript:handleMenuClick('stotras')", icon: "fas fa-scroll" },
-                { label: "🎵 Bhajana", url: "javascript:handleMenuClick('bhajana')", icon: "fas fa-music" },
-                { label: "🎓 Learnings", url: "javascript:handleMenuClick('learnings')", icon: "fas fa-graduation-cap" },
-                { label: "❤️ Seva", url: "javascript:handleMenuClick('seva')", icon: "fas fa-heart" },
-                { label: "📅 Events", url: "javascript:handleMenuClick('events')", icon: "fas fa-calendar-alt" },
-                { label: "ℹ️ About", url: "javascript:handleMenuClick('about')", icon: "fas fa-info-circle" },
-                { label: "📞 Contact", url: "javascript:handleMenuClick('contact')", icon: "fas fa-phone" }
-            ],
-            "enabled": true,
-            "persist": true
-        });
+    // 2. Detect if running inside the Median App
+    const isApp = navigator.userAgent.includes('median') || navigator.userAgent.includes('gonative');
+    const mobileWebNav = document.getElementById('mobileWebNav');
+
+    if (isApp) {
+        // Hide the web-only navigation bar when in the app build
+        if (mobileWebNav) mobileWebNav.style.display = 'none';
+        
+        // 3. Initialize the Median Sidebar Bridge
+        if (window.median) {
+            median.sidebar.setItems({
+                "items": [
+                    { label: "📖 Parayana", url: "javascript:handleMenuClick('parayana')", icon: "fas fa-book-open" },
+                    { label: "📜 Stotras", url: "javascript:handleMenuClick('stotras')", icon: "fas fa-scroll" },
+                    { label: "🎵 Bhajana", url: "javascript:handleMenuClick('bhajana')", icon: "fas fa-music" },
+                    { label: "🎓 Learnings", url: "javascript:handleMenuClick('learnings')", icon: "fas fa-graduation-cap" },
+                    { label: "❤️ Seva", url: "javascript:handleMenuClick('seva')", icon: "fas fa-heart" },
+                    { label: "📅 Events", url: "javascript:handleMenuClick('events')", icon: "fas fa-calendar-alt" },
+                    { label: "ℹ️ About", url: "javascript:handleMenuClick('about')", icon: "fas fa-info-circle" },
+                    { label: "📞 Contact", url: "javascript:handleMenuClick('contact')", icon: "fas fa-phone" }
+                ],
+                "enabled": true,
+                "persist": true
+            });
+        }
+    } else {
+        // Ensure web-only navigation is visible in browsers
+        if (mobileWebNav) mobileWebNav.style.display = 'flex';
     }
 };
