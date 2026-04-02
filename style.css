@@ -91,23 +91,26 @@ body { display: flex; flex-direction: column; font-family: sans-serif; min-heigh
 .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
 .custom-scroll::-webkit-scrollbar-thumb { background: #fb923c; border-radius: 10px; }
 
-/* --- REFINED: Motto Text (Clean and Professional) --- */
+/* Refined Motto Text for all devices */
 .motto-text { 
     font-weight: 800; 
     color: #7c2d12; 
     text-transform: uppercase; 
     letter-spacing: 0.02em; 
-    font-size: 0.8rem; /* Scaled down for elegance */
+    /* Mobile: Prevents overlapping by restricting width and size */
+    font-size: 0.75rem; 
     line-height: 1.1; 
-    max-width: 85px; 
+    max-width: 70px; 
     display: block;
     white-space: normal;
 }
 
+/* Desktop: Restores the larger professional look */
 @media (min-width: 768px) { 
     .motto-text { 
-        font-size: 1.05rem; /* Balanced desktop size */
+        font-size: 1.1rem; 
         max-width: none; 
+        letter-spacing: 0.05em;
     } 
 }
 
