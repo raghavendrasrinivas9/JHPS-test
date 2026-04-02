@@ -91,26 +91,23 @@ body { display: flex; flex-direction: column; font-family: sans-serif; min-heigh
 .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
 .custom-scroll::-webkit-scrollbar-thumb { background: #fb923c; border-radius: 10px; }
 
-/* Refined Motto Text for all devices */
+/* --- REFINED: Motto Text (Clean and Professional) --- */
 .motto-text { 
-    font-weight: 800; /* Slightly less heavy than 900 for better readability */
+    font-weight: 800; 
     color: #7c2d12; 
     text-transform: uppercase; 
-    letter-spacing: 0.03em; 
-    /* Mobile Size: Balanced to fit without looking crowded */
-    font-size: 0.85rem; 
-    line-height: 1.2; 
-    max-width: 90px; 
+    letter-spacing: 0.02em; 
+    font-size: 0.8rem; /* Scaled down for elegance */
+    line-height: 1.1; 
+    max-width: 85px; 
     display: block;
     white-space: normal;
 }
 
-/* Desktop Browser: Reduced from the "very large" size to a professional fit */
 @media (min-width: 768px) { 
     .motto-text { 
-        font-size: 1.1rem; /* Reduced from 1.35rem */
+        font-size: 1.05rem; /* Balanced desktop size */
         max-width: none; 
-        letter-spacing: 0.05em;
     } 
 }
 
@@ -167,10 +164,33 @@ body { display: flex; flex-direction: column; font-family: sans-serif; min-heigh
     display: none !important;
 }
 
-/* HIDE WEB SIDEBAR ON MOBILE */
-/* @media (max-width: 767px) {
-    #sidebar { display: none; }
-} */
+/* --- FIXED: Mobile Sidebar Overlay Logic --- */
+@media (max-width: 767px) {
+    #sidebar {
+        display: none; /* Hidden by default on mobile */
+        position: fixed;
+        top: 84px; /* Align with mobile header height */
+        left: 0;
+        z-index: 999;
+        width: 250px;
+        height: calc(100vh - 84px);
+        background: #fef3c7;
+        flex-direction: column;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        padding: 15px;
+        overflow-y: auto;
+    }
+
+    /* This class is added by your JS to make the menu appear */
+    #sidebar.mobile-open {
+        display: flex !important;
+    }
+
+    /* Ensure the main content doesn't get hidden behind the audio bar */
+    .app-container {
+        padding-bottom: 75px; 
+    }
+}
 
 #audioPlayerBar { position: fixed; bottom: 0; left: 0; right: 0; background: #7c2d12; color: white; padding: 12px 20px; z-index: 10000; display: none; align-items: center; justify-content: space-between; border-top: 2px solid #ea580c; }
 
