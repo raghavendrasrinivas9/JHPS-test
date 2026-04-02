@@ -58,51 +58,7 @@
 
         /* --- CORE STYLES --- */
         body { display: flex; flex-direction: column; font-family: sans-serif; min-height: 100vh; background-color: #fffbeb; margin: 0; padding: 0; }
-        @media (max-width: 767px) {
-		#sidebar {
-			position: fixed;
-			top: 0; /* Changed from 84px to cover full height */
-			left: 0;
-			z-index: 1000; /* High z-index to stay above header */
-			width: 280px; /* Specific width */
-			height: 100vh;
-			background: #fffbeb;
-			display: flex; /* Keep as flex */
-			flex-direction: column;
-			padding: 20px;
-			box-shadow: 4px 0 15px rgba(0,0,0,0.3);
-			transform: translateX(-100%); /* Start off-screen */
-			transition: transform 0.3s ease-in-out;
-			visibility: visible; /* Must be visible for transform to work */
-		}
-
-			/* This class is added by JS when clicking the hamburger */
-			#sidebar.active-mobile { 
-				transform: translateX(0); 
-			}
-
-			/* Dark backdrop when menu is open */
-			.menu-backdrop {
-				position: fixed;
-				inset: 0;
-				background: rgba(0,0,0,0.5);
-				z-index: 999;
-				display: none;
-			}
-			.menu-backdrop.active { display: block; }
-		}
-
-		/* Improve the look of the Hamburger Button */
-		.mobile-menu-btn {
-			background-color: #ea580c; 
-			color: white;            
-			border: none;  
-			font-weight: bold;
-			padding: 8px 12px;
-			border-radius: 8px;
-			font-size: 0.9rem;
-			cursor: pointer;
-		}
+        @media (min-width: 768px) { body { height: 100vh; overflow: hidden; } }
         
         .tab-btn { padding:10px; border-radius:12px; cursor:pointer; font-weight:600; background-color: #fde68a; transition: 0.2s; font-size: 0.85rem; border: 1px solid transparent; color: #92400e; white-space: nowrap; display: flex; align-items: center; gap: 8px; }
         .tab-btn:hover { background-color: #fb923c; color: white; }
@@ -269,50 +225,44 @@
         }
     }
 
-	function toggleMobileMenu() {
-		const sidebar = document.getElementById('sidebar');
-		const backdrop = document.getElementById('menuBackdrop');
-		
-		const isOpen = sidebar.classList.contains('active-mobile');
+    function toggleMobileMenu() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('active-mobile');
+    }
 
-		if (!isOpen) {
-			sidebar.classList.add('active-mobile');
-			if(backdrop) backdrop.classList.add('active');
-			document.body.style.overflow = 'hidden'; // Stop background scroll
-		} else {
-			sidebar.classList.remove('active-mobile');
-			if(backdrop) backdrop.classList.remove('active');
-			document.body.style.overflow = ''; // Restore scroll
-		}
-	}
-
-	// Update your handleMenuClick to ensure it closes properly
 	function handleMenuClick(tab) {
+		// 1. Immediate Navigation
 		if (typeof switchTab === "function") {
 			switchTab(tab);
 		}
-		// Close menu on selection
-		const sidebar = document.getElementById('sidebar');
-		const backdrop = document.getElementById('menuBackdrop');
 		
-		sidebar.classList.remove('active-mobile');
-		if(backdrop) backdrop.classList.remove('active');
-		document.body.style.overflow = '';
+		// 2. Force Sidebar Close immediately on mobile to prevent click-blocking
+		const sidebar = document.getElementById('sidebar');
+		if (window.innerWidth < 768) {
+			sidebar.classList.remove('active-mobile');
+			// Reset scroll position of the content area for a fresh view
+			const area = document.getElementById('contentArea');
+			if (area) area.scrollTop = 0;
+		}
 	}
 
-    window.addEventListener('load', () => {
-        if (window.innerWidth < 768) {
-            setTimeout(() => {
-                document.getElementById('sidebar').classList.add('active-mobile');
-            }, 3600);
-        }
+	window.addEventListener('load', () => {
+		// Completely remove the overlay from DOM so it can't block clicks
+		setTimeout(() => {
+			const overlay = document.getElementById('intro-overlay');
+			if (overlay) overlay.remove(); 
+		}, 3500);
 
-        setTimeout(() => {
-            const overlay = document.getElementById('intro-overlay');
-            if (overlay) overlay.style.display = 'none';
-        }, 3500);
-    });
+		// Auto-show menu only if it's the first visit and not switching tabs
+		if (window.innerWidth < 768 && !window.sessionStorage.getItem('menuShown')) {
+			setTimeout(() => {
+				document.getElementById('sidebar').classList.add('active-mobile');
+				window.sessionStorage.setItem('menuShown', 'true');
+			}, 3600);
+		}
+	});
+	
 </script>
-<div id="menuBackdrop" class="menu-backdrop" onclick="toggleMobileMenu()"></div>
+
 </body>
 </html>
