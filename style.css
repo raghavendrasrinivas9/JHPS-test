@@ -1,55 +1,17 @@
-/* --- INTRO ANIMATION --- */
-#intro-overlay {
-    position: fixed;
-    inset: 0;
-    background-color: #fffbeb;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    pointer-events: none;
-    animation: fadeOutOverlay 1s forwards 2.5s;
+/* ================================================================
+   1. CORE STYLES (SHARED ACROSS ALL DEVICES)
+   ================================================================ */
+body { 
+    display: flex; 
+    flex-direction: column; 
+    font-family: sans-serif; 
+    min-height: 100vh; 
+    background-color: #fffbeb; 
+    margin: 0; 
+    padding: 0; 
 }
 
-.intro-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-
-.intro-text {
-    font-weight: 900;
-    color: #7c2d12;
-    text-transform: uppercase;
-    font-size: 1.5rem;
-    position: absolute;
-    white-space: nowrap;
-}
-
-.intro-hari { animation: slideLeft 1.5s cubic-bezier(0.87, 0, 0.13, 1) forwards 1s; }
-.intro-vayu { animation: slideRight 1.5s cubic-bezier(0.87, 0, 0.13, 1) forwards 1s; }
-
-.intro-logo {
-    width: 150px;
-    z-index: 10;
-    transform: scale(0);
-    border-radius: 1rem;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    animation: zoomInLogo 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.2s;
-}
-
-@keyframes zoomInLogo { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-@keyframes slideLeft { 0% { transform: translateX(0); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateX(-150%); opacity: 0; } }
-@keyframes slideRight { 0% { transform: translateX(0); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateX(150%); opacity: 0; } }
-@keyframes fadeOutOverlay { to { opacity: 0; visibility: hidden; } }
-
-/* --- CORE STYLES --- */
-body { display: flex; flex-direction: column; font-family: sans-serif; min-height: 100vh; background-color: #fffbeb; margin: 0; padding: 0; }
-
-/* FIXED HEADER */
+/* Fixed Header Base */
 #mainHeader {
     position: fixed;
     top: 0;
@@ -57,95 +19,35 @@ body { display: flex; flex-direction: column; font-family: sans-serif; min-heigh
     right: 0;
     z-index: 1000;
     background-color: #fef3c7;
-    height: 84px;
 }
 
-@media (min-width: 768px) { 
-    #mainHeader { height: 180px; } 
-    body { height: 100vh; overflow: hidden; }
+#mainHeader .flex-1 {
+    flex: 1 1 0%;
+    min-width: 0;
 }
 
-.app-container {
-    margin-top: 84px; 
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    overflow: hidden;
-}
-@media (min-width: 768px) { 
-    .app-container { margin-top: 180px; flex-direction: row; height: calc(100vh - 180px); } 
+/* Motto Text Base */
+.motto-text { 
+    font-weight: 800; 
+    color: #7c2d12; 
+    text-transform: uppercase; 
+    letter-spacing: 0.02em; 
+    display: block;
+    white-space: normal;
 }
 
-/* MAIN TABS (Desktop Sidebar) */
+/* Navigation Buttons */
 .tab-btn { padding:10px; border-radius:12px; cursor:pointer; font-weight:600; background-color: #fde68a; transition: 0.2s; font-size: 0.85rem; border: 1px solid transparent; color: #92400e; white-space: nowrap; display: flex; align-items: center; gap: 8px; }
 .tab-btn:hover { background-color: #fb923c; color: white; }
 .active-tab { background-color: #ea580c !important; color: white !important; border-color: #9a3412; }
 
-/* SUB TABS */
 .sub-tab-btn { padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; font-weight: bold; background-color: #fef3c7; border: 1px solid #fcd34d; color: #92400e; transition: 0.2s; white-space: nowrap; display: inline-block; }
 .sub-tab-btn.active { background-color: #d97706; color: white; border-color: #9a3412; }
 
 .top-btn { padding:6px 16px; border-radius:9999px; font-weight:bold; margin-right:8px; background-color: #fde68a; font-size: 0.85rem; color: #92400e; transition: 0.3s; border: 1px solid #fcd34d; }
 .top-btn.active { background-color: #ea580c !important; color: white !important; border-color: #9a3412; }
 
-.custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
-.custom-scroll::-webkit-scrollbar-thumb { background: #fb923c; border-radius: 10px; }
-
-/* Refined Motto Text for all devices */
-.motto-text { 
-    font-weight: 800; 
-    color: #7c2d12; 
-    text-transform: uppercase; 
-    letter-spacing: 0.02em; 
-    /* Mobile: Prevents overlapping by restricting width and size */
-    font-size: 0.75rem; 
-    line-height: 1.1; 
-    max-width: 70px; 
-    display: block;
-    white-space: normal;
-}
-
-/* Desktop: Restores the larger professional look */
-@media (min-width: 768px) { 
-    .motto-text { 
-        font-size: 1.1rem; 
-        max-width: none; 
-        letter-spacing: 0.05em;
-    } 
-}
-
-/* Ensure the header containers share space equally */
-#mainHeader .flex-1 {
-    flex: 1 1 0%;
-    min-width: 0;
-}
-
-/* Ensure sub-tabs in the top nav look like buttons */
-#mobileWebNav .sub-tab-btn {
-    flex: 0 0 auto;
-    padding: 8px 16px;
-    background: #ea580c;
-    color: white;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: bold;
-}
-
-/* EXPANSION LOGIC */
-.dropdown-content, .learning-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease; background-color: #fffaf0; }
-.dropdown-content.open, .learning-content.open { max-height: 2000px; padding: 12px; border: 1px solid #fde68a; border-top: none; }
-
-/* Animation for the disc icon */
-.rotating {
-    animation: spin 3s linear infinite;
-}
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-/* Audio Bar Alignment */
+/* Audio Player */
 #audioPlayerBar {
     position: fixed;
     bottom: 0;
@@ -155,24 +57,50 @@ body { display: flex; flex-direction: column; font-family: sans-serif; min-heigh
     color: white;
     padding: 12px 20px;
     z-index: 10000;
-    display: none; /* JS will change this to 'flex' */
-    align-items: center;
-    justify-content: space-between;
-    border-top: 2px solid #ea580c;
+    display: none; 
+    align-items: center; 
+    justify-content: space-between; 
+    border-top: 2px solid #ea580c; 
 }
 
-/* Hide Buttons in App Build */
+/* App build environment */
 .is-native-app #mobileWebNav, 
 .is-native-app #mobileMenuBtn {
     display: none !important;
 }
 
-/* --- FIXED: Mobile Sidebar Overlay Logic --- */
+/* Utils & Animations */
+.custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+.custom-scroll::-webkit-scrollbar-thumb { background: #fb923c; border-radius: 10px; }
+.rotating { animation: spin 3s linear infinite; }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+
+/* ================================================================
+   2. MOBILE-ONLY RULES (MAX-WIDTH: 767px)
+   ================================================================ */
 @media (max-width: 767px) {
+    #mainHeader { height: 84px; }
+    
+    .app-container {
+        margin-top: 84px; 
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        overflow: hidden;
+        padding-bottom: 75px; /* Space for audio bar */
+    }
+
+    .motto-text { 
+        font-size: 0.75rem; 
+        line-height: 1.1; 
+        max-width: 70px; 
+    }
+
     #sidebar {
-        display: none; /* Hidden by default on mobile */
+        display: none; 
         position: fixed;
-        top: 84px; /* Align with mobile header height */
+        top: 84px; 
         left: 0;
         z-index: 999;
         width: 250px;
@@ -184,23 +112,48 @@ body { display: flex; flex-direction: column; font-family: sans-serif; min-heigh
         overflow-y: auto;
     }
 
-    /* This class is added by your JS to make the menu appear */
     #sidebar.mobile-open {
         display: flex !important;
     }
 
-    /* Ensure the main content doesn't get hidden behind the audio bar */
-    .app-container {
-        padding-bottom: 75px; 
+    #mobileWebNav .sub-tab-btn {
+        flex: 0 0 auto;
+        padding: 8px 16px;
+        background: #ea580c;
+        color: white;
+        border-radius: 20px;
+        font-size: 0.85rem;
     }
 }
 
-#audioPlayerBar { position: fixed; bottom: 0; left: 0; right: 0; background: #7c2d12; color: white; padding: 12px 20px; z-index: 10000; display: none; align-items: center; justify-content: space-between; border-top: 2px solid #ea580c; }
 
-.action-btn { display:inline-block; padding:10px 20px; border-radius:10px; color:white; font-weight:bold; text-decoration:none; font-size: 0.9rem; transition: 0.3s; text-align: center; }
-.whatsapp { background-color: #16a34a; }
-.form { background-color: #2563eb; }
-.instagram { background-color: #E1306C !important; }
-.youtube { background-color: #FF0000 !important; }
-@keyframes pulse-blue { 0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); } 70% { box-shadow: 0 0 0 8px rgba(37, 99, 235, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); } }
-.animate-glow { animation: pulse-blue 2s infinite; }
+/* ================================================================
+   3. DESKTOP-ONLY RULES (MIN-WIDTH: 768px)
+   ================================================================ */
+@media (min-width: 768px) { 
+    #mainHeader { height: 180px; } 
+
+    body { height: 100vh; overflow: hidden; }
+
+    .app-container { 
+        margin-top: 180px; 
+        flex-direction: row; 
+        height: calc(100vh - 180px); 
+    } 
+
+    .motto-text { 
+        font-size: 1.1rem; 
+        max-width: none; 
+        letter-spacing: 0.05em;
+    } 
+
+    #sidebar {
+        display: flex;
+        width: 15rem; /* md:w-60 */
+        background-color: #fef3c7;
+        padding: 1rem;
+        border-right: 1px solid #fde68a;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
