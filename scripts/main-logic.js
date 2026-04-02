@@ -14,20 +14,19 @@ window.activePartKey = null;
 */
 
 /**
- * handleMenuClick is the primary entry point for both the 
- * Web Sidebar and the Median Native Mobile Sidebar.
+ * Updated handleMenuClick to ensure the sidebar closes on mobile browsers
  */
 function handleMenuClick(tab) {
     // 1. Execute the existing tab switching logic
     switchTab(tab);
 
-    // 2. Web-specific: Close the mobile sidebar overlay if it's open
+    // 2. Force the sidebar to close by removing the 'mobile-open' class
     const sidebar = document.getElementById('sidebar');
     if (sidebar) {
         sidebar.classList.remove('mobile-open');
     }
 
-    // 3. Optional: Add a small vibration for haptic feedback in the app
+    // 3. Native App haptic feedback
     if (window.median && window.median.haptic) {
         window.median.haptic.vibrate();
     }
