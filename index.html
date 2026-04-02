@@ -87,6 +87,16 @@
         .form { background-color: #2563eb; }
         .animate-glow { animation: pulse-blue 2s infinite; }
         @keyframes pulse-blue { 0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); } 70% { box-shadow: 0 0 0 8px rgba(37, 99, 235, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); } }
+		
+		/* --- AUDIO ANIMATION --- */
+		.rotating {
+			animation: spin 3s linear infinite;
+		}
+
+		@keyframes spin {
+			from { transform: rotate(0deg); }
+			to { transform: rotate(360deg); }
+		}
 
         /* --- MOBILE MENU ALIGNMENT --- */
         @media (max-width: 767px) {
