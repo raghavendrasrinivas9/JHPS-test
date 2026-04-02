@@ -12,40 +12,26 @@ window.activePartKey = null;
    2. NAVIGATION ENGINE
 ================================================================
 */
-/* ================================================================
-   2. NAVIGATION ENGINE (UPDATED)
-================================================================
-*/
 function switchTab(tab) {
-    // 1. Update Global State
-    if (window.activeTab !== tab) {
+    const isNewTab = window.activeTab !== tab;
+    
+    if (isNewTab) {
         window.activeTab = tab;
         window.currentView = "info"; 
         window.activePartKey = null;
     }
     
-    // 2. Handle Sidebar UI Classes
-    // Remove active class from all buttons first
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active-tab'));
-    
-    // Add active class to the selected button
-    const targetTab = document.getElementById(tab + "Tab");
-    if (targetTab) targetTab.classList.add('active-tab');
-
-    // 3. Mobile Menu Cleanup
-    // If on mobile, ensure the menu and backdrop close after selection
-    const sidebar = document.getElementById('sidebar');
-    const backdrop = document.getElementById('menuBackdrop');
-    if (sidebar) sidebar.classList.remove('active-mobile');
-    if (backdrop) backdrop.classList.remove('active');
-    document.body.style.overflow = ''; // Restore background scrolling
-
-    // 4. Handle Top Navigation Visibility
     const btn1 = document.getElementById('lang1Btn');
     const btn2 = document.getElementById('lang2Btn');
     const btn3 = document.getElementById('lang3Btn');
     const topNav = document.getElementById('topNav');
 
+    // Update Sidebar Active Class
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active-tab'));
+    const targetTab = document.getElementById(tab + "Tab");
+    if (targetTab) targetTab.classList.add('active-tab');
+
+    // HIDE TOP NAV for specific views/tabs
     const noNavTabs = ["contact", "bhajana", "about", "events"];
     if (window.currentView === "sv-parts" || noNavTabs.includes(tab)) {
         if(topNav) topNav.style.display = "none";
@@ -68,7 +54,6 @@ function switchTab(tab) {
         }
     }
 
-    // 5. Execute Render
     render();
 }
 
