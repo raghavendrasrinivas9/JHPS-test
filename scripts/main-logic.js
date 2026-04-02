@@ -288,18 +288,17 @@ function openLightbox(index) {
 
 // Global Initialization - Unified to prevent conflicts
 window.onload = () => {
-    // 1. Initialize default tab
     switchTab(window.activeTab);
 
-    // 2. Detect if running inside the Median App
+    // Detect if running inside the Median App build
     const isApp = navigator.userAgent.includes('median') || navigator.userAgent.includes('gonative');
     const mobileWebNav = document.getElementById('mobileWebNav');
 
-    if (isApp) {
-        // Hide the web-only navigation bar when in the app build
-        if (mobileWebNav) mobileWebNav.style.display = 'none';
+    if (isApp && mobileWebNav) {
+        // HIDE the horizontal tabs ONLY in the final app build
+        mobileWebNav.style.display = 'none';
         
-        // 3. Initialize the Median Sidebar Bridge
+        // Initialize Native Sidebar for App
         if (window.median) {
             median.sidebar.setItems({
                 "items": [
@@ -316,8 +315,5 @@ window.onload = () => {
                 "persist": true
             });
         }
-    } else {
-        // Ensure web-only navigation is visible in browsers
-        if (mobileWebNav) mobileWebNav.style.display = 'flex';
     }
 };
