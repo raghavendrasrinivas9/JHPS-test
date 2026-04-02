@@ -25,20 +25,25 @@
 
 <header id="mainHeader" class="p-2 md:p-3 shadow-sm border-b border-yellow-200">
     <div class="max-w-6xl mx-auto flex justify-between items-center gap-2 h-full">
-    <div class="flex-1 flex items-center gap-2 overflow-hidden">
-        <img src="images/Ram.jpg" alt="Ram" class="h-10 w-10 md:h-20 md:w-20 rounded-full border-2 border-orange-400 object-cover shrink-0">
-        <span class="motto-text">Hari Sarvothama</span>
-    </div>
+        
+        <div class="flex-1 flex items-center gap-2 overflow-hidden">
+            <button id="mobileMenuBtn" class="md:hidden p-2 text-orange-900 outline-none" onclick="toggleMobileSidebar()">
+                <i class="fas fa-bars fa-lg"></i>
+            </button>
+            
+            <img src="images/Ram.jpg" alt="Ram" class="h-10 w-10 md:h-20 md:w-20 rounded-full border-2 border-orange-400 object-cover shrink-0">
+            <span class="motto-text">Hari Sarvothama</span>
+        </div>
 
-    <div class="shrink-0">
-        <img src="JHPS.jpg" alt="JHPS Logo" class="h-16 md:h-40 w-auto rounded-xl shadow-lg border-2 border-white bg-white">
-    </div>
+        <div class="shrink-0">
+            <img src="JHPS.jpg" alt="JHPS Logo" class="h-16 md:h-40 w-auto rounded-xl shadow-lg border-2 border-white bg-white">
+        </div>
 
-	<div class="flex-1 flex items-center justify-end gap-2 overflow-hidden">
-		<span class="motto-text text-right">Vayu Jeevothama</span>
-		<img src="images/Hanuman.jpg" alt="Hanuman" class="h-10 w-10 md:h-20 md:w-20 rounded-full border-2 border-orange-400 object-cover shrink-0">
-		</div>
-	</div>
+        <div class="flex-1 flex items-center justify-end gap-2 overflow-hidden">
+            <span class="motto-text text-right">Vayu Jeevothama</span>
+            <img src="images/Hanuman.jpg" alt="Hanuman" class="h-10 w-10 md:h-20 md:w-20 rounded-full border-2 border-orange-400 object-cover shrink-0">
+        </div>
+    </div>
 </header>
 
 <div id="mobileWebNav" class="md:hidden overflow-x-auto bg-yellow-100 border-b border-yellow-200 p-2 flex gap-2 custom-scroll">
@@ -47,9 +52,9 @@
     <div class="sub-tab-btn" onclick="handleMenuClick('bhajana')">🎵 Bhajana</div>
     <div class="sub-tab-btn" onclick="handleMenuClick('learnings')">🎓 Learnings</div>
 	<div class="sub-tab-btn" onclick="handleMenuClick('seva')">❤️ Seva</div>
-    <div class="sub-tab-btn" onclick="handleMenuClick('events')">📜 Events</div>
-    <div class="sub-tab-btn" onclick="handleMenuClick('about')">ℹ️ About</div>
-    <div class="sub-tab-btn" onclick="handleMenuClick('contact')">📞 Contact</div>
+	<div class="sub-tab-btn" onclick="handleMenuClick('events')">📅 Events</div>
+	<div class="sub-tab-btn" onclick="handleMenuClick('about')">ℹ️ About</div>
+	<div class="sub-tab-btn" onclick="handleMenuClick('contact')">📞 Contact</div>
 </div>
 
 <div class="app-container">
