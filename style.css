@@ -119,6 +119,17 @@ body { display: flex; flex-direction: column; font-family: sans-serif; min-heigh
     min-width: 0;
 }
 
+/* Ensure sub-tabs in the top nav look like buttons */
+#mobileWebNav .sub-tab-btn {
+    flex: 0 0 auto;
+    padding: 8px 16px;
+    background: #ea580c;
+    color: white;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
 /* EXPANSION LOGIC */
 .dropdown-content, .learning-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease; background-color: #fffaf0; }
 .dropdown-content.open, .learning-content.open { max-height: 2000px; padding: 12px; border: 1px solid #fde68a; border-top: none; }
