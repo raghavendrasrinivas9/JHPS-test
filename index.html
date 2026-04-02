@@ -1,34 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaya Hari Parayana Sangha</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        /* ... (existing styles) ... */
-
-        /* --- MEDIAN APP OVERRIDES --- */
-        
-        /* 1. Hide the MENU button in-app */
-        body.is-median-app .mobile-menu-btn {
-            display: none !important;
+        /* --- INTRO ANIMATION --- */
+        #intro-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: #fffbeb;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            pointer-events: none;
+            animation: fadeOutOverlay 1s forwards 2.5s;
         }
 
-        /* 2. Hide the central JHPS logo in-app to save vertical space */
+        .intro-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .intro-text {
+            font-weight: 900;
+            color: #7c2d12;
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            position: absolute;
+            white-space: nowrap;
+        }
+
+        .intro-hari { animation: slideLeft 1.5s cubic-bezier(0.87, 0, 0.13, 1) forwards 1s; }
+        .intro-vayu { animation: slideRight 1.5s cubic-bezier(0.87, 0, 0.13, 1) forwards 1s; }
+
+        .intro-logo {
+            width: 150px;
+            z-index: 10;
+            transform: scale(0);
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            animation: zoomInLogo 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.2s;
+        }
+
+        @keyframes zoomInLogo { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        @keyframes slideLeft { 0% { transform: translateX(0); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateX(-150%); opacity: 0; } }
+        @keyframes slideRight { 0% { transform: translateX(0); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateX(150%); opacity: 0; } }
+        @keyframes fadeOutOverlay { to { opacity: 0; visibility: hidden; } }
+
+        /* --- CORE STYLES --- */
+        body { display: flex; flex-direction: column; font-family: sans-serif; min-height: 100vh; background-color: #fffbeb; margin: 0; padding: 0; }
+        @media (min-width: 768px) { body { height: 100vh; overflow: hidden; } }
+        
+        .tab-btn { padding:10px; border-radius:12px; cursor:pointer; font-weight:600; background-color: #fde68a; transition: 0.2s; font-size: 0.85rem; border: 1px solid transparent; color: #92400e; white-space: nowrap; display: flex; align-items: center; gap: 8px; }
+        .tab-btn:hover { background-color: #fb923c; color: white; }
+        .active-tab { background-color: #ea580c !important; color: white !important; border-color: #9a3412; }
+        
+        .top-btn { padding:6px 16px; border-radius:9999px; font-weight:bold; margin-right:8px; background-color: #fde68a; font-size: 0.85rem; color: #92400e; transition: 0.3s; border: 1px solid #fcd34d; }
+        .top-btn.active { background-color: #ea580c !important; color: white !important; border-color: #9a3412; }
+
+        /* SUB-TAB STYLES */
+        .sub-tab-btn { padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; font-weight: bold; background-color: #fef3c7; border: 1px solid #fcd34d; color: #92400e; transition: 0.2s; white-space: nowrap; }
+        .sub-tab-btn.active { background-color: #d97706; color: white; border-color: #9a3412; }
+
+        .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #fb923c; border-radius: 10px; }
+
+        .motto-text { font-weight: 900; color: #7c2d12; text-transform: uppercase; letter-spacing: 0.02em; font-size: 0.65rem; line-height: 1.2; max-width: 60px; display: block; }
+        @media (min-width: 768px) { .motto-text { font-size: 1.35rem; max-width: none; letter-spacing: 0.05em; } }
+
+        /* Expansion/Toggle Styles */
+        .dropdown-content, .learning-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease; background-color: #fffaf0; }
+        .dropdown-content.open, .learning-content.open { max-height: 2000px; padding: 12px; border: 1px solid #fde68a; border-top: none; }
+
+        /* Action Buttons */
+        .action-btn { display:inline-block; padding:10px 20px; border-radius:10px; color:white; font-weight:bold; text-decoration:none; font-size: 0.9rem; transition: 0.3s; text-align: center; }
+        .whatsapp { background-color: #16a34a; }
+        .form { background-color: #2563eb; }
+        .animate-glow { animation: pulse-blue 2s infinite; }
+        @keyframes pulse-blue { 0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); } 70% { box-shadow: 0 0 0 8px rgba(37, 99, 235, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); } }
+		
+		/* --- AUDIO ANIMATION --- */
+		.rotating {
+			animation: spin 3s linear infinite;
+		}
+
+		@keyframes spin {
+			from { transform: rotate(0deg); }
+			to { transform: rotate(360deg); }
+		}
+
+        /* --- MOBILE MENU ALIGNMENT --- */
+        @media (max-width: 767px) {
+            #sidebar {
+                position: fixed;
+                top: 84px; 
+                left: 0;
+                z-index: 100;
+                width: 85%;
+                height: calc(100% - 84px);
+                background: linear-gradient(180deg, #fffbeb 0%, #ffedd5 100%);
+                display: flex;
+                flex-direction: column;
+                padding: 15px;
+                box-shadow: 4px 0 15px rgba(0,0,0,0.2);
+                transform: translateX(-100%);
+                transition: transform 0.3s ease-in-out;
+                visibility: hidden;
+            }
+            #sidebar.active-mobile { 
+                transform: translateX(0); 
+                visibility: visible;
+            }
+        }
+
+        .mobile-menu-btn {
+            background-color: #c2410c; 
+            color: #ffffff;            
+            border: 2px solid #7c2d12;  
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.65rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-top: 4px;
+        }
+
+        #audioPlayerBar { position: fixed; bottom: 0; left: 0; right: 0; background: #7c2d12; color: white; padding: 12px 20px; z-index: 10000; display: none; align-items: center; justify-content: space-between; border-top: 2px solid #ea580c; }
+		
+        /* --- MEDIAN APP OVERRIDES --- */
+		body.is-median-app .mobile-menu-btn {
+			display: none !important;
+		}
+
         body.is-median-app #centerLogoContainer {
             display: none !important;
         }
 
-        /* 3. Adjust header padding and alignment when logo is hidden */
         body.is-median-app #mainHeader {
             padding-top: 0.5rem;
             padding-bottom: 0.5rem;
         }
-
-        body.is-median-app .motto-text {
-            font-size: 0.8rem; /* Slightly larger text since logo is gone */
-        }
+		
     </style>
 </head>
 
 <body>
+
+<div id="intro-overlay">
+    <div class="intro-container">
+        <span class="intro-text intro-hari">Hari Sarvothama</span>
+        <img src="JHPS.jpg" alt="Logo" class="intro-logo">
+        <span class="intro-text intro-vayu">Vayu Jeevothama</span>
+    </div>
+</div>
 
 <header id="mainHeader" class="bg-yellow-100 p-2 md:p-3 shadow-sm shrink-0 border-b border-yellow-200 relative z-50">
     <div class="max-w-6xl mx-auto flex justify-between items-center gap-2">
@@ -53,24 +186,114 @@
     </div>
 </header>
 
+<div class="flex flex-col md:flex-row flex-1 overflow-hidden relative">
+    <aside id="sidebar" class="hidden md:flex w-full md:w-60 bg-yellow-100 p-3 md:p-4 border-b md:border-r border-yellow-200 flex-col shrink-0 overflow-x-auto md:overflow-y-auto custom-scroll gap-2">
+        <div class="md:hidden flex justify-between items-center mb-4">
+            <span class="text-md font-bold text-orange-900">Categories</span>
+            <button onclick="toggleMobileMenu()" class="text-xl text-orange-700"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        
+        <div id="parayanaTab" class="tab-btn active-tab" onclick="handleMenuClick('parayana')">📖 Parayana</div>
+        <div id="stotrasTab" class="tab-btn" onclick="handleMenuClick('stotras')">📜 Stotras</div>
+        <div id="bhajanaTab" class="tab-btn" onclick="handleMenuClick('bhajana')">🎵 Bhajana</div>
+        <div id="learningsTab" class="tab-btn" onclick="handleMenuClick('learnings')">🎓 Learnings</div>
+        <div id="sevaTab" class="tab-btn" onclick="handleMenuClick('seva')">❤️ Seva</div>
+		<div id="eventsTab" class="tab-btn" onclick="handleMenuClick('events')">📅 Events</div> 
+		<div id="aboutTab" class="tab-btn" onclick="handleMenuClick('about')">ℹ️ About</div>
+        <div id="contactTab" class="tab-btn" onclick="handleMenuClick('contact')">📞 Contact</div>
+    </aside>
+
+    <main class="flex-1 p-4 md:p-6 flex flex-col overflow-hidden relative">
+        <div id="topNav" class="mb-4 flex items-center shrink-0">
+            <button id="lang1Btn" class="top-btn active" onclick="handleTopBtn(1)">Details</button>
+            <button id="lang2Btn" class="top-btn" onclick="handleTopBtn(2)">Gallery</button>
+            <button id="lang3Btn" class="top-btn hidden" onclick="handleTopBtn(3)">Sanskrit</button>
+        </div>
+        <div id="contentArea" class="bg-white p-4 md:p-6 rounded-2xl shadow-md border border-yellow-100 flex-1 overflow-y-auto custom-scroll">
+        </div>
+    </main>
+</div>
+
+<div id="audioPlayerBar">
+    <div class="flex items-center gap-3">
+        <i id="discIcon" class="fa-solid fa-compact-disc text-2xl text-orange-400"></i>
+        <div class="overflow-hidden"><p id="audioName" class="text-xs font-bold truncate w-32 md:w-64">Select Audio</p></div>
+    </div>
+    <audio id="globalAudio"></audio>
+    <div class="flex items-center gap-5">
+        <button onclick="toggleAudio()" class="text-2xl outline-none"><i id="masterPlayIcon" class="fa-solid fa-pause"></i></button>
+        <button onclick="stopAudio()" class="text-lg text-orange-300 outline-none"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+</div>
+
+<script src="scripts/learnings.js"></script>
+<script src="scripts/learning-parts-sv.js"></script>
+<script src="scripts/stotras.js"></script>
+<script src="scripts/contacts.js"></script>
+<script src="scripts/parayana.js"></script>
+<script src="scripts/events.js"></script>
+<script src="scripts/bhajana.js"></script>
+<script src="scripts/seva.js"></script>
+<script src="scripts/gallery.js"></script> 
+<script src="scripts/main-logic.js"></script>
+
 <script>
-    // Robust App Detection
-    function detectEnvironment() {
-        const ua = navigator.userAgent || navigator.vendor || window.opera;
-        // Check for 'median' or 'gonative' strings added by the app wrapper
-        if (/median|gonative/i.test(ua)) {
+    // MEDIAN APP DETECTION
+    function detectAppEnvironment() {
+        const ua = navigator.userAgent.toLowerCase();
+        if (ua.includes('median') || ua.includes('gonative')) {
             document.body.classList.add('is-median-app');
         }
     }
+    detectAppEnvironment();
 
-    // Run detection immediately before the page fully loads to prevent "flicker"
-    detectEnvironment();
+    function toggleSection(id, iconId) {
+        const content = document.getElementById(id);
+        const icon = document.getElementById(iconId);
+        if (content && content.classList.contains('open')) {
+            content.classList.remove('open');
+            if(icon) icon.classList.remove('active');
+        } else if (content) {
+            content.classList.add('open');
+            if(icon) icon.classList.add('active');
+        }
+    }
 
-    // ... (rest of your existing scripts: toggleMobileMenu, handleMenuClick, etc.)
-    
-    window.addEventListener('load', () => {
-        // ... (existing overlay removal logic)
-    });
+    function toggleMobileMenu() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('active-mobile');
+    }
+
+	function handleMenuClick(tab) {
+		if (typeof switchTab === "function") {
+			switchTab(tab);
+		}
+		
+		const sidebar = document.getElementById('sidebar');
+		if (window.innerWidth < 768) {
+			sidebar.classList.remove('active-mobile');
+			const area = document.getElementById('contentArea');
+			if (area) area.scrollTop = 0;
+		}
+	}
+
+	window.addEventListener('load', () => {
+		setTimeout(() => {
+			const overlay = document.getElementById('intro-overlay');
+			if (overlay) overlay.remove(); 
+		}, 3500);
+
+		if (window.innerWidth < 768 && !window.sessionStorage.getItem('menuShown')) {
+			setTimeout(() => {
+				const sidebar = document.getElementById('sidebar');
+                // Only show if not in app
+                if (!document.body.classList.contains('is-median-app')) {
+				    sidebar.classList.add('active-mobile');
+				    window.sessionStorage.setItem('menuShown', 'true');
+                }
+			}, 3600);
+		}
+	});
 </script>
 
 </body>
