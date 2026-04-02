@@ -12,36 +12,6 @@ window.activePartKey = null;
    2. NAVIGATION ENGINE
 ================================================================
 */
-
-/**
- * Updated handleMenuClick to ensure the sidebar closes on mobile browsers
- */
-function handleMenuClick(tab) {
-    // 1. Execute the existing tab switching logic
-    switchTab(tab);
-
-    // 2. Force the sidebar to close by removing the 'mobile-open' class
-    const sidebar = document.getElementById('sidebar');
-    if (sidebar) {
-        sidebar.classList.remove('mobile-open');
-    }
-
-    // 3. Native App haptic feedback
-    if (window.median && window.median.haptic) {
-        window.median.haptic.vibrate();
-    }
-}
-
-/**
- * Toggles the mobile sidebar visibility for direct URL/Browser access.
- */
-function toggleMobileSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    if (sidebar) {
-        sidebar.classList.toggle('mobile-open');
-    }
-}
-
 function switchTab(tab) {
     // Reset view state when switching main tabs
     if (window.activeTab !== tab) {
@@ -95,13 +65,16 @@ function handleTopBtn(num) {
         window.currentView = (num === 1) ? "info" : "gallery";
     }
     switchTab(window.activeTab);
-    
+	// If a Gita chapter is already open, don't reset. Just refresh the content.
     if (window.activeStotra === 'gita' && window.expandedGitaId !== null) {
+        // Call toggleGita with the current ID to force a refresh with the new language
+        // We pass the same ID; our updated toggleGita (below) will handle the swap
         refreshGitaContent(window.expandedGitaId);
     } else {
-        if (typeof resetExpansions === "function") resetExpansions();
+        resetExpansions();
     }
 
+    // 3. Re-render the UI
     render();
 }
 
@@ -113,20 +86,23 @@ function render() {
     const area = document.getElementById('contentArea');
     if (!area) return;
 
-    area.innerHTML = ""; 
+    area.innerHTML = ""; // Clear current content
 
+    // Priority 1: Sub-Views (Learn in Parts)
     if (window.currentView === "sv-parts") {
         if (typeof renderSVParts === 'function') renderSVParts();
         else area.innerHTML = `<div class="p-10 text-center text-red-500 italic">Parts renderer not found.</div>`;
         return;
     }
 
+    // Priority 2: Gallery View
     if (window.currentView === "gallery") {
         if (typeof renderGalleryUI === 'function') renderGalleryUI();
         else area.innerHTML = `<div class="p-10 text-center text-gray-400 italic">Gallery coming soon...</div>`;
         return;
     }
 
+    // Priority 3: Main Tab Views
     switch (window.activeTab) {
         case "parayana":  renderParayanaUI(); break;
         case "stotras":   renderStotraUI();   break;
@@ -285,36 +261,7 @@ function openLightbox(index) {
     overlay.onclick = () => overlay.remove();
 }
 
-// Global Initialization - Unified to prevent conflicts
+// Global Initialization
 window.onload = () => {
     switchTab(window.activeTab);
-
-    // Detect environment
-    const isApp = navigator.userAgent.includes('median') || navigator.userAgent.includes('gonative');
-    const mobileWebNav = document.getElementById('mobileWebNav');
-
-    if (isApp) {
-        // Add class to body so CSS can hide Web-only buttons (Hamburger/Tabs)
-        document.body.classList.add('is-native-app');
-        
-        if (mobileWebNav) mobileWebNav.style.display = 'none';
-        
-        // Median Sidebar remains as you have it...
-        if (window.median) {
-            median.sidebar.setItems({
-                "items": [
-                    { label: "📖 Parayana", url: "javascript:handleMenuClick('parayana')", icon: "fas fa-book-open" },
-                    { label: "📜 Stotras", url: "javascript:handleMenuClick('stotras')", icon: "fas fa-scroll" },
-                    { label: "🎵 Bhajana", url: "javascript:handleMenuClick('bhajana')", icon: "fas fa-music" },
-                    { label: "🎓 Learnings", url: "javascript:handleMenuClick('learnings')", icon: "fas fa-graduation-cap" },
-                    { label: "❤️ Seva", url: "javascript:handleMenuClick('seva')", icon: "fas fa-heart" },
-                    { label: "📅 Events", url: "javascript:handleMenuClick('events')", icon: "fas fa-calendar-alt" },
-                    { label: "ℹ️ About", url: "javascript:handleMenuClick('about')", icon: "fas fa-info-circle" },
-                    { label: "📞 Contact", url: "javascript:handleMenuClick('contact')", icon: "fas fa-phone" }
-                ],
-                "enabled": true,
-                "persist": true
-            });
-        }
-    }
 };
