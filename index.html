@@ -25,23 +25,28 @@
 
 <header id="mainHeader" class="p-2 md:p-3 shadow-sm border-b border-yellow-200">
     <div class="max-w-6xl mx-auto flex justify-between items-center gap-2 h-full">
-        <div class="flex-1 flex flex-col items-start gap-1">
-            <div class="flex items-center gap-2">
-                <img src="images/Ram.jpg" alt="Ram" class="h-10 w-10 md:h-20 md:w-20 rounded-full border-2 border-orange-400 object-cover shrink-0">
-                <span class="motto-text">Hari Sarvothama</span>
-            </div>
-        </div>
-
-        <div class="shrink-0">
-            <img src="JHPS.jpg" alt="JHPS Logo" class="h-16 md:h-40 w-auto rounded-xl shadow-lg border-2 border-white bg-white">
-        </div>
-
-        <div class="flex-1 flex items-center justify-end gap-2 self-start md:self-center pt-1 md:pt-0">
-            <span class="motto-text text-right">Vayu Jeevothama</span>
-            <img src="images/Hanuman.jpg" alt="Hanuman" class="h-10 w-10 md:h-20 md:w-20 rounded-full border-2 border-orange-400 object-cover shrink-0">
-        </div>
+    <div class="flex-1 flex items-center gap-2 overflow-hidden">
+        <img src="images/Ram.jpg" alt="Ram" class="h-10 w-10 md:h-20 md:w-20 rounded-full border-2 border-orange-400 object-cover shrink-0">
+        <span class="motto-text">Hari Sarvothama</span>
     </div>
+
+    <div class="shrink-0">
+        <img src="JHPS.jpg" alt="JHPS Logo" class="h-16 md:h-40 w-auto rounded-xl shadow-lg border-2 border-white bg-white">
+    </div>
+
+	<div class="flex-1 flex items-center justify-end gap-2 overflow-hidden">
+		<span class="motto-text text-right">Vayu Jeevothama</span>
+		<img src="images/Hanuman.jpg" alt="Hanuman" class="h-10 w-10 md:h-20 md:w-20 rounded-full border-2 border-orange-400 object-cover shrink-0">
+		</div>
+	</div>
 </header>
+
+<div id="mobileWebNav" class="md:hidden overflow-x-auto bg-yellow-100 border-b border-yellow-200 p-2 flex gap-2 custom-scroll">
+    <div class="sub-tab-btn" onclick="handleMenuClick('parayana')">📖 Parayana</div>
+    <div class="sub-tab-btn" onclick="handleMenuClick('stotras')">📜 Stotras</div>
+    <div class="sub-tab-btn" onclick="handleMenuClick('bhajana')">🎵 Bhajana</div>
+    <div class="sub-tab-btn" onclick="handleMenuClick('learnings')">🎓 Learnings</div>
+</div>
 
 <div class="app-container">
     <aside id="sidebar" class="hidden md:flex w-full md:w-60 bg-yellow-100 p-3 md:p-4 border-b md:border-r border-yellow-200 flex-col shrink-0 overflow-x-auto md:overflow-y-auto custom-scroll gap-2">
@@ -66,7 +71,19 @@
     </main>
 </div>
 
-<div id="audioPlayerBar"></div>
+<div id="audioPlayerBar">
+    <div class="flex items-center gap-3">
+        <i id="discIcon" class="fa-solid fa-compact-disc text-2xl text-orange-400"></i>
+        <div class="overflow-hidden"><p id="audioName" class="text-xs font-bold truncate w-32 md:w-64">Select Audio</p></div>
+    </div>
+    <audio id="globalAudio"></audio>
+    <div class="flex items-center gap-5">
+        <button onclick="toggleAudio()" class="text-2xl outline-none"><i id="masterPlayIcon" class="fa-solid fa-pause"></i></button>
+        <button onclick="stopAudio()" class="text-lg text-orange-300 outline-none">
+		<i class="fa-solid fa-xmark"></i>
+		</button>
+    </div>
+</div>
 
 <script src="scripts/learnings.js"></script>
 <script src="scripts/learning-parts-sv.js"></script>

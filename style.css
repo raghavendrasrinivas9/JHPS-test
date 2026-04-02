@@ -91,15 +91,63 @@ body { display: flex; flex-direction: column; font-family: sans-serif; min-heigh
 .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
 .custom-scroll::-webkit-scrollbar-thumb { background: #fb923c; border-radius: 10px; }
 
-.motto-text { font-weight: 900; color: #7c2d12; text-transform: uppercase; letter-spacing: 0.02em; font-size: 0.65rem; line-height: 1.2; max-width: 60px; display: block; }
-@media (min-width: 768px) { .motto-text { font-size: 1.35rem; max-width: none; letter-spacing: 0.05em; } }
+/* Optimized Motto Text for Mobile */
+.motto-text { 
+    font-weight: 900; 
+    color: #7c2d12; 
+    text-transform: uppercase; 
+    letter-spacing: 0.02em; 
+    /* Increased mobile size */
+    font-size: 0.95rem; 
+    line-height: 1.1; 
+    max-width: none; 
+    display: block;
+    white-space: normal;
+}
+
+/* Keeps the desktop size large as before */
+@media (min-width: 768px) { 
+    .motto-text { 
+        font-size: 1.35rem; 
+        letter-spacing: 0.05em; 
+    } 
+}
+
+/* Ensure the header containers share space equally */
+#mainHeader .flex-1 {
+    flex: 1 1 0%;
+    min-width: 0;
+}
 
 /* EXPANSION LOGIC */
 .dropdown-content, .learning-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease; background-color: #fffaf0; }
 .dropdown-content.open, .learning-content.open { max-height: 2000px; padding: 12px; border: 1px solid #fde68a; border-top: none; }
 
+/* Animation for the disc icon */
+.rotating {
+    animation: spin 3s linear infinite;
+}
 
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
 
+/* Audio Bar Alignment */
+#audioPlayerBar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #7c2d12;
+    color: white;
+    padding: 12px 20px;
+    z-index: 10000;
+    display: none; /* JS will change this to 'flex' */
+    align-items: center;
+    justify-content: space-between;
+    border-top: 2px solid #ea580c;
+}
 
 
 /* HIDE WEB SIDEBAR ON MOBILE */
