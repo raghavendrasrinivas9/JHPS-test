@@ -290,15 +290,17 @@ function openLightbox(index) {
 window.onload = () => {
     switchTab(window.activeTab);
 
-    // Detect if running inside the Median App build
+    // Detect environment
     const isApp = navigator.userAgent.includes('median') || navigator.userAgent.includes('gonative');
     const mobileWebNav = document.getElementById('mobileWebNav');
 
-    if (isApp && mobileWebNav) {
-        // HIDE the horizontal tabs ONLY in the final app build
-        mobileWebNav.style.display = 'none';
+    if (isApp) {
+        // Add class to body so CSS can hide Web-only buttons (Hamburger/Tabs)
+        document.body.classList.add('is-native-app');
         
-        // Initialize Native Sidebar for App
+        if (mobileWebNav) mobileWebNav.style.display = 'none';
+        
+        // Median Sidebar remains as you have it...
         if (window.median) {
             median.sidebar.setItems({
                 "items": [
