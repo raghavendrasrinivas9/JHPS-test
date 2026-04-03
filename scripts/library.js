@@ -94,27 +94,37 @@ function renderLibraryUI() {
 
     const items = window.libraryData[window.activeLibrarySubTab] || [];
     
-    items.forEach(item => {
+    /* Inside renderLibraryUI loop */
+items.forEach(item => {
     const pdfLabel = item.isFullPDF ? "Full Book" : item.title;
 
     html += `
-        <div class="group border border-orange-100 rounded-2xl overflow-hidden shadow-sm bg-white transition-all duration-300 hover:border-orange-200 hover:shadow-md">
+        <div class="group relative bg-white border border-orange-100 hover:border-yellow-400 
+                    hover:bg-yellow-50/80 rounded-2xl overflow-hidden shadow-sm 
+                    hover:shadow-md transition-all duration-300 hover:-translate-y-0.5">
+            
             <button onclick="toggleDropdown('${item.id}', 'lib')" 
-                    class="w-full flex justify-between items-center p-4 bg-white group-hover:bg-orange-50/80 transition-colors text-left">
-                <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center border border-orange-100 group-hover:bg-white transition-colors">
-                         <i class="fa-solid fa-dharmachakra text-[10px] text-orange-400"></i>
+                    class="w-full flex justify-between items-center p-4 text-left transition-colors">
+                
+                <div class="flex items-center gap-4">
+                    <div class="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center border border-orange-100 
+                                group-hover:bg-yellow-100 group-hover:border-yellow-300 transition-colors">
+                         <i class="fa-solid fa-dharmachakra text-[10px] text-orange-400 group-hover:text-yellow-700"></i>
                     </div>
-                    <div>
-                        <span class="font-bold text-orange-900 block group-hover:text-orange-950">${item.title}</span>
-                        <span class="text-[10px] text-gray-500 italic block mt-1">${item.description}</span>
+                    
+                    <div class="flex flex-col">
+                        <span class="font-bold text-gray-800 group-hover:text-yellow-900 transition-colors">${item.title}</span>
+                        <span class="text-[10px] text-gray-500 italic block mt-0.5">${item.description}</span>
                     </div>
                 </div>
-                <i id="icon-lib-${item.id}" class="fa-solid fa-chevron-right text-orange-400 transition-transform duration-300"></i>
-			</button>
+
+                <div class="w-8 h-8 rounded-full flex items-center justify-center bg-orange-50 group-hover:bg-yellow-400 transition-all shadow-sm">
+                    <i id="icon-lib-${item.id}" class="fa-solid fa-chevron-right text-[10px] text-orange-400 group-hover:text-white transition-transform duration-300"></i>
+                </div>
+            </button>
             
-            <div id="content-lib-${item.id}" class="dropdown-content">
-                <div class="p-4 border-t border-orange-50 bg-white">
+            <div id="content-lib-${item.id}" class="dropdown-content bg-white">
+                <div class="p-4 border-t border-orange-50">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                         <button onclick="playStream('${item.audio}', '${item.title}')" class="flex items-center justify-center gap-2 p-3 bg-blue-50 rounded-xl text-blue-700 hover:bg-blue-100 transition-colors">
                             <i class="fa-solid fa-circle-play text-lg"></i>
@@ -132,9 +142,9 @@ function renderLibraryUI() {
                                 <span class="text-xs font-bold uppercase">Read PDF</span>
                             </div>
                             <div class="flex justify-center gap-2">
-                                <button onclick="openPDFViewer('${item.pdfSanskrit}', '${window.activeLibrarySubTab} ${pdfLabel} - San')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 ">Sanskrit</button>
-                                <button onclick="openPDFViewer('${item.pdfTelugu}', '${window.activeLibrarySubTab} ${pdfLabel} - Tel')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 ">Telugu</button>
-                                <button onclick="openPDFViewer('${item.pdfKannada}', '${window.activeLibrarySubTab} ${pdfLabel} - Kan')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 ">Kannada</button>
+                                <button onclick="openPDFViewer('${item.pdfSanskrit}', '${window.activeLibrarySubTab} ${pdfLabel} - San')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100">Sanskrit</button>
+                                <button onclick="openPDFViewer('${item.pdfTelugu}', '${window.activeLibrarySubTab} ${pdfLabel} - Tel')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100">Telugu</button>
+                                <button onclick="openPDFViewer('${item.pdfKannada}', '${window.activeLibrarySubTab} ${pdfLabel} - Kan')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100">Kannada</button>
                             </div>
                         </div>
                     </div>
