@@ -208,58 +208,46 @@ function openPDFViewer(pdfUrl, title) {
     const area = document.getElementById('contentArea');
     if (!area) return;
 
-    // 1. Check for "Coming Soon" status
-    // Triggers if URL is empty, a hash, or contains 'placeholder'
-    if (!pdfUrl || pdfUrl === "#" || pdfUrl.includes("placeholder")) {
-        area.innerHTML = `
-            <div class="flex flex-col items-center justify-center p-20 text-center animate-fade-in">
-                <i class="fa-solid fa-clock-rotate-left text-5xl text-orange-200 mb-4"></i>
-                <h2 class="text-2xl font-bold text-orange-800 uppercase tracking-widest">Coming Soon</h2>
-                <p class="text-gray-500 mt-2">The digital version of this chapter is being prepared.</p>
-                <button onclick="closePDFViewer()" class="mt-6 px-6 py-2 bg-orange-600 text-white rounded-full font-bold shadow-md">
-                    BACK TO LIST
-                </button>
-            </div>`;
-        return;
-    }
-
-    // 2. Prepare the Online URL
-    // Ensures the path is treated as an absolute web address
+    // Create a clean Absolute URL
     const absoluteUrl = new URL(pdfUrl, window.location.href).href;
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-    // Use Google Docs Viewer for mobile and apps to ensure it displays inside the UI
-    const finalUrl = isMobile 
-        ? `https://docs.google.com/viewer?url=${encodeURIComponent(absoluteUrl)}&embedded=true`
-        : absoluteUrl;
+    
+    // We use the Google Viewer Proxy only for remote web viewing. 
+    // If testing locally, we use a direct embed.
+    const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+    const googleProxy = `https://docs.google.com/viewer?url=${encodeURIComponent(absoluteUrl)}&embedded=true`;
+    
+    const finalSrc = (isLocal) ? absoluteUrl : googleProxy;
 
     area.innerHTML = `
-        <div class="flex flex-col h-full bg-white rounded-xl shadow-lg border border-orange-100 overflow-hidden">
-            <div class="flex items-center justify-between p-3 bg-orange-800 text-white z-10 shadow-md">
+        <div class="flex flex-col h-full bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="flex items-center justify-between p-3 bg-orange-800 text-white z-50 shadow-md">
                 <button onclick="closePDFViewer()" class="flex items-center gap-2 bg-orange-700 hover:bg-orange-600 px-3 py-1.5 rounded-lg transition-all text-sm font-bold">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>BACK</span>
                 </button>
-                <h3 class="font-bold text-[10px] md:text-xs uppercase tracking-widest truncate px-4 flex-1 text-center">${title}</h3>
-                <a href="${absoluteUrl}" target="_blank" download class="p-2 bg-orange-700 rounded-lg">
-                    <i class="fa-solid fa-download"></i>
-                </a>
-            </div>
-            
-            <div class="flex-grow bg-gray-100 relative w-full h-full">
-                <iframe 
-                    src="${finalUrl}" 
-                    class="absolute inset-0 w-full h-full border-none"
-                    style="width: 100%; height: 100%;"
-                    allow="autoplay">
-                </iframe>
-                
-                <div class="absolute inset-0 flex flex-col items-center justify-center -z-10 p-6 text-center">
-                    <p class="text-gray-500 mb-4 font-bold">PDF loading restricted by device security.</p>
-                    <a href="${absoluteUrl}" target="_blank" class="bg-orange-600 text-white px-8 py-3 rounded-full font-bold shadow-lg">
-                        OPEN PDF NATIVELY
+                <h3 class="font-bold text-[10px] md:text-xs uppercase tracking-widest truncate px-2">${title}</h3>
+                <div class="flex gap-2">
+                    <a href="${pdfUrl}" target="_blank" class="p-2 bg-orange-700 rounded-lg shadow-inner">
+                        <i class="fa-solid fa-expand"></i>
                     </a>
                 </div>
+            </div>
+            
+            <div class="flex-grow relative w-full h-full bg-gray-100">
+                <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
+                    <i class="fa-solid fa-file-pdf text-5xl text-orange-200 mb-4"></i>
+                    <p class="text-gray-500 text-sm mb-4">Device security may prevent in-app viewing.</p>
+                    <a href="${pdfUrl}" target="_blank" class="bg-orange-600 text-white px-8 py-3 rounded-full font-bold shadow-lg animate-bounce">
+                        CLICK TO READ PDF
+                    </a>
+                </div>
+
+                <iframe 
+                    src="${finalSrc}" 
+                    class="pdf-frame absolute inset-0 z-10"
+                    style="width: 100%; height: 100%;"
+                    onload="this.style.background='white'">
+                </iframe>
             </div>
         </div>
     `;
@@ -268,12 +256,8 @@ function openPDFViewer(pdfUrl, title) {
 }
 
 function closePDFViewer() {
-    render(); // Re-renders the library list
-}
-
-// Ensure this helper exists in main-logic.js
-function closePDFViewer() {
-    render(); // Re-renders the current tab (Library)
+    // Simply return to the current view (Library, Stotra, etc.)
+    render(); 
 }
 
 /* ================================================================
