@@ -126,18 +126,18 @@
 		#contentArea {
 			display: flex;
 			flex-direction: column;
-			/* This height ensures the main tabs stay visible at the bottom/top */
 			height: calc(100vh - 80px); 
-			overflow: hidden; /* Prevents PDF from expanding the page length */
+			overflow: hidden !important; /* Force no page scroll */
 			position: relative;
+			padding: 0 !important; /* PDF needs every pixel */
 		}
 
 		/* Specific fix for the PDF Frame to fit perfectly */
+		#contentArea object, 
 		#contentArea iframe {
-			width: 100% !important;
-			height: 100% !important;
-			flex-grow: 1;
-			border: none;
+			width: 100%;
+			height: 100%;
+			display: block;
 		}
 
 		/* Smooth transition when the PDF opens */
@@ -154,7 +154,6 @@
 		@media (max-width: 768px) {
 			#contentArea {
 				height: calc(100vh - 64px); 
-				padding-bottom: env(safe-area-inset-bottom); /* Fix for iPhone notches */
 			}
 		}
 
