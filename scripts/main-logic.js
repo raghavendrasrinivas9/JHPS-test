@@ -220,70 +220,45 @@ function toggleAudio() {
 }
 
 /* ================================================================
-   REVISED PDF Viewer Logic (GitHub & Mobile Optimized)
+   FINAL PDF Viewer Logic (GitHub & Mobile App Optimized)
 ================================================================ */
 function openPDFViewer(pdfUrl, title) {
-    const area = document.getElementById('contentArea');
-    if (!area) return;
-
-    // 1. UNIVERSAL "COMING SOON" CHECK
-    if (!pdfUrl || pdfUrl === "#" || pdfUrl.includes("placeholder")) {
-        area.innerHTML = `
-            <div class="flex flex-col items-center justify-center p-20 text-center animate-fade-in">
-                <div class="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mb-6">
-                    <i class="fa-solid fa-clock-rotate-left text-4xl text-blue-300"></i>
-                </div>
-                <h2 class="text-2xl font-bold text-blue-800 uppercase tracking-widest">Coming Soon</h2>
-                <p class="text-gray-500 mt-2 italic">The digital version for this language is being prepared.</p>
-                <button onclick="renderLibraryUI()" class="mt-8 px-8 py-3 bg-blue-600 text-white rounded-full font-bold shadow-lg hover:bg-blue-700 transition-all active:scale-95">
-                    BACK
-                </button>
-            </div>`;
+    // 1. Detection Logic
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        // MOBILE: Pop out of the app to native viewer
+        window.open(pdfUrl, '_blank');
         return;
     }
 
-    // 2. PREPARE URLS FOR GITHUB
-    const absoluteUrl = new URL(pdfUrl, window.location.href).href;
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    
-    // Use Google Viewer Proxy to bypass GitHub/Chrome "Blocked" errors on mobile
-    const finalUrl = isMobile 
-        ? `https://docs.google.com/viewer?url=${encodeURIComponent(absoluteUrl)}&embedded=true` 
-        : absoluteUrl;
+    // DESKTOP: Display inside the window
+    const area = document.getElementById('contentArea');
+    if (!area) return;
 
-    // 3. RENDER VIEWER
     area.innerHTML = `
-        <div class="flex flex-col h-full animate-fade-in bg-white rounded-xl shadow-lg border border-orange-100 overflow-hidden" style="height: 100%;">
-            <div class="flex items-center justify-between p-3 bg-orange-800 text-white z-50 shadow-md shrink-0">
-                <button onclick="renderLibraryUI()" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-all text-sm font-bold shadow-sm">
+        <div class="flex flex-col h-full animate-fade-in bg-white rounded-xl shadow-lg border border-orange-100 overflow-hidden">
+            <div class="flex items-center justify-between p-3 bg-orange-800 text-white z-10 shadow-md">
+                <button onclick="closePDFViewer()" class="flex items-center gap-2 bg-blue-700 hover:bg-blue-600 px-4 py-2 rounded-lg transition-all text-sm font-bold shadow-sm">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>BACK</span>
                 </button>
-                <h3 class="font-bold text-[10px] md:text-xs uppercase tracking-widest truncate px-4 flex-1 text-center">${title}</h3>
-                <a href="${absoluteUrl}" target="_blank" download class="p-2 bg-orange-700 rounded-lg hover:bg-orange-600 transition">
+                <h3 class="font-bold text-xs uppercase tracking-widest truncate px-4">${title}</h3>
+                <a href="${pdfUrl}" download class="p-2 bg-orange-700 rounded-lg hover:bg-orange-600 transition">
                     <i class="fa-solid fa-download"></i>
                 </a>
             </div>
             
-            <div class="flex-grow bg-gray-50 relative w-full h-full overflow-hidden">
+            <div class="flex-grow bg-gray-200 relative">
                 <iframe 
-                    src="${finalUrl}" 
-                    class="absolute inset-0 w-full h-full border-none z-10" 
-                    style="background: white; width: 100%; height: 100%;" 
-                    allow="autoplay; fullscreen" 
-                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups">
+                    src="${pdfUrl}#view=FitH" 
+                    class="absolute inset-0 w-full h-full border-none"
+                    style="width: 100%; height: 100%;">
                 </iframe>
-
-                <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-white z-0">
-                    <i class="fa-solid fa-file-shield text-5xl text-orange-200 mb-4"></i>
-                    <p class="text-gray-500 text-sm mb-4">Preview restricted. Click below to view.</p>
-                    <a href="${absoluteUrl}" target="_blank" class="bg-blue-600 text-white px-8 py-3 rounded-full font-bold shadow-lg">
-                        OPEN PDF NATIVELY
-                    </a>
-                </div>
             </div>
         </div>
     `;
+    
     area.scrollTop = 0;
 }
 
@@ -294,7 +269,10 @@ function closePDFViewer() {
     }
 }
 
-
+function closePDFViewer() {
+    // Simply return to the current view (Library, Stotra, etc.)
+    render(); 
+}
 
 /* ================================================================
    7. UI HELPERS
