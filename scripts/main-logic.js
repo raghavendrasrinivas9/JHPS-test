@@ -202,7 +202,46 @@ function toggleAudio() {
 }
 
 /* ================================================================
-   6. UI HELPERS
+   6. PDF Viewer logic
+================================================================
+*/
+
+function openPDFViewer(pdfUrl, title) {
+    // Create the overlay container
+    const overlay = document.createElement('div');
+    overlay.id = 'pdf-viewer-overlay';
+    overlay.className = 'fixed inset-0 bg-black bg-opacity-90 z-[10000] flex flex-col animate-fade-in';
+    
+    overlay.innerHTML = `
+        <div class="flex items-center justify-between p-4 bg-orange-900 text-white">
+            <h3 class="font-bold truncate mr-4">${title}</h3>
+            <button onclick="closePDFViewer()" class="text-2xl hover:text-orange-400 transition">&times;</button>
+        </div>
+        <div class="flex-grow w-full h-full overflow-hidden bg-gray-200">
+            <iframe src="${pdfUrl}#toolbar=0" class="w-full h-full border-none">
+                <p>Your browser does not support iframes. 
+                   <a href="${pdfUrl}">Click here to view the PDF.</a>
+                </p>
+            </iframe>
+        </div>
+    `;
+
+    document.body.appendChild(overlay);
+    // Prevent background scrolling
+    document.body.style.overflow = 'hidden';
+}
+
+function closePDFViewer() {
+    const overlay = document.getElementById('pdf-viewer-overlay');
+    if (overlay) {
+        overlay.remove();
+        document.body.style.overflow = '';
+    }
+}
+
+
+/* ================================================================
+   7. UI HELPERS
 ================================================================
 */
 function toggleDropdown(id, type) {

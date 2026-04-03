@@ -126,16 +126,16 @@ window.renderLibraryUI = function() {
                                 <span class="text-xs font-bold uppercase">Watch</span>
                             </a>
                             <div class="flex flex-col gap-2 p-3 bg-green-50 rounded-xl">
-                                <div class="flex items-center justify-center gap-2 text-green-700 mb-1">
-                                    <i class="fa-solid fa-file-pdf text-lg"></i>
-                                    <span class="text-xs font-bold uppercase">Read PDF</span>
-                                </div>
-                                <div class="flex justify-center gap-2">
-                                    <a href="${item.pdfSanskrit}" target="_blank" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100">SAN</a>
-                                    <a href="${item.pdfTelugu}" target="_blank" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100">TEL</a>
-                                    <a href="${item.pdfKannada}" target="_blank" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100">KAN</a>
-                                </div>
-                            </div>
+							<div class="flex items-center justify-center gap-2 text-green-700 mb-1">
+								<i class="fa-solid fa-file-pdf text-lg"></i>
+								<span class="text-xs font-bold uppercase">Read PDF</span>
+							</div>
+							<div class="flex justify-center gap-2">
+								<button onclick="openPDFViewer('${item.pdfSanskrit}', '${item.title} - Sanskrit')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 uppercase">San</button>
+								<button onclick="openPDFViewer('${item.pdfTelugu}', '${item.title} - Telugu')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 uppercase">Tel</button>
+								<button onclick="openPDFViewer('${item.pdfKannada}', '${item.title} - Kannada')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 uppercase">Kan</button>
+							</div>
+							</div>
                         </div>
                     </div>
                 </div>
