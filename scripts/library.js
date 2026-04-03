@@ -1,7 +1,6 @@
 /* ================================================================
    LIBRARY DATA
 ================================================================ */
-// Use 'var' with a check to prevent "Already Declared" fatal errors
 if (typeof window.GITA_DESCRIPTIONS === 'undefined') {
     window.GITA_DESCRIPTIONS = {
         1: "Arjuna Vishada Yoga - The distress of Arjuna.",
@@ -27,49 +26,50 @@ if (typeof window.GITA_DESCRIPTIONS === 'undefined') {
 
 window.libraryData = {
     "Bhagavad Gita": Array.from({ length: 18 }, (_, i) => {
-        const ch = i + 1;
+        const num = i + 1;
         return {
-            id: `bg${ch}`,
-            title: `Chapter - ${ch}`,
-            description: window.GITA_DESCRIPTIONS[ch],
-            audio: `media/bg_ch${ch}.mp3`,
-            video: `https://www.youtube.com/results?search_query=bhagavad+gita+chapter+${ch}`,
-            pdfSanskrit: `downloads/bg_ch${ch}_san.pdf`,
-            pdfTelugu: `downloads/bg_ch${ch}_tel.pdf`,
-            pdfKannada: `downloads/bg_ch${ch}_kan.pdf`
+            id: `bg${num}`,
+            title: `Chapter - ${num}`,
+            description: window.GITA_DESCRIPTIONS[num],
+            audio: `media/bg_ch${num}.mp3`,
+            video: `https://www.youtube.com/results?search_query=bhagavad+gita+chapter+${num}`,
+            pdfSanskrit: `downloads/bg_ch${num}_san.pdf`,
+            pdfTelugu: `downloads/bg_ch${num}_tel.pdf`,
+            pdfKannada: `downloads/bg_ch${num}_kan.pdf`,
+            isFullPDF: false
         };
     }),
-    "Mani Manjari": Array.from({ length: 4 }, (_, i) => ({
+    "Mani Manjari": Array.from({ length: 8 }, (_, i) => ({
         id: `mm${i + 1}`,
         title: `Sarga - ${i + 1}`,
         description: `Historical account of the lineage and background - Sarga ${i + 1}.`,
         audio: `media/mm_s${i + 1}.mp3`,
-        video: "#",
+        video: `https://www.youtube.com/results?search_query=Mani+Manjari+Sarga+${i+1}`,
         pdfSanskrit: `downloads/mm_s${i + 1}_san.pdf`,
         pdfTelugu: `downloads/mm_s${i + 1}_tel.pdf`,
-        pdfKannada: `downloads/mm_s${i + 1}_kan.pdf`
+        pdfKannada: `downloads/mm_s${i + 1}_kan.pdf`,
+        isFullPDF: false
     })),
-    "Sumadhwa Vijaya": Array.from({ length: 16 }, (_, i) => {
-    const sargaNum = i + 1;
-    return {
-        id: `smv${sargaNum}`,
-        title: `Sarga - ${sargaNum}`,
-        description: `Glories and life of Sri Madhvacharya - Sarga ${sargaNum}.`,
-        audio: `media/smv_s${sargaNum}.mp3`,
-        video: `https://www.youtube.com/results?search_query=Sumadhwa+Vijaya+Sarga+${sargaNum}`,
-        // All Sargas point to the same shared PDF files
+    "Sumadhwa Vijaya": Array.from({ length: 16 }, (_, i) => ({
+        id: `smv${i + 1}`,
+        title: `Sarga - ${i + 1}`,
+        description: `Glories and life of Sri Madhvacharya - Sarga ${i + 1}.`,
+        audio: `media/smv_s${i + 1}.mp3`,
+        video: `https://www.youtube.com/results?search_query=Sumadhwa+Vijaya+Sarga+${i+1}`,
+        // Single PDF for all Sargas
         pdfSanskrit: `downloads/Sumadhwa_Vijaya_Full_Sanskrit.pdf`,
         pdfTelugu: `downloads/Sumadhwa_Vijaya_Full_Telugu.pdf`,
-        pdfKannada: `downloads/Sumadhwa_Vijaya_Full_Kannada.pdf`
+        pdfKannada: `downloads/Sumadhwa_Vijaya_Full_Kannada.pdf`,
+        isFullPDF: true
     }))
 };
 
-window.activeLibrarySubTab = "Bhagavad Gita";
+window.activeLibrarySubTab = window.activeLibrarySubTab || "Bhagavad Gita";
 
 /* ================================================================
    LIBRARY RENDERER
 ================================================================ */
-window.renderLibraryUI = function() {
+function renderLibraryUI() {
     const area = document.getElementById('contentArea');
     if (!area) return;
 
@@ -95,53 +95,48 @@ window.renderLibraryUI = function() {
     const items = window.libraryData[window.activeLibrarySubTab] || [];
     
     items.forEach(item => {
-        // Fallback description if one isn't explicitly provided in the data object
-        const displayDesc = item.description || "Sacred Text Study";
+        // Label logic for PDF Viewer Title
+        const pdfLabel = item.isFullPDF ? "Full Book" : item.title;
 
         html += `
-            <div class="group overflow-hidden bg-white border border-orange-100 rounded-2xl shadow-sm transition-all duration-300">
+            <div class="border border-orange-100 rounded-2xl overflow-hidden shadow-sm bg-white">
                 <button onclick="toggleDropdown('${item.id}', 'lib')" 
-                        class="w-full flex justify-between items-center p-4 bg-orange-50/50 hover:bg-yellow-50/50 transition-colors text-left">
-                    
-                    <div class="flex items-center gap-4">
-                        <div class="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center border border-orange-100 group-hover:bg-yellow-100">
-                             <i class="fa-solid fa-dharmachakra text-[12px] text-orange-400 group-hover:text-yellow-700"></i>
+                        class="w-full flex justify-between items-center p-4 bg-orange-50/50 hover:bg-orange-100 transition-colors text-left group">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center border border-orange-100">
+                             <i class="fa-solid fa-bookmark text-[10px] text-orange-400"></i>
                         </div>
-                        
-                        <div class="flex flex-col">
-                            <span class="font-bold text-orange-900 group-hover:text-yellow-900">${item.title}</span>
-                            <span class="text-[10px] text-gray-500 italic leading-tight">${displayDesc}</span>
-                        </div>
+                        <span class="font-bold text-orange-900">${item.title}</span>
                     </div>
-
-                    <i id="icon-lib-${item.id}" class="fa-solid fa-chevron-right text-black text-sm transition-transform duration-300"></i>
+                    <i id="icon-lib-${item.id}" class="fa-solid fa-chevron-down text-orange-400 transition-transform"></i>
                 </button>
                 
                 <div id="content-lib-${item.id}" class="dropdown-content">
                     <div class="p-4 border-t border-orange-50">
+                        <p class="text-gray-600 italic mb-4 text-sm">${item.description}</p>
+                        
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <button onclick="playStream('${item.audio}', '${item.title}')" class="flex items-center justify-center gap-2 p-3 bg-blue-50 rounded-xl text-blue-700 hover:bg-blue-100 transition-colors">
                                 <i class="fa-solid fa-circle-play text-lg"></i>
                                 <span class="text-xs font-bold uppercase">Listen</span>
                             </button>
+
                             <a href="${item.video}" target="_blank" class="flex items-center justify-center gap-2 p-3 bg-red-50 rounded-xl text-red-700 hover:bg-red-100 transition-colors">
                                 <i class="fa-brands fa-youtube text-lg"></i>
                                 <span class="text-xs font-bold uppercase">Watch</span>
                             </a>
+
                             <div class="flex flex-col gap-2 p-3 bg-green-50 rounded-xl">
-							<div class="flex items-center justify-center gap-2 text-green-700 mb-1">
-								<i class="fa-solid fa-file-pdf text-lg"></i>
-								<span class="text-xs font-bold uppercase">Read PDF</span>
-							</div>
-							<div class="flex justify-center gap-2">
-								<button onclick="openPDFViewer('${item.pdfSanskrit}', 'Sumadhwa Vijaya - Full (Sanskrit)')" 
-										class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 uppercase">SAN</button>
-								<button onclick="openPDFViewer('${item.pdfTelugu}', 'Sumadhwa Vijaya - Full (Telugu)')" 
-										class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 uppercase">TEL</button>
-								<button onclick="openPDFViewer('${item.pdfKannada}', 'Sumadhwa Vijaya - Full (Kannada)')" 
-										class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 uppercase">KAN</button>
-							</div>
-						</div>
+                                <div class="flex items-center justify-center gap-2 text-green-700 mb-1">
+                                    <i class="fa-solid fa-file-pdf text-lg"></i>
+                                    <span class="text-xs font-bold uppercase">Read PDF</span>
+                                </div>
+                                <div class="flex justify-center gap-2">
+                                    <button onclick="openPDFViewer('${item.pdfSanskrit}', '${window.activeLibrarySubTab} ${pdfLabel} - San')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 uppercase">San</button>
+                                    <button onclick="openPDFViewer('${item.pdfTelugu}', '${window.activeLibrarySubTab} ${pdfLabel} - Tel')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 uppercase">Tel</button>
+                                    <button onclick="openPDFViewer('${item.pdfKannada}', '${window.activeLibrarySubTab} ${pdfLabel} - Kan')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 uppercase">Kan</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -151,9 +146,9 @@ window.renderLibraryUI = function() {
 
     html += `</div><div class="pb-20"></div>`;
     area.innerHTML = html;
-};
+}
 
-window.switchLibrarySubTab = function(tabName) {
+function switchLibrarySubTab(tabName) {
     window.activeLibrarySubTab = tabName;
     renderLibraryUI();
-};
+}
