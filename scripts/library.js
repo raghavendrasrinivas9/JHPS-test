@@ -95,54 +95,54 @@ function renderLibraryUI() {
     const items = window.libraryData[window.activeLibrarySubTab] || [];
     
     items.forEach(item => {
-        // Label logic for PDF Viewer Title
-        const pdfLabel = item.isFullPDF ? "Full Book" : item.title;
+    const pdfLabel = item.isFullPDF ? "Full Book" : item.title;
 
-        html += `
-            <div class="border border-orange-100 rounded-2xl overflow-hidden shadow-sm bg-white">
-                <button onclick="toggleDropdown('${item.id}', 'lib')" 
-                        class="w-full flex justify-between items-center p-4 bg-orange-50/50 hover:bg-orange-100 transition-colors text-left group">
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center border border-orange-100">
-                             <i class="fa-solid fa-bookmark text-[10px] text-orange-400"></i>
-                        </div>
-                        <span class="font-bold text-orange-900">${item.title}</span>
+    html += `
+        <div class="group border border-orange-100 rounded-2xl overflow-hidden shadow-sm bg-white transition-all duration-300 hover:border-orange-200 hover:shadow-md">
+            <button onclick="toggleDropdown('${item.id}', 'lib')" 
+                    class="w-full flex justify-between items-center p-4 bg-white group-hover:bg-orange-50/80 transition-colors text-left">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center border border-orange-100 group-hover:bg-white transition-colors">
+                         <i class="fa-solid fa-dharmachakra text-[10px] text-orange-400"></i>
                     </div>
-                    <i id="icon-lib-${item.id}" class="fa-solid fa-chevron-down text-orange-400 transition-transform"></i>
-                </button>
-                
-                <div id="content-lib-${item.id}" class="dropdown-content">
-                    <div class="p-4 border-t border-orange-50">
-                        <p class="text-gray-600 italic mb-4 text-sm">${item.description}</p>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                            <button onclick="playStream('${item.audio}', '${item.title}')" class="flex items-center justify-center gap-2 p-3 bg-blue-50 rounded-xl text-blue-700 hover:bg-blue-100 transition-colors">
-                                <i class="fa-solid fa-circle-play text-lg"></i>
-                                <span class="text-xs font-bold uppercase">Listen</span>
-                            </button>
+                    <div>
+                        <span class="font-bold text-orange-900 block group-hover:text-orange-950">${item.title}</span>
+                        <span class="text-[10px] text-gray-500 italic block mt-1">${item.description}</span>
+                    </div>
+                </div>
+                <i id="icon-lib-${item.id}" class="fa-solid fa-chevron-right text-orange-400 transition-transform duration-300"></i>
+			</button>
+            
+            <div id="content-lib-${item.id}" class="dropdown-content">
+                <div class="p-4 border-t border-orange-50 bg-white">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <button onclick="playStream('${item.audio}', '${item.title}')" class="flex items-center justify-center gap-2 p-3 bg-blue-50 rounded-xl text-blue-700 hover:bg-blue-100 transition-colors">
+                            <i class="fa-solid fa-circle-play text-lg"></i>
+                            <span class="text-xs font-bold uppercase">Listen</span>
+                        </button>
 
-                            <a href="${item.video}" target="_blank" class="flex items-center justify-center gap-2 p-3 bg-red-50 rounded-xl text-red-700 hover:bg-red-100 transition-colors">
-                                <i class="fa-brands fa-youtube text-lg"></i>
-                                <span class="text-xs font-bold uppercase">Watch</span>
-                            </a>
+                        <a href="${item.video}" target="_blank" class="flex items-center justify-center gap-2 p-3 bg-red-50 rounded-xl text-red-700 hover:bg-red-100 transition-colors">
+                            <i class="fa-brands fa-youtube text-lg"></i>
+                            <span class="text-xs font-bold uppercase">Watch</span>
+                        </a>
 
-                            <div class="flex flex-col gap-2 p-3 bg-green-50 rounded-xl">
-                                <div class="flex items-center justify-center gap-2 text-green-700 mb-1">
-                                    <i class="fa-solid fa-file-pdf text-lg"></i>
-                                    <span class="text-xs font-bold uppercase">Read PDF</span>
-                                </div>
-                                <div class="flex justify-center gap-2">
-                                    <button onclick="openPDFViewer('${item.pdfSanskrit}', '${window.activeLibrarySubTab} ${pdfLabel} - San')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 uppercase">San</button>
-                                    <button onclick="openPDFViewer('${item.pdfTelugu}', '${window.activeLibrarySubTab} ${pdfLabel} - Tel')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 uppercase">Tel</button>
-                                    <button onclick="openPDFViewer('${item.pdfKannada}', '${window.activeLibrarySubTab} ${pdfLabel} - Kan')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 uppercase">Kan</button>
-                                </div>
+                        <div class="flex flex-col gap-2 p-3 bg-green-50 rounded-xl">
+                            <div class="flex items-center justify-center gap-2 text-green-700 mb-1">
+                                <i class="fa-solid fa-file-pdf text-lg"></i>
+                                <span class="text-xs font-bold uppercase">Read PDF</span>
+                            </div>
+                            <div class="flex justify-center gap-2">
+                                <button onclick="openPDFViewer('${item.pdfSanskrit}', '${window.activeLibrarySubTab} ${pdfLabel} - San')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 ">Sanskrit</button>
+                                <button onclick="openPDFViewer('${item.pdfTelugu}', '${window.activeLibrarySubTab} ${pdfLabel} - Tel')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 ">Telugu</button>
+                                <button onclick="openPDFViewer('${item.pdfKannada}', '${window.activeLibrarySubTab} ${pdfLabel} - Kan')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 ">Kannada</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        `;
-    });
+        </div>
+    `;
+});
 
     html += `</div><div class="pb-20"></div>`;
     area.innerHTML = html;
@@ -151,4 +151,25 @@ function renderLibraryUI() {
 function switchLibrarySubTab(tabName) {
     window.activeLibrarySubTab = tabName;
     renderLibraryUI();
+}
+
+function toggleDropdown(id, type) {
+    const content = document.getElementById(`content-${type}-${id}`);
+    const icon = document.getElementById(`icon-${type}-${id}`);
+    
+    if (content) {
+        const isOpen = content.classList.contains('open');
+        
+        // Toggle the content visibility
+        content.classList.toggle('open');
+        
+        // Handle Icon Rotation
+        if (icon) {
+            if (!isOpen) {
+                icon.classList.add('rotate-90');
+            } else {
+                icon.classList.remove('rotate-90');
+            }
+        }
+    }
 }
