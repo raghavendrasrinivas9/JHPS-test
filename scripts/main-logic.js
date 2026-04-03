@@ -208,55 +208,52 @@ function openPDFViewer(pdfUrl, title) {
     const area = document.getElementById('contentArea');
     if (!area) return;
 
-    // Convert relative paths to absolute URLs for the Google Proxy
-    const absoluteUrl = new URL(pdfUrl, window.location.href).href;
-    
-    // Detect Environment
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const isLocal = window.location.protocol === "file:";
-
-    // Decide on the Viewer Source
-    // Google Viewer cannot see 'file://' or 'localhost' URLs.
-    let finalSrc = absoluteUrl;
-    if (isMobile && !isLocal) {
-        finalSrc = `https://docs.google.com/viewer?url=${encodeURIComponent(absoluteUrl)}&embedded=true`;
+    // 1. "Coming Soon" Check
+    if (!pdfUrl || pdfUrl === "#" || pdfUrl.includes("placeholder")) {
+        area.innerHTML = `
+            <div class="flex flex-col items-center justify-center p-20 text-center animate-fade-in">
+                <i class="fa-solid fa-clock-rotate-left text-5xl text-orange-200 mb-4"></i>
+                <h2 class="text-2xl font-bold text-orange-800 uppercase tracking-widest">Coming Soon</h2>
+                <p class="text-gray-500 mt-2">The digital version of this chapter is being prepared.</p>
+                <button onclick="closePDFViewer()" class="mt-6 px-6 py-2 bg-orange-600 text-white rounded-full font-bold shadow-md">BACK TO LIST</button>
+            </div>`;
+        return;
     }
 
+    // 2. Construct Absolute URL for GitHub
+    // This ensures the Google Proxy can find the file on your GitHub Pages site
+    const absoluteUrl = new URL(pdfUrl, window.location.href).href;
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    // Google Viewer is the only way to bypass "Blocked by Chrome" in many Mobile Apps/WebViews
+    const finalUrl = `https://docs.google.com/viewer?url=${encodeURIComponent(absoluteUrl)}&embedded=true`;
+
     area.innerHTML = `
-        <div class="flex flex-col h-full bg-white rounded-xl shadow-lg overflow-hidden border border-orange-100">
+        <div class="flex flex-col h-full bg-white rounded-xl shadow-lg border border-orange-100 overflow-hidden">
             <div class="flex items-center justify-between p-3 bg-orange-800 text-white z-50 shadow-md">
                 <button onclick="closePDFViewer()" class="flex items-center gap-2 bg-orange-700 hover:bg-orange-600 px-3 py-1.5 rounded-lg transition-all text-sm font-bold">
-                    <i class="fa-solid fa-arrow-left"></i>
-                    <span>BACK</span>
+                    <i class="fa-solid fa-arrow-left"></i> <span>BACK</span>
                 </button>
-                <h3 class="font-bold text-[10px] md:text-xs uppercase tracking-widest truncate px-2 flex-1 text-center">${title}</h3>
-                <a href="${absoluteUrl}" target="_blank" download class="p-2 bg-orange-700 rounded-lg hover:bg-orange-600">
-                    <i class="fa-solid fa-download"></i>
-                </a>
+                <h3 class="font-bold text-[10px] md:text-xs uppercase tracking-widest truncate px-4 flex-1 text-center">${title}</h3>
+                <a href="${absoluteUrl}" target="_blank" download class="p-2 bg-orange-700 rounded-lg"><i class="fa-solid fa-download"></i></a>
             </div>
             
             <div class="flex-grow relative w-full h-full bg-gray-50">
-                <div id="pdf-spinner" class="absolute inset-0 flex flex-col items-center justify-center bg-white z-0">
-                    <i class="fa-solid fa-circle-notch fa-spin text-4xl text-orange-400 mb-2"></i>
-                    <p class="text-gray-400 text-xs font-bold uppercase tracking-widest">Loading Document...</p>
+                <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-white">
+                    <i class="fa-solid fa-file-pdf text-5xl text-orange-200 mb-4"></i>
+                    <p class="text-gray-500 text-sm mb-4 font-bold">Security settings may block in-app viewing.</p>
+                    <a href="${absoluteUrl}" target="_blank" class="bg-orange-600 text-white px-8 py-3 rounded-full font-bold shadow-lg">
+                        OPEN PDF NATIVELY
+                    </a>
                 </div>
 
                 <iframe 
-                    src="${finalSrc}" 
+                    src="${finalUrl}" 
                     class="absolute inset-0 w-full h-full border-none z-10"
-                    style="background: transparent;"
+                    style="background: white;"
                     allow="autoplay; fullscreen"
-                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-                    onload="document.getElementById('pdf-spinner').style.display='none'">
+                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups">
                 </iframe>
-
-                <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center -z-10">
-                    <i class="fa-solid fa-file-shield text-5xl text-orange-200 mb-4"></i>
-                    <p class="text-gray-500 text-sm mb-4">If the PDF does not appear, your device security is blocking the viewer.</p>
-                    <a href="${absoluteUrl}" target="_blank" class="bg-orange-600 text-white px-8 py-3 rounded-full font-bold shadow-lg">
-                        OPEN NATIVE VIEWER
-                    </a>
-                </div>
             </div>
         </div>
     `;
