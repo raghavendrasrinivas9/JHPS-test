@@ -125,9 +125,13 @@ async function renderSVParts() {
         const isExpanded = (window.expandedStepId === step.id);
 
         html += `
-            <div class="group overflow-hidden bg-white border ${isExpanded ? 'border-yellow-400 shadow-md ring-1 ring-yellow-100' : (isThisTrackActive ? 'border-blue-200 shadow-md' : 'border-orange-100 shadow-sm')} rounded-xl transition-all duration-300">
+            <div class="group relative overflow-hidden bg-white border 
+                ${isExpanded ? 'border-yellow-400 shadow-md ring-1 ring-yellow-100' : 
+                  (isThisTrackActive ? 'border-blue-200 shadow-md' : 'border-orange-100 shadow-sm')} 
+                rounded-xl transition-all duration-300 hover:border-yellow-400 hover:bg-yellow-50/80 hover:shadow-md hover:-translate-y-0.5">
+                
                 <div onclick="toggleStepDetails(${step.id}, '${step.file}')" 
-                     class="p-4 cursor-pointer flex justify-between items-center transition-colors ${isExpanded ? 'bg-yellow-50/80' : 'hover:bg-yellow-50/50'}">
+                     class="p-4 cursor-pointer flex justify-between items-center transition-colors ${isExpanded ? 'bg-yellow-50/80' : ''}">
                     
                     <div class="flex items-center gap-3">
                         ${isThisTrackActive ? 
@@ -135,9 +139,13 @@ async function renderSVParts() {
                                 <div class="w-1 bg-blue-500 animate-music-bar-1"></div>
                                 <div class="w-1 bg-blue-500 animate-music-bar-2"></div>
                                 <div class="w-1 bg-blue-500 animate-music-bar-3"></div>
-                             </div>` : ''}
+                             </div>` : 
+                            `<div class="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center border border-orange-100 group-hover:bg-yellow-100 transition-colors">
+                                <i class="fa-solid fa-dharmachakra text-[10px] text-orange-400 group-hover:text-yellow-700"></i>
+                             </div>`
+                        }
                         <div>
-                            <h4 class="font-bold ${isExpanded ? 'text-yellow-900' : (isThisTrackActive ? 'text-blue-900' : 'text-orange-900')}">
+                            <h4 class="font-bold ${isExpanded ? 'text-yellow-900' : (isThisTrackActive ? 'text-blue-900' : 'text-orange-900')} group-hover:text-yellow-900 transition-colors">
                                 ${step.id}. ${step.name}
                             </h4>
                             <p class="text-xs text-gray-500 font-medium italic">${step.desc}</p>
@@ -148,27 +156,27 @@ async function renderSVParts() {
                         <div class="flex gap-3 text-xl" onclick="event.stopPropagation()">
                             ${step.audio && step.audio !== '#' ? 
                                 `<button onclick="playStream('${step.audio}', '${step.name}')" 
-                                         class="${isThisTrackActive ? 'text-blue-600 scale-110' : 'text-blue-500'} transition-transform active:scale-90">
+                                         class="${isThisTrackActive ? 'text-blue-600 scale-110' : 'text-blue-500'} transition-transform active:scale-90 hover:scale-110">
                                     <i class="fa-solid ${isThisTrackActive ? 'fa-circle-pause' : 'fa-circle-play'}"></i>
                                  </button>` : 
                                 `<i class="fa-solid fa-circle-play text-gray-200"></i>`}
                             
                             ${step.video && step.video !== '#' ? 
-                                `<a href="${step.video}" target="_blank" class="text-red-600 hover:scale-110 transition-transform">
+                                `<a href="${step.video}" target="_blank" class="text-red-600 hover:scale-120 transition-transform">
                                     <i class="fa-brands fa-youtube"></i>
                                  </a>` : 
                                 `<i class="fa-brands fa-youtube text-gray-200"></i>`}
                         </div>
 
-                        <div class="w-7 h-7 flex items-center justify-center">
-                            <i class="fa-solid fa-chevron-right text-black text-sm transition-transform duration-300 inline-block" 
+                        <div class="w-7 h-7 rounded-full flex items-center justify-center bg-orange-50 group-hover:bg-yellow-400 transition-all shadow-sm">
+                            <i class="fa-solid fa-chevron-right text-black text-xs transition-transform duration-300 group-hover:text-white" 
                                style="${isExpanded ? 'transform: rotate(90deg);' : ''}"></i>
                         </div>
                     </div>
                 </div>
 
                 ${isExpanded ? `
-                <div class="px-4 pb-4 animate-fade-in border-t border-yellow-100 pt-3">
+                <div class="px-4 pb-4 animate-fade-in border-t border-yellow-100 pt-3 bg-white">
                     <div class="bg-yellow-50/30 p-4 rounded-lg border border-yellow-100 text-sm italic leading-relaxed text-gray-800 whitespace-pre-wrap">
                         ${window.stepTextContent || '<div class="flex items-center gap-2 text-yellow-600"><i class="fa-solid fa-spinner fa-spin"></i> Loading content...</div>'}
                     </div>
