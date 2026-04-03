@@ -207,27 +207,39 @@ function toggleAudio() {
 */
 
 function openPDFViewer(pdfUrl, title) {
-    // Create the overlay container
+    // 1. Create the overlay
     const overlay = document.createElement('div');
     overlay.id = 'pdf-viewer-overlay';
-    overlay.className = 'fixed inset-0 bg-black bg-opacity-90 z-[10000] flex flex-col animate-fade-in';
+    
+    // z-[10000] ensures it stays above the Sidebar and Top Nav
+    overlay.className = 'fixed inset-0 bg-white z-[10000] flex flex-col animate-fade-in';
     
     overlay.innerHTML = `
-        <div class="flex items-center justify-between p-4 bg-orange-900 text-white">
-            <h3 class="font-bold truncate mr-4">${title}</h3>
-            <button onclick="closePDFViewer()" class="text-2xl hover:text-orange-400 transition">&times;</button>
+        <div class="flex items-center p-4 bg-orange-800 text-white shadow-md">
+            <button onclick="closePDFViewer()" class="flex items-center gap-2 hover:text-orange-300 transition">
+                <i class="fa-solid fa-arrow-left text-xl"></i>
+                <span class="font-bold">Back</span>
+            </button>
+            <div class="ml-6 flex-grow">
+                <h3 class="font-bold text-sm md:text-base truncate uppercase tracking-wide">${title}</h3>
+            </div>
+            <div class="flex gap-4">
+                <a href="${pdfUrl}" download class="hover:text-orange-300">
+                    <i class="fa-solid fa-download"></i>
+                </a>
+            </div>
         </div>
-        <div class="flex-grow w-full h-full overflow-hidden bg-gray-200">
-            <iframe src="${pdfUrl}#toolbar=0" class="w-full h-full border-none">
-                <p>Your browser does not support iframes. 
-                   <a href="${pdfUrl}">Click here to view the PDF.</a>
-                </p>
+        
+        <div class="flex-grow w-full bg-gray-100 overflow-hidden relative">
+            <iframe src="${pdfUrl}#view=FitH" class="w-full h-full border-none">
+                <p>Your browser does not support PDF viewing. <a href="${pdfUrl}">Download instead</a></p>
             </iframe>
         </div>
     `;
 
     document.body.appendChild(overlay);
-    // Prevent background scrolling
+    
+    // 2. Hide body scroll to prevent "double scrolling"
     document.body.style.overflow = 'hidden';
 }
 
@@ -235,6 +247,7 @@ function closePDFViewer() {
     const overlay = document.getElementById('pdf-viewer-overlay');
     if (overlay) {
         overlay.remove();
+        // Restore scrolling
         document.body.style.overflow = '';
     }
 }
