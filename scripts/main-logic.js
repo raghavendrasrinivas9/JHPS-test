@@ -202,7 +202,7 @@ function toggleAudio() {
 }
 
 /* ================================================================
-   REVISED PDF Viewer Logic (Online Optimized)
+   FINAL PDF Viewer Logic (GitHub & Mobile App Optimized)
 ================================================================ */
 function openPDFViewer(pdfUrl, title) {
     const area = document.getElementById('contentArea');
@@ -220,17 +220,17 @@ function openPDFViewer(pdfUrl, title) {
         return;
     }
 
-    // 2. Construct Absolute URL for GitHub
-    // This ensures the Google Proxy can find the file on your GitHub Pages site
+    // 2. Build absolute URL (Required for GitHub Pages)
     const absoluteUrl = new URL(pdfUrl, window.location.href).href;
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-    // Google Viewer is the only way to bypass "Blocked by Chrome" in many Mobile Apps/WebViews
-    const finalUrl = `https://docs.google.com/viewer?url=${encodeURIComponent(absoluteUrl)}&embedded=true`;
+    // 3. GitHub Mobile Bypass
+    // We use the 'embedded=true' flag and ensure we aren't using 'raw' GitHub URLs
+    const googleViewerUrl = `https://docs.google.com/viewer?url=${encodeURIComponent(absoluteUrl)}&embedded=true`;
 
     area.innerHTML = `
-        <div class="flex flex-col h-full bg-white rounded-xl shadow-lg border border-orange-100 overflow-hidden">
-            <div class="flex items-center justify-between p-3 bg-orange-800 text-white z-50 shadow-md">
+        <div class="flex flex-col h-full bg-white rounded-xl shadow-lg border border-orange-100 overflow-hidden" style="height: 100%;">
+            <div class="flex items-center justify-between p-3 bg-orange-800 text-white z-50 shrink-0">
                 <button onclick="closePDFViewer()" class="flex items-center gap-2 bg-orange-700 hover:bg-orange-600 px-3 py-1.5 rounded-lg transition-all text-sm font-bold">
                     <i class="fa-solid fa-arrow-left"></i> <span>BACK</span>
                 </button>
@@ -238,19 +238,20 @@ function openPDFViewer(pdfUrl, title) {
                 <a href="${absoluteUrl}" target="_blank" download class="p-2 bg-orange-700 rounded-lg"><i class="fa-solid fa-download"></i></a>
             </div>
             
-            <div class="flex-grow relative w-full h-full bg-gray-50">
-                <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-white">
+            <div class="flex-grow relative w-full h-full bg-gray-50 overflow-hidden">
+                <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-white z-0">
                     <i class="fa-solid fa-file-pdf text-5xl text-orange-200 mb-4"></i>
-                    <p class="text-gray-500 text-sm mb-4 font-bold">Security settings may block in-app viewing.</p>
+                    <p class="text-gray-600 text-sm mb-4 font-bold">Mobile Security might block the preview.</p>
                     <a href="${absoluteUrl}" target="_blank" class="bg-orange-600 text-white px-8 py-3 rounded-full font-bold shadow-lg">
-                        OPEN PDF NATIVELY
+                        VIEW FULL SCREEN
                     </a>
                 </div>
 
                 <iframe 
-                    src="${finalUrl}" 
+                    id="pdfIframe"
+                    src="${googleViewerUrl}" 
                     class="absolute inset-0 w-full h-full border-none z-10"
-                    style="background: white;"
+                    style="background: white; min-height: 100%;"
                     allow="autoplay; fullscreen"
                     sandbox="allow-scripts allow-same-origin allow-forms allow-popups">
                 </iframe>
