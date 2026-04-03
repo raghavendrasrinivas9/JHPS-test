@@ -210,41 +210,42 @@ function openPDFViewer(pdfUrl, title) {
     const area = document.getElementById('contentArea');
     if (!area) return;
 
-    // Save the current view so the back button knows where to go
-    window.previousView = window.currentView;
+    // Convert relative paths (downloads/file.pdf) to absolute URLs
+    // Mobile viewers need the full URL to fetch the file
+    const absoluteUrl = new URL(pdfUrl, window.location.href).href;
+    
+    // Google PDF Viewer proxy for mobile compatibility
+    const googleViewerUrl = `https://docs.google.com/viewer?url=${encodeURIComponent(absoluteUrl)}&embedded=true`;
 
     area.innerHTML = `
-        <div class="flex flex-col h-full animate-fade-in bg-gray-100 rounded-xl overflow-hidden shadow-xl border border-orange-100">
-            <div class="flex items-center justify-between p-4 bg-orange-800 text-white">
-                <button onclick="closePDFViewer()" class="flex items-center gap-2 bg-blue-700 hover:bg-blue-600 px-4 py-2 rounded-lg transition-all font-bold shadow-sm">
+        <div class="flex flex-col h-full animate-fade-in bg-white rounded-xl shadow-lg border border-orange-100 overflow-hidden">
+            <div class="flex items-center justify-between p-3 bg-orange-800 text-white">
+                <button onclick="closePDFViewer()" class="flex items-center gap-2 bg-orange-700 hover:bg-orange-600 px-3 py-1.5 rounded-lg transition-all text-sm font-bold">
                     <i class="fa-solid fa-arrow-left"></i>
-                    <span>BACK TO LIST</span>
+                    <span>BACK</span>
                 </button>
-                <h3 class="font-bold text-xs md:text-sm uppercase tracking-wider truncate px-4">${title}</h3>
-                <div class="hidden md:block w-24"></div> </div>
+                <h3 class="font-bold text-[10px] md:text-xs uppercase tracking-widest truncate px-2">${title}</h3>
+                <a href="${pdfUrl}" download class="p-2 bg-orange-700 rounded-lg">
+                    <i class="fa-solid fa-download"></i>
+                </a>
+            </div>
             
-            <div class="flex-grow relative bg-gray-200">
+            <div class="flex-grow bg-gray-200 relative">
                 <iframe 
-                    src="${pdfUrl}#view=FitH&toolbar=0" 
+                    src="${googleViewerUrl}" 
                     class="absolute inset-0 w-full h-full border-none"
-                    style="width: 100%; height: 100%;"
-                    title="PDF Document"
-                >
-                    <p>Browser not supporting PDF viewing. <a href="${pdfUrl}" class="text-blue-600 underline">Download here</a></p>
+                    style="width: 100%; height: 100%;">
                 </iframe>
+                
+                <div class="absolute inset-0 flex flex-col items-center justify-center -z-10 text-gray-400">
+                    <i class="fa-solid fa-circle-notch fa-spin text-3xl mb-2"></i>
+                    <p class="text-xs">Loading PDF...</p>
+                </div>
             </div>
         </div>
     `;
-
-    // Ensure the page doesn't scroll away from the viewer
+    
     area.scrollTop = 0;
-}
-
-function closePDFViewer() {
-    // Re-trigger the main render to go back to the list
-    if (typeof render === 'function') {
-        render(); 
-    }
 }
 
 /* ================================================================
