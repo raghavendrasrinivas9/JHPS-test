@@ -238,7 +238,6 @@ function openPDFViewer(pdfUrl, title) {
                 </div>
                 <h2 class="text-2xl font-bold text-blue-800 uppercase tracking-widest">Coming Soon</h2>
                 <p class="text-gray-500 mt-2 italic">The digital version for this language is being prepared.</p>
-                
                 <button onclick="renderLibraryUI()" class="mt-8 px-8 py-3 bg-blue-600 text-white rounded-full font-bold shadow-lg hover:bg-blue-700 transition-all active:scale-95">
                     BACK
                 </button>
@@ -246,19 +245,18 @@ function openPDFViewer(pdfUrl, title) {
         return;
     }
 
-    // 2. PREPARE URLS FOR GITHUB
+    // 2. PREPARE URLS
+    // We convert the path to an absolute URL so the Google Proxy can find it on GitHub
     const absoluteUrl = new URL(pdfUrl, window.location.href).href;
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
-    // Use Google Viewer Proxy to bypass GitHub/Chrome "Blocked" errors on mobile
-    const finalUrl = isMobile 
-        ? `https://docs.google.com/viewer?url=${encodeURIComponent(absoluteUrl)}&embedded=true` 
-        : absoluteUrl;
+    // Bypass GitHub/Chrome "Blocked" errors by using the Google Proxy
+    const finalUrl = `https://docs.google.com/viewer?url=${encodeURIComponent(absoluteUrl)}&embedded=true`;
 
     // 3. RENDER VIEWER
     area.innerHTML = `
-        <div class="flex flex-col h-full animate-fade-in bg-white rounded-xl shadow-lg border border-orange-100 overflow-hidden">
-            <div class="flex items-center justify-between p-3 bg-orange-800 text-white z-50 shadow-md">
+        <div class="flex flex-col h-full animate-fade-in bg-white rounded-xl shadow-lg border border-orange-100 overflow-hidden" style="height: 100%;">
+            <div class="flex items-center justify-between p-3 bg-orange-800 text-white z-50 shadow-md shrink-0">
                 <button onclick="renderLibraryUI()" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-all text-sm font-bold shadow-sm">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>BACK</span>
@@ -269,20 +267,20 @@ function openPDFViewer(pdfUrl, title) {
                 </a>
             </div>
             
-            <div class="flex-grow bg-gray-50 relative w-full h-full">
+            <div class="flex-grow bg-gray-50 relative w-full h-full overflow-hidden">
                 <iframe 
                     src="${finalUrl}" 
                     class="absolute inset-0 w-full h-full border-none z-10" 
-                    style="background: white;" 
+                    style="background: white; width: 100%; height: 100%;" 
                     allow="autoplay; fullscreen" 
                     sandbox="allow-scripts allow-same-origin allow-forms allow-popups">
                 </iframe>
 
-                <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-white">
+                <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-white z-0">
                     <i class="fa-solid fa-file-shield text-5xl text-orange-200 mb-4"></i>
-                    <p class="text-gray-500 text-sm mb-4">Preview restricted. Click below to view.</p>
+                    <p class="text-gray-500 text-sm mb-4">Preview restricted by device security.</p>
                     <a href="${absoluteUrl}" target="_blank" class="bg-blue-600 text-white px-8 py-3 rounded-full font-bold shadow-lg">
-                        OPEN PDF
+                        OPEN PDF NATIVELY
                     </a>
                 </div>
             </div>
