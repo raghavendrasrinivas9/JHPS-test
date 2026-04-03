@@ -100,23 +100,26 @@
 		
 		/* --- PDF Viewer  --- */
 		#pdf-viewer-overlay {
-			backdrop-filter: blur(5px);
+		position: fixed !important;
+		top: 0 !important;
+		left: 0 !important;
+		width: 100vw !important;
+		height: 100vh !important;
 		}
 
+		/* Fix for mobile Safari height issues */
 		#pdf-viewer-overlay iframe {
-			/* Ensures the PDF fills the mobile screen properly */
-			display: block;
+			height: calc(100% - 60px); /* Adjusts for the 60px header we created */
 			width: 100%;
-			height: 100%;
 		}
 
 		.animate-fade-in {
-			animation: fadeIn 0.3s ease-in-out;
+			animation: pdfFade 0.3s ease-out;
 		}
 
-		@keyframes fadeIn {
-			from { opacity: 0; }
-			to { opacity: 1; }
+		@keyframes pdfFade {
+			from { opacity: 0; transform: translateY(10px); }
+			to { opacity: 1; transform: translateY(0); }
 		}
 
 
