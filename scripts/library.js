@@ -6,7 +6,7 @@ window.libraryData = {
         title: "Bhagavad Gita",
         steps: [
             { id: 1, name: "Chapter-1", desc: "Arjuna Vishada Yoga - The distress of Arjuna.", audio: "#", 
-                video: "https://www.youtube.com/results?search_query=bhagavad+gita+chapter+1", pdfSanskrit: "downloads/bg-ch1-sanskrit.pdf",   pdfTelugu: "downloads/bg-ch1-telugu.pdf", pdfKannada: "downloads/bg-ch1-kannada.pdf" },
+                video: "https://www.youtube.com/results?search_query=bhagavad+gita+chapter+1", pdfSanskrit: "downloads/bg_ch1_sanskrit.pdf",   pdfTelugu: "downloads/bg_ch1_telugu.pdf", pdfKannada: "downloads/bg_ch1_kannada.pdf" },
 			{ id: 2, name: "Chapter-2", desc: "Sankhya Yoga - The Yoga of Knowledge.", audio: "#", 
                 video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 3, name: "Chapter-3", desc: "Karma Yoga - The Yoga of Action.", audio: "#", 
@@ -37,7 +37,7 @@ window.libraryData = {
     "Mani Manjari": {
         title: "Mani Manjari",
         steps: [
-            { id: 1, name: "Sarga-1", desc: "Historical account of the lineage and background.", audio: "#", video: "#", pdfSanskrit: "downloads/mm-s1-sanskrit.pdf", pdfTelugu: "#", pdfKannada: "downloads/mm-s1-kannada.pdf" },
+            { id: 1, name: "Sarga-1", desc: "Historical account of the lineage and background.", audio: "#", video: "#", pdfSanskrit: "downloads/mm_s1_sanskrit.pdf", pdfTelugu: "#", pdfKannada: "downloads/mm_s1_kannada.pdf" },
 			{ id: 2, name: "Sarga-2", desc: "Historical account of the lineage and background.", audio: "#", video: "#", pdfSanskrit: "#", pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 3, name: "Sarga-3", desc: "Historical account of the lineage and background.", audio: "#", video: "#", pdfSanskrit: "#", pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 4, name: "Sarga-4", desc: "Historical account of the lineage and background.", audio: "#", video: "#", pdfSanskrit: "#", pdfTelugu: "#", pdfKannada: "#" }
