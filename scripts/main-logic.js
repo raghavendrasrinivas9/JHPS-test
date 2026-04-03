@@ -210,36 +210,46 @@ function openPDFViewer(pdfUrl, title) {
     const area = document.getElementById('contentArea');
     if (!area) return;
 
-    // Convert relative paths (downloads/file.pdf) to absolute URLs
-    // Mobile viewers need the full URL to fetch the file
+    // 1. Determine if we are on mobile
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    // 2. Prepare URLs
+    // We only use the Google Viewer if we are on mobile AND NOT on localhost
+    const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
     const absoluteUrl = new URL(pdfUrl, window.location.href).href;
     
-    // Google PDF Viewer proxy for mobile compatibility
-    const googleViewerUrl = `https://docs.google.com/viewer?url=${encodeURIComponent(absoluteUrl)}&embedded=true`;
+    let finalSrc = absoluteUrl; // Default to direct loading
+    
+    if (isMobile && !isLocal) {
+        finalSrc = `https://docs.google.com/viewer?url=${encodeURIComponent(absoluteUrl)}&embedded=true`;
+    } else {
+        // Desktop or Local: Use native viewer with Fit-to-Width parameter
+        finalSrc = `${pdfUrl}#view=FitH`;
+    }
 
     area.innerHTML = `
         <div class="flex flex-col h-full animate-fade-in bg-white rounded-xl shadow-lg border border-orange-100 overflow-hidden">
             <div class="flex items-center justify-between p-3 bg-orange-800 text-white">
-                <button onclick="closePDFViewer()" class="flex items-center gap-2 bg-orange-700 hover:bg-orange-600 px-3 py-1.5 rounded-lg transition-all text-sm font-bold">
+                <button onclick="closePDFViewer()" class="flex items-center gap-2 bg-orange-700 hover:bg-orange-600 px-3 py-1.5 rounded-lg transition-all text-sm font-bold shadow-sm">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>BACK</span>
                 </button>
                 <h3 class="font-bold text-[10px] md:text-xs uppercase tracking-widest truncate px-2">${title}</h3>
-                <a href="${pdfUrl}" download class="p-2 bg-orange-700 rounded-lg">
+                <a href="${pdfUrl}" download class="p-2 bg-orange-700 rounded-lg hover:bg-orange-600 transition">
                     <i class="fa-solid fa-download"></i>
                 </a>
             </div>
             
             <div class="flex-grow bg-gray-200 relative">
                 <iframe 
-                    src="${googleViewerUrl}" 
+                    src="${finalSrc}" 
                     class="absolute inset-0 w-full h-full border-none"
-                    style="width: 100%; height: 100%;">
+                    style="width: 100%; height: 100%; background: white;">
                 </iframe>
                 
                 <div class="absolute inset-0 flex flex-col items-center justify-center -z-10 text-gray-400">
                     <i class="fa-solid fa-circle-notch fa-spin text-3xl mb-2"></i>
-                    <p class="text-xs">Loading PDF...</p>
+                    <p class="text-xs font-bold uppercase tracking-widest">Loading Document...</p>
                 </div>
             </div>
         </div>
