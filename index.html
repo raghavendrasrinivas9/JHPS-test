@@ -220,10 +220,15 @@
             padding-bottom: 0.5rem;
         }
 		
-		.rotate-180 {
-		transform: rotate(180deg);
+		/* Rotate expansion arrow */
+		.rotate-90 {
+			transform: rotate(90deg);
 		}
-		
+
+		/* Ensure transition is applied for a smooth spin */
+		.transition-transform {
+			transition: transform 0.3s ease;
+		}
     </style>
 </head>
 
