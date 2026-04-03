@@ -220,9 +220,6 @@ function toggleAudio() {
 }
 
 /* ================================================================
-   FINAL PDF Viewer Logic (GitHub & Mobile App Optimized)
-================================================================ */
-/* ================================================================
    REVISED PDF Viewer Logic (GitHub & Mobile Optimized)
 ================================================================ */
 function openPDFViewer(pdfUrl, title) {
@@ -245,13 +242,14 @@ function openPDFViewer(pdfUrl, title) {
         return;
     }
 
-    // 2. PREPARE URLS
-    // We convert the path to an absolute URL so the Google Proxy can find it on GitHub
+    // 2. PREPARE URLS FOR GITHUB
     const absoluteUrl = new URL(pdfUrl, window.location.href).href;
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
-    // Bypass GitHub/Chrome "Blocked" errors by using the Google Proxy
-    const finalUrl = `https://docs.google.com/viewer?url=${encodeURIComponent(absoluteUrl)}&embedded=true`;
+    // Use Google Viewer Proxy to bypass GitHub/Chrome "Blocked" errors on mobile
+    const finalUrl = isMobile 
+        ? `https://docs.google.com/viewer?url=${encodeURIComponent(absoluteUrl)}&embedded=true` 
+        : absoluteUrl;
 
     // 3. RENDER VIEWER
     area.innerHTML = `
@@ -278,7 +276,7 @@ function openPDFViewer(pdfUrl, title) {
 
                 <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-white z-0">
                     <i class="fa-solid fa-file-shield text-5xl text-orange-200 mb-4"></i>
-                    <p class="text-gray-500 text-sm mb-4">Preview restricted by device security.</p>
+                    <p class="text-gray-500 text-sm mb-4">Preview restricted. Click below to view.</p>
                     <a href="${absoluteUrl}" target="_blank" class="bg-blue-600 text-white px-8 py-3 rounded-full font-bold shadow-lg">
                         OPEN PDF NATIVELY
                     </a>
