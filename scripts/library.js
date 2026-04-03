@@ -8,30 +8,30 @@ window.libraryData = {
             { id: 1, name: "Chapter-1", desc: "Arjuna Vishada Yoga - The distress of Arjuna.", audio: "#", 
                 video: "https://www.youtube.com/results?search_query=bhagavad+gita+chapter+1", pdfSanskrit: "downloads/bg-ch1-sanskrit.pdf",   pdfTelugu: "downloads/bg-ch1-telugu.pdf", pdfKannada: "downloads/bg-ch1-kannada.pdf" },
 			{ id: 2, name: "Chapter-2", desc: "Sankhya Yoga - The Yoga of Knowledge.", audio: "#", 
-                video: "https://www.youtube.com/results?search_query=bhagavad+gita+chapter+1", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+                video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 3, name: "Chapter-3", desc: "Karma Yoga - The Yoga of Action.", audio: "#", 
-                video: "https://www.youtube.com/results?search_query=bhagavad+gita+chapter+1", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
-			{ id: 4, name: "Chapter-4", desc: "Jnana-Karma-Sanyasa Yoga - Knowledge and Disciplined Action.", audio: "#", video: "https://www.youtube.com/results?search_query=bhagavad+gita+chapter+1", pdfSanskrit: "#", pdfTelugu: "#", pdfKannada: "#" },
+                video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+			{ id: 4, name: "Chapter-4", desc: "Jnana-Karma-Sanyasa Yoga - Knowledge and Disciplined Action.", audio: "#", video: "#", pdfSanskrit: "#", pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 5, name: "Chapter-5", desc: "Karma-Sanyasa Yoga - Action with Renunciation.", audio: "#", 
-                video: "https://www.youtube.com/results?search_query=bhagavad+gita+chapter+1", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+                video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 6, name: "Chapter-6", desc: "Atma-Samyama Yoga - The Yoga of Self-Control.", audio: "#", 
-                video: "https://www.youtube.com/results?search_query=bhagavad+gita+chapter+1", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+                video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 7, name: "Chapter-7", desc: "Jnana-Vijnana Yoga - Knowledge of the Ultimate Truth.", audio: "#", 
-                video: "https://www.youtube.com/results?search_query=bhagavad+gita+chapter+1", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
-			{ id: 8, name: "Chapter-8", desc: "Akshara-Brahma Yoga - The Yoga of the Imperishable Brahman.", audio: "#", video: "https://www.youtube.com/results?search_query=bhagavad+gita+chapter+1", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
-			{ id: 9, name: "Chapter-9", desc: "Raja-Vidya-Raja-Guhya Yoga - The Most Confidential Knowledge.", audio: "#", video: "https://www.youtube.com/results?search_query=bhagavad+gita+chapter+1", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+                video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+			{ id: 8, name: "Chapter-8", desc: "Akshara-Brahma Yoga - The Yoga of the Imperishable Brahman.", audio: "#", video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+			{ id: 9, name: "Chapter-9", desc: "Raja-Vidya-Raja-Guhya Yoga - The Most Confidential Knowledge.", audio: "#", video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 10, name: "Chapter-10", desc: "Vibhuti Yoga - The Yoga of Divine Glories.", audio: "#", 
-                video: "https://www.youtube.com/results?search_query=bhagavad+gita+chapter+1", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
-			{ id: 11, name: "Chapter-11", desc: "Vishwarupa-Darshana Yoga - The Vision of the Universal Form.", audio: "#", video: "https://www.youtube.com/results?search_query=bhagavad+gita+chapter+1", pdfSanskrit: "#", pdfTelugu: "#", pdfKannada: "#" },
+                video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+			{ id: 11, name: "Chapter-11", desc: "Vishwarupa-Darshana Yoga - The Vision of the Universal Form.", audio: "#", video: "#", pdfSanskrit: "#", pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 12, name: "Chapter-12", desc: "Bhakti Yoga - The Yoga of Devotion.", audio: "#", 
-                video: "https://www.youtube.com/results?search_query=bhagavad+gita+chapter+1", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
-			{ id: 13, name: "Chapter-13", desc: "Kshetra-Kshetrajna Vibhaga Yoga - The Field and the Knower of the Field.", audio: "#", video: "https://www.youtube.com/results?search_query=bhagavad+gita+chapter+1", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
-			{ id: 14, name: "Chapter-14", desc: "Gunatraya-Vibhaga Yoga - The Three Modes of Material Nature.", audio: "#", video: "https://www.youtube.com/results?search_query=bhagavad+gita+chapter+1", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+                video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+			{ id: 13, name: "Chapter-13", desc: "Kshetra-Kshetrajna Vibhaga Yoga - The Field and the Knower of the Field.", audio: "#", video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+			{ id: 14, name: "Chapter-14", desc: "Gunatraya-Vibhaga Yoga - The Three Modes of Material Nature.", audio: "#", video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 15, name: "Chapter-15", desc: "Purushottama Yoga - The Yoga of the Supreme Person.", audio: "#", 
-                video: "https://www.youtube.com/results?search_query=bhagavad+gita+chapter+1", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
-			{ id: 16, name: "Chapter-16", desc: "Daivasura-Sampad-Vibhaga Yoga - The Divine and Demoniac Natures.", audio: "#", video: "https://www.youtube.com/results?search_query=bhagavad+gita+chapter+1", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
-			{ id: 17, name: "Chapter-17", desc: "Shraddhatraya-Vibhaga Yoga - The Three Divisions of Faith.", audio: "#", video: "https://www.youtube.com/results?search_query=bhagavad+gita+chapter+1", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
-			{ id: 18, name: "Chapter-18", desc: "Moksha-Sanyasa Yoga - The Yoga of Liberation and Renunciation.", audio: "#", video: "https://www.youtube.com/results?search_query=bhagavad+gita+chapter+1", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" }
+                video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+			{ id: 16, name: "Chapter-16", desc: "Daivasura-Sampad-Vibhaga Yoga - The Divine and Demoniac Natures.", audio: "#", video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+			{ id: 17, name: "Chapter-17", desc: "Shraddhatraya-Vibhaga Yoga - The Three Divisions of Faith.", audio: "#", video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+			{ id: 18, name: "Chapter-18", desc: "Moksha-Sanyasa Yoga - The Yoga of Liberation and Renunciation.", audio: "#", video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" }
         ]
     },
     "Mani Manjari": {
@@ -180,8 +180,8 @@ function renderLibraryUI() {
             `;
         });
     }
-
-    html += `</div><div class="pb-20"></div>`;
+	html += `</div>`;
+    html += `<div class="h-40 w-full"></div>`;
     area.innerHTML = html;
 
     const input = document.getElementById('librarySearchInput');
