@@ -210,47 +210,49 @@ function openPDFViewer(pdfUrl, title) {
     const area = document.getElementById('contentArea');
     if (!area) return;
 
-    // 1. Determine if we are on mobile
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    
-    // 2. Prepare URLs
-    // We only use the Google Viewer if we are on mobile AND NOT on localhost
-    const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+    // 1. Prepare the absolute URL for the PDF
     const absoluteUrl = new URL(pdfUrl, window.location.href).href;
     
-    let finalSrc = absoluteUrl; // Default to direct loading
+    // 2. Identify environment
+    const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.protocol === "file:";
     
-    if (isMobile && !isLocal) {
+    // Use direct URL for local/desktop, and Google only for remote mobile
+    // NOTE: If testing locally on mobile, direct is better.
+    let finalSrc = absoluteUrl; 
+    if (!isLocal && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
         finalSrc = `https://docs.google.com/viewer?url=${encodeURIComponent(absoluteUrl)}&embedded=true`;
-    } else {
-        // Desktop or Local: Use native viewer with Fit-to-Width parameter
-        finalSrc = `${pdfUrl}#view=FitH`;
     }
 
     area.innerHTML = `
         <div class="flex flex-col h-full animate-fade-in bg-white rounded-xl shadow-lg border border-orange-100 overflow-hidden">
-            <div class="flex items-center justify-between p-3 bg-orange-800 text-white">
-                <button onclick="closePDFViewer()" class="flex items-center gap-2 bg-orange-700 hover:bg-orange-600 px-3 py-1.5 rounded-lg transition-all text-sm font-bold shadow-sm">
+            <div class="flex items-center justify-between p-3 bg-orange-800 text-white z-10">
+                <button onclick="closePDFViewer()" class="flex items-center gap-2 bg-orange-700 hover:bg-orange-600 px-3 py-1.5 rounded-lg transition-all text-sm font-bold">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>BACK</span>
                 </button>
                 <h3 class="font-bold text-[10px] md:text-xs uppercase tracking-widest truncate px-2">${title}</h3>
-                <a href="${pdfUrl}" download class="p-2 bg-orange-700 rounded-lg hover:bg-orange-600 transition">
-                    <i class="fa-solid fa-download"></i>
+                <a href="${pdfUrl}" target="_blank" class="p-2 bg-orange-700 rounded-lg">
+                    <i class="fa-solid fa-up-right-from-square"></i>
                 </a>
             </div>
             
-            <div class="flex-grow bg-gray-200 relative">
-                <iframe 
-                    src="${finalSrc}" 
-                    class="absolute inset-0 w-full h-full border-none"
-                    style="width: 100%; height: 100%; background: white;">
-                </iframe>
-                
-                <div class="absolute inset-0 flex flex-col items-center justify-center -z-10 text-gray-400">
-                    <i class="fa-solid fa-circle-notch fa-spin text-3xl mb-2"></i>
-                    <p class="text-xs font-bold uppercase tracking-widest">Loading Document...</p>
-                </div>
+            <div class="flex-grow bg-gray-100 relative">
+                <object 
+                    data="${finalSrc}" 
+                    type="application/pdf" 
+                    class="absolute inset-0 w-full h-full"
+                >
+                    <iframe 
+                        src="${finalSrc}" 
+                        class="w-full h-full border-none">
+                        <div class="p-10 text-center">
+                            <p class="mb-4 text-gray-500">Unable to display PDF in-app.</p>
+                            <a href="${pdfUrl}" target="_blank" class="bg-orange-600 text-white px-6 py-2 rounded-full font-bold">
+                                OPEN MANUALLY
+                            </a>
+                        </div>
+                    </iframe>
+                </object>
             </div>
         </div>
     `;
