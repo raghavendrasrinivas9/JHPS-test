@@ -202,22 +202,36 @@ function toggleAudio() {
 }
 
 /* ================================================================
-   REVISED PDF Viewer Logic (Mobile & App Optimized)
+   REVISED PDF Viewer Logic (Online Optimized)
 ================================================================ */
 function openPDFViewer(pdfUrl, title) {
     const area = document.getElementById('contentArea');
     if (!area) return;
 
-    // Create an absolute URL for the Google Viewer to fetch
+    // 1. Check for "Coming Soon" status
+    // Triggers if URL is empty, a hash, or contains 'placeholder'
+    if (!pdfUrl || pdfUrl === "#" || pdfUrl.includes("placeholder")) {
+        area.innerHTML = `
+            <div class="flex flex-col items-center justify-center p-20 text-center animate-fade-in">
+                <i class="fa-solid fa-clock-rotate-left text-5xl text-orange-200 mb-4"></i>
+                <h2 class="text-2xl font-bold text-orange-800 uppercase tracking-widest">Coming Soon</h2>
+                <p class="text-gray-500 mt-2">The digital version of this chapter is being prepared.</p>
+                <button onclick="closePDFViewer()" class="mt-6 px-6 py-2 bg-orange-600 text-white rounded-full font-bold shadow-md">
+                    BACK TO LIST
+                </button>
+            </div>`;
+        return;
+    }
+
+    // 2. Prepare the Online URL
+    // Ensures the path is treated as an absolute web address
     const absoluteUrl = new URL(pdfUrl, window.location.href).href;
-    
-    // Check if we are on a mobile device
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    
-    // Use Google Viewer for mobile, direct for desktop
-    let finalUrl = isMobile 
+
+    // Use Google Docs Viewer for mobile and apps to ensure it displays inside the UI
+    const finalUrl = isMobile 
         ? `https://docs.google.com/viewer?url=${encodeURIComponent(absoluteUrl)}&embedded=true`
-        : `${pdfUrl}#view=FitH`;
+        : absoluteUrl;
 
     area.innerHTML = `
         <div class="flex flex-col h-full bg-white rounded-xl shadow-lg border border-orange-100 overflow-hidden">
@@ -226,9 +240,9 @@ function openPDFViewer(pdfUrl, title) {
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>BACK</span>
                 </button>
-                <h3 class="font-bold text-[10px] md:text-xs uppercase tracking-widest truncate px-2">${title}</h3>
-                <a href="${pdfUrl}" target="_blank" class="p-2 bg-orange-700 rounded-lg">
-                    <i class="fa-solid fa-up-right-from-square"></i>
+                <h3 class="font-bold text-[10px] md:text-xs uppercase tracking-widest truncate px-4 flex-1 text-center">${title}</h3>
+                <a href="${absoluteUrl}" target="_blank" download class="p-2 bg-orange-700 rounded-lg">
+                    <i class="fa-solid fa-download"></i>
                 </a>
             </div>
             
@@ -236,14 +250,14 @@ function openPDFViewer(pdfUrl, title) {
                 <iframe 
                     src="${finalUrl}" 
                     class="absolute inset-0 w-full h-full border-none"
-                    style="width: 100%; height: 100%; min-height: 100%;"
+                    style="width: 100%; height: 100%;"
                     allow="autoplay">
                 </iframe>
                 
                 <div class="absolute inset-0 flex flex-col items-center justify-center -z-10 p-6 text-center">
-                    <p class="text-gray-500 mb-4 font-bold">Loading PDF or incompatible browser...</p>
-                    <a href="${pdfUrl}" target="_blank" class="bg-orange-600 text-white px-6 py-2 rounded-full font-bold shadow-lg">
-                        OPEN PDF DIRECTLY
+                    <p class="text-gray-500 mb-4 font-bold">PDF loading restricted by device security.</p>
+                    <a href="${absoluteUrl}" target="_blank" class="bg-orange-600 text-white px-8 py-3 rounded-full font-bold shadow-lg">
+                        OPEN PDF NATIVELY
                     </a>
                 </div>
             </div>
