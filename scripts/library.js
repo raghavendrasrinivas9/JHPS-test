@@ -99,7 +99,7 @@ function renderLibraryUI() {
         const pdfLabel = item.isFullPDF ? "Full Book" : item.title;
 
         html += `
-            <div class="border border-orange-100 rounded-2xl overflow-hidden shadow-sm bg-black">
+            <div class="border border-orange-100 rounded-2xl overflow-hidden shadow-sm bg-white">
                 <button onclick="toggleDropdown('${item.id}', 'lib')" 
                         class="w-full flex justify-between items-center p-4 bg-orange-50/50 hover:bg-orange-100 transition-colors text-left group">
                     <div class="flex items-center gap-3">
