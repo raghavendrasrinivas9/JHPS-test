@@ -202,62 +202,72 @@ function toggleAudio() {
 }
 
 /* ================================================================
-   6. PDF Viewer logic
-================================================================
-*/
-
+   REVISED PDF Viewer Logic (Mobile & App Optimized)
+================================================================ */
 function openPDFViewer(pdfUrl, title) {
     const area = document.getElementById('contentArea');
     if (!area) return;
 
-    // 1. Prepare the absolute URL for the PDF
+    // 1. Prepare absolute URL
+    // This is vital for external viewers like Google Docs to find your file
     const absoluteUrl = new URL(pdfUrl, window.location.href).href;
     
-    // 2. Identify environment
-    const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.protocol === "file:";
+    // 2. Enhanced Environment Detection
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const isLocal = window.location.protocol === "file:";
+    const isApp = document.body.classList.contains('is-median-app');
+
+    /**
+     * LOGIC: 
+     * - If Desktop: Use standard <object> tag.
+     * - If Mobile/App & Online: Use Google Docs Viewer for a smooth in-app experience.
+     * - If Mobile/App & Local/Offline: Direct link (mobile browsers will usually open their native PDF viewer).
+     */
+    let finalSrc = absoluteUrl;
     
-    // Use direct URL for local/desktop, and Google only for remote mobile
-    // NOTE: If testing locally on mobile, direct is better.
-    let finalSrc = absoluteUrl; 
-    if (!isLocal && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    if (isMobile && !isLocal) {
+        // Google Docs Viewer provides a consistent UI on mobile browsers/apps
         finalSrc = `https://docs.google.com/viewer?url=${encodeURIComponent(absoluteUrl)}&embedded=true`;
     }
 
     area.innerHTML = `
-        <div class="flex flex-col h-full animate-fade-in bg-white rounded-xl shadow-lg border border-orange-100 overflow-hidden">
-            <div class="flex items-center justify-between p-3 bg-orange-800 text-white z-10">
+        <div class="flex flex-col h-full animate-fade-in bg-white overflow-hidden" style="height: 100%; width: 100%;">
+            <div class="flex items-center justify-between p-3 bg-orange-800 text-white shrink-0">
                 <button onclick="closePDFViewer()" class="flex items-center gap-2 bg-orange-700 hover:bg-orange-600 px-3 py-1.5 rounded-lg transition-all text-sm font-bold">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>BACK</span>
                 </button>
-                <h3 class="font-bold text-[10px] md:text-xs uppercase tracking-widest truncate px-2">${title}</h3>
-                <a href="${pdfUrl}" target="_blank" class="p-2 bg-orange-700 rounded-lg">
-                    <i class="fa-solid fa-up-right-from-square"></i>
+                <h3 class="font-bold text-[10px] md:text-xs uppercase tracking-widest truncate px-2 flex-1 text-center">${title}</h3>
+                <a href="${pdfUrl}" target="_blank" download class="p-2 bg-orange-700 rounded-lg">
+                    <i class="fa-solid fa-download"></i>
                 </a>
             </div>
             
-            <div class="flex-grow bg-gray-100 relative">
-                <object 
-                    data="${finalSrc}" 
-                    type="application/pdf" 
-                    class="absolute inset-0 w-full h-full"
-                >
-                    <iframe 
-                        src="${finalSrc}" 
-                        class="w-full h-full border-none">
-                        <div class="p-10 text-center">
-                            <p class="mb-4 text-gray-500">Unable to display PDF in-app.</p>
-                            <a href="${pdfUrl}" target="_blank" class="bg-orange-600 text-white px-6 py-2 rounded-full font-bold">
-                                OPEN MANUALLY
-                            </a>
-                        </div>
-                    </iframe>
-                </object>
+            <div class="flex-grow bg-gray-200 relative overflow-hidden">
+                <iframe 
+                    src="${finalSrc}" 
+                    class="absolute inset-0 w-full h-full border-none"
+                    style="width: 100%; height: 100%;"
+                    allow="autoplay">
+                </iframe>
+                
+                <div id="pdf-fallback" class="hidden absolute inset-0 flex flex-col items-center justify-center p-10 text-center bg-white">
+                    <p class="mb-4 text-gray-600">If the PDF doesn't load automatically:</p>
+                    <a href="${pdfUrl}" target="_blank" class="bg-orange-600 text-white px-8 py-3 rounded-full font-bold shadow-lg">
+                        OPEN PDF MANUALLY
+                    </a>
+                </div>
             </div>
         </div>
     `;
     
+    // Safety scroll to top
     area.scrollTop = 0;
+}
+
+// Ensure this helper exists in main-logic.js
+function closePDFViewer() {
+    render(); // Re-renders the current tab (Library)
 }
 
 /* ================================================================
