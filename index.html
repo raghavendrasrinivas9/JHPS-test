@@ -78,7 +78,8 @@
         @media (min-width: 768px) { .motto-text { font-size: 1.35rem; max-width: none; letter-spacing: 0.05em; } }
 
         /* Expansion/Toggle Styles */
-        .dropdown-content, .learning-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease; background-color: #fffaf0; }
+        .dropdown-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; background-color: white; }
+		.learning-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease; background-color: #fffaf0; }
         .dropdown-content.open, .learning-content.open { max-height: 2000px; padding: 12px; border: 1px solid #fde68a; border-top: none; }
 
         /* Action Buttons */
@@ -129,7 +130,7 @@
 			/* Use dvh (Dynamic Viewport Height) for mobile browser address bar compatibility */
 			height: calc(100vh - 80px); 
 			height: calc(100dvh - 80px);
-			overflow: hidden !important; 
+			overflow-y: auto !important;
 			position: relative;
 			padding: 0 !important;
 		}
