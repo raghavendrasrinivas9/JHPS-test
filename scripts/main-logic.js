@@ -207,51 +207,45 @@ function toggleAudio() {
 */
 
 function openPDFViewer(pdfUrl, title) {
-    // 1. Create the overlay
-    const overlay = document.createElement('div');
-    overlay.id = 'pdf-viewer-overlay';
-    
-    // z-[10000] ensures it stays above the Sidebar and Top Nav
-    overlay.className = 'fixed inset-0 bg-white z-[10000] flex flex-col animate-fade-in';
-    
-    overlay.innerHTML = `
-        <div class="flex items-center p-4 bg-orange-800 text-white shadow-md">
-            <button onclick="closePDFViewer()" class="flex items-center gap-2 hover:text-orange-300 transition">
-                <i class="fa-solid fa-arrow-left text-xl"></i>
-                <span class="font-bold">Back</span>
-            </button>
-            <div class="ml-6 flex-grow">
-                <h3 class="font-bold text-sm md:text-base truncate uppercase tracking-wide">${title}</h3>
+    const area = document.getElementById('contentArea');
+    if (!area) return;
+
+    // Save the current view so the back button knows where to go
+    window.previousView = window.currentView;
+
+    area.innerHTML = `
+        <div class="flex flex-col h-full animate-fade-in bg-gray-100 rounded-xl overflow-hidden shadow-xl border border-orange-100">
+            <div class="flex items-center justify-between p-4 bg-orange-800 text-white">
+                <button onclick="closePDFViewer()" class="flex items-center gap-2 bg-orange-700 hover:bg-orange-600 px-4 py-2 rounded-lg transition-all font-bold shadow-sm">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>BACK TO LIST</span>
+                </button>
+                <h3 class="font-bold text-xs md:text-sm uppercase tracking-wider truncate px-4">${title}</h3>
+                <div class="hidden md:block w-24"></div> </div>
+            
+            <div class="flex-grow relative bg-gray-200">
+                <iframe 
+                    src="${pdfUrl}#view=FitH&toolbar=0" 
+                    class="absolute inset-0 w-full h-full border-none"
+                    style="width: 100%; height: 100%;"
+                    title="PDF Document"
+                >
+                    <p>Browser not supporting PDF viewing. <a href="${pdfUrl}" class="text-blue-600 underline">Download here</a></p>
+                </iframe>
             </div>
-            <div class="flex gap-4">
-                <a href="${pdfUrl}" download class="hover:text-orange-300">
-                    <i class="fa-solid fa-download"></i>
-                </a>
-            </div>
-        </div>
-        
-        <div class="flex-grow w-full bg-gray-100 overflow-hidden relative">
-            <iframe src="${pdfUrl}#view=FitH" class="w-full h-full border-none">
-                <p>Your browser does not support PDF viewing. <a href="${pdfUrl}">Download instead</a></p>
-            </iframe>
         </div>
     `;
 
-    document.body.appendChild(overlay);
-    
-    // 2. Hide body scroll to prevent "double scrolling"
-    document.body.style.overflow = 'hidden';
+    // Ensure the page doesn't scroll away from the viewer
+    area.scrollTop = 0;
 }
 
 function closePDFViewer() {
-    const overlay = document.getElementById('pdf-viewer-overlay');
-    if (overlay) {
-        overlay.remove();
-        // Restore scrolling
-        document.body.style.overflow = '';
+    // Re-trigger the main render to go back to the list
+    if (typeof render === 'function') {
+        render(); 
     }
 }
-
 
 /* ================================================================
    7. UI HELPERS
