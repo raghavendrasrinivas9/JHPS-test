@@ -122,22 +122,23 @@
 			to { opacity: 1; transform: translateY(0); }
 		}
 		
-		/* Optimized Content Area for PDF and Tab visibility */
+		/* Ensure the PDF container takes full available height on mobile */
 		#contentArea {
 			display: flex;
 			flex-direction: column;
-			height: calc(100vh - 80px); 
-			overflow: hidden !important; /* Force no page scroll */
-			position: relative;
-			padding: 0 !important; /* PDF needs every pixel */
+			/* This calculation must account for header height precisely */
+			height: calc(100vh - 84px); 
+			padding: 0 !important; 
+			overflow: hidden !important;
 		}
 
 		/* Specific fix for the PDF Frame to fit perfectly */
 		#contentArea object, 
 		#contentArea iframe {
-			width: 100%;
+			width: 1px;
+			min-width: 100%;
 			height: 100%;
-			display: block;
+			border: none;
 		}
 
 		/* Smooth transition when the PDF opens */
