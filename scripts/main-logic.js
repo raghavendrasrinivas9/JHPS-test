@@ -144,12 +144,20 @@ function goBackToLearnings() {
 ================================================================
 */
 function playStream(url, name) {
+    // 1. UNIVERSAL "COMING SOON" CHECK
+    // If the URL is missing or set to '#', show an alert and stop execution.
+    if (!url || url === "#" || url.includes("placeholder")) {
+        alert("Audio for '" + name + "' is coming soon!");
+        return;
+    }
+
     const gAudio = document.getElementById('globalAudio');
     const dIcon = document.getElementById('discIcon');
     
     window.currentPlayingUrl = url;
 
     if (gAudio) {
+        // If clicking the same song that is already loaded, just toggle play/pause
         if (gAudio.src.includes(url)) {
             toggleAudio();
             return;
@@ -158,12 +166,22 @@ function playStream(url, name) {
         gAudio.play();
     }
     
+    // UI Updates
     if (dIcon) dIcon.classList.add('rotating');
-    document.getElementById('audioPlayerBar').style.display = "flex";
-    document.getElementById('audioName').innerText = name;
-    document.getElementById('masterPlayIcon').className = "fa-solid fa-pause";
+    
+    const playerBar = document.getElementById('audioPlayerBar');
+    if (playerBar) playerBar.style.display = "flex";
+    
+    const nameDisplay = document.getElementById('audioName');
+    if (nameDisplay) nameDisplay.innerText = name;
+    
+    const playIcon = document.getElementById('masterPlayIcon');
+    if (playIcon) playIcon.className = "fa-solid fa-pause";
 
-    if (window.currentView === "sv-parts") renderSVParts();
+    // Refresh views that have specific "playing" animations (like the music bars)
+    if (window.currentView === "sv-parts") {
+        if (typeof renderSVParts === 'function') renderSVParts();
+    }
 }
 
 function stopAudio() {
@@ -205,38 +223,64 @@ function toggleAudio() {
    FINAL PDF Viewer Logic (GitHub & Mobile App Optimized)
 ================================================================ */
 function openPDFViewer(pdfUrl, title) {
-    // 1. Detection Logic
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    
-    if (isMobile) {
-        // MOBILE: Pop out of the app to native viewer
-        window.open(pdfUrl, '_blank');
-        return;
-    }
-
-    // DESKTOP: Display inside the window
     const area = document.getElementById('contentArea');
     if (!area) return;
 
+    // 1. UNIVERSAL "COMING SOON" CHECK
+    if (!pdfUrl || pdfUrl === "#" || pdfUrl.includes("placeholder")) {
+        area.innerHTML = `
+            <div class="flex flex-col items-center justify-center p-20 text-center animate-fade-in">
+                <div class="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mb-6">
+                    <i class="fa-solid fa-clock-rotate-left text-4xl text-blue-300"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-blue-800 uppercase tracking-widest">Coming Soon</h2>
+                <p class="text-gray-500 mt-2 italic">The digital version for this language is being prepared.</p>
+                
+                <button onclick="renderLibraryUI()" class="mt-8 px-8 py-3 bg-blue-600 text-white rounded-full font-bold shadow-lg hover:bg-blue-700 transition-all active:scale-95">
+                    BACK
+                </button>
+            </div>`;
+        return;
+    }
+
+    // 2. NORMAL LOADING LOGIC
+    const absoluteUrl = new URL(pdfUrl, window.location.href).href;
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    // Use Google Viewer for mobile to keep the user inside the app
+    const finalUrl = isMobile 
+        ? `https://docs.google.com/viewer?url=${encodeURIComponent(absoluteUrl)}&embedded=true` 
+        : absoluteUrl;
+
     area.innerHTML = `
         <div class="flex flex-col h-full animate-fade-in bg-white rounded-xl shadow-lg border border-orange-100 overflow-hidden">
-            <div class="flex items-center justify-between p-3 bg-orange-800 text-white z-10 shadow-md">
-                <button onclick="closePDFViewer()" class="flex items-center gap-2 bg-blue-700 hover:bg-blue-600 px-4 py-2 rounded-lg transition-all text-sm font-bold shadow-sm">
+            <div class="flex items-center justify-between p-3 bg-orange-800 text-white z-50 shadow-md">
+                <button onclick="renderLibraryUI()" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-all text-sm font-bold shadow-sm">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>BACK</span>
                 </button>
-                <h3 class="font-bold text-xs uppercase tracking-widest truncate px-4">${title}</h3>
-                <a href="${pdfUrl}" download class="p-2 bg-orange-700 rounded-lg hover:bg-orange-600 transition">
+                <h3 class="font-bold text-[10px] md:text-xs uppercase tracking-widest truncate px-4 flex-1 text-center">${title}</h3>
+                <a href="${absoluteUrl}" target="_blank" download class="p-2 bg-orange-700 rounded-lg hover:bg-orange-600 transition">
                     <i class="fa-solid fa-download"></i>
                 </a>
             </div>
             
-            <div class="flex-grow bg-gray-200 relative">
+            <div class="flex-grow bg-gray-50 relative w-full h-full">
                 <iframe 
-                    src="${pdfUrl}#view=FitH" 
-                    class="absolute inset-0 w-full h-full border-none"
-                    style="width: 100%; height: 100%;">
+                    src="${finalUrl}" 
+                    class="absolute inset-0 w-full h-full border-none z-10" 
+                    style="background: white;" 
+                    allow="autoplay; fullscreen" 
+                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups">
                 </iframe>
+
+                <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-white">
+                    <i class="fa-solid fa-file-shield text-5xl text-orange-200 mb-4"></i>
+                    <p class="text-gray-500 text-sm mb-4">Preview restricted. Click below to view.</p>
+                    <a href="${absoluteUrl}" target="_blank" class="bg-blue-600 text-white px-8 py-3 rounded-full font-bold shadow-lg">
+                        OPEN PDF
+                    </a>
+                </div>
             </div>
         </div>
     `;
