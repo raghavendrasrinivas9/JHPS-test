@@ -222,6 +222,9 @@ function toggleAudio() {
 /* ================================================================
    FINAL PDF Viewer Logic (GitHub & Mobile App Optimized)
 ================================================================ */
+/* ================================================================
+   REVISED PDF Viewer Logic (GitHub & Mobile Optimized)
+================================================================ */
 function openPDFViewer(pdfUrl, title) {
     const area = document.getElementById('contentArea');
     if (!area) return;
@@ -243,15 +246,16 @@ function openPDFViewer(pdfUrl, title) {
         return;
     }
 
-    // 2. NORMAL LOADING LOGIC
+    // 2. PREPARE URLS FOR GITHUB
     const absoluteUrl = new URL(pdfUrl, window.location.href).href;
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
-    // Use Google Viewer for mobile to keep the user inside the app
+    // Use Google Viewer Proxy to bypass GitHub/Chrome "Blocked" errors on mobile
     const finalUrl = isMobile 
         ? `https://docs.google.com/viewer?url=${encodeURIComponent(absoluteUrl)}&embedded=true` 
         : absoluteUrl;
 
+    // 3. RENDER VIEWER
     area.innerHTML = `
         <div class="flex flex-col h-full animate-fade-in bg-white rounded-xl shadow-lg border border-orange-100 overflow-hidden">
             <div class="flex items-center justify-between p-3 bg-orange-800 text-white z-50 shadow-md">
@@ -284,7 +288,6 @@ function openPDFViewer(pdfUrl, title) {
             </div>
         </div>
     `;
-    
     area.scrollTop = 0;
 }
 
@@ -295,10 +298,7 @@ function closePDFViewer() {
     }
 }
 
-function closePDFViewer() {
-    // Simply return to the current view (Library, Stotra, etc.)
-    render(); 
-}
+
 
 /* ================================================================
    7. UI HELPERS
