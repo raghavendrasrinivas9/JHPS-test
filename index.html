@@ -122,11 +122,22 @@
 			to { opacity: 1; transform: translateY(0); }
 		}
 		
-		/* Ensure the content area allows the PDF to fill height */
+		/* Optimized Content Area for PDF and Tab visibility */
 		#contentArea {
 			display: flex;
 			flex-direction: column;
-			height: calc(100vh - 80px); /* Adjust based on your top-header height */
+			/* This height ensures the main tabs stay visible at the bottom/top */
+			height: calc(100vh - 80px); 
+			overflow: hidden; /* Prevents PDF from expanding the page length */
+			position: relative;
+		}
+
+		/* Specific fix for the PDF Frame to fit perfectly */
+		#contentArea iframe {
+			width: 100% !important;
+			height: 100% !important;
+			flex-grow: 1;
+			border: none;
 		}
 
 		/* Smooth transition when the PDF opens */
@@ -139,10 +150,11 @@
 			to { opacity: 1; transform: scale(1); }
 		}
 
-		/* Mobile specific height adjustment */
+		/* Mobile specific adjustment: Accounts for smaller mobile headers */
 		@media (max-width: 768px) {
 			#contentArea {
-				height: calc(100vh - 60px); 
+				height: calc(100vh - 64px); 
+				padding-bottom: env(safe-area-inset-bottom); /* Fix for iPhone notches */
 			}
 		}
 
