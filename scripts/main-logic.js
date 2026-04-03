@@ -216,7 +216,7 @@ function openPDFViewer(pdfUrl, title) {
     area.innerHTML = `
         <div class="flex flex-col h-full animate-fade-in bg-gray-100 rounded-xl overflow-hidden shadow-xl border border-orange-100">
             <div class="flex items-center justify-between p-4 bg-orange-800 text-white">
-                <button onclick="closePDFViewer()" class="flex items-center gap-2 bg-orange-700 hover:bg-orange-600 px-4 py-2 rounded-lg transition-all font-bold shadow-sm">
+                <button onclick="closePDFViewer()" class="flex items-center gap-2 bg-blue-700 hover:bg-blue-600 px-4 py-2 rounded-lg transition-all font-bold shadow-sm">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>BACK TO LIST</span>
                 </button>
