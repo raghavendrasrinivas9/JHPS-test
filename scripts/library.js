@@ -49,15 +49,18 @@ window.libraryData = {
         pdfTelugu: `downloads/mm_s${i + 1}_tel.pdf`,
         pdfKannada: `downloads/mm_s${i + 1}_kan.pdf`
     })),
-    "Sumadhwa Vijaya": Array.from({ length: 4 }, (_, i) => ({
-        id: `smv${i + 1}`,
-        title: `Sarga - ${i + 1}`,
-        description: `Glories and life of Sri Madhvacharya - Sarga ${i + 1}.`,
-        audio: `media/smv_s${i + 1}.mp3`,
-        video: "#",
-        pdfSanskrit: `downloads/smv_s${i + 1}_san.pdf`,
-        pdfTelugu: `downloads/smv_s${i + 1}_tel.pdf`,
-        pdfKannada: `downloads/smv_s${i + 1}_kan.pdf`
+    "Sumadhwa Vijaya": Array.from({ length: 16 }, (_, i) => {
+    const sargaNum = i + 1;
+    return {
+        id: `smv${sargaNum}`,
+        title: `Sarga - ${sargaNum}`,
+        description: `Glories and life of Sri Madhvacharya - Sarga ${sargaNum}.`,
+        audio: `media/smv_s${sargaNum}.mp3`,
+        video: `https://www.youtube.com/results?search_query=Sumadhwa+Vijaya+Sarga+${sargaNum}`,
+        // All Sargas point to the same shared PDF files
+        pdfSanskrit: `downloads/Sumadhwa_Vijaya_Full_Sanskrit.pdf`,
+        pdfTelugu: `downloads/Sumadhwa_Vijaya_Full_Telugu.pdf`,
+        pdfKannada: `downloads/Sumadhwa_Vijaya_Full_Kannada.pdf`
     }))
 };
 
@@ -131,11 +134,14 @@ window.renderLibraryUI = function() {
 								<span class="text-xs font-bold uppercase">Read PDF</span>
 							</div>
 							<div class="flex justify-center gap-2">
-								<button onclick="openPDFViewer('${item.pdfSanskrit}', '${item.title} - Sanskrit')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 uppercase">San</button>
-								<button onclick="openPDFViewer('${item.pdfTelugu}', '${item.title} - Telugu')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 uppercase">Tel</button>
-								<button onclick="openPDFViewer('${item.pdfKannada}', '${item.title} - Kannada')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 uppercase">Kan</button>
+								<button onclick="openPDFViewer('${item.pdfSanskrit}', 'Sumadhwa Vijaya - Full (Sanskrit)')" 
+										class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 uppercase">SAN</button>
+								<button onclick="openPDFViewer('${item.pdfTelugu}', 'Sumadhwa Vijaya - Full (Telugu)')" 
+										class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 uppercase">TEL</button>
+								<button onclick="openPDFViewer('${item.pdfKannada}', 'Sumadhwa Vijaya - Full (Kannada)')" 
+										class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 uppercase">KAN</button>
 							</div>
-							</div>
+						</div>
                         </div>
                     </div>
                 </div>
