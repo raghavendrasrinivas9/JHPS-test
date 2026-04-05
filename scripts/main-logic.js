@@ -275,13 +275,32 @@ function toggleDropdown(id, type) {
     const content = document.getElementById(`content-${type}-${id}`);
     const icon = document.getElementById(`icon-${type}-${id}`);
     
-    if (content) {
-        content.classList.toggle('open');
-    }
-    
-    if (icon) {
-        // Toggle rotate-90 instead of rotate-180
-        icon.classList.toggle('rotate-90');
+    if (!content) return;
+
+    const isOpen = content.classList.contains('open');
+
+    // Close all other open dropdowns first (Optional: for a cleaner Accordion effect)
+    /*
+    document.querySelectorAll('.dropdown-content.open').forEach(el => {
+        if (el !== content) {
+            el.classList.remove('open');
+            el.style.maxHeight = null;
+            const otherIcon = document.getElementById(el.id.replace('content', 'icon'));
+            if (otherIcon) otherIcon.classList.remove('rotate-90');
+        }
+    });
+    */
+
+    if (!isOpen) {
+        // OPEN: Calculate exact height
+        content.classList.add('open');
+        content.style.maxHeight = content.scrollHeight + "px";
+        if (icon) icon.classList.add('rotate-90');
+    } else {
+        // CLOSE: Reset to 0
+        content.style.maxHeight = "0px";
+        content.classList.remove('open');
+        if (icon) icon.classList.remove('rotate-90');
     }
 }
 
