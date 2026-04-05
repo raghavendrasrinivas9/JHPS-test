@@ -8,10 +8,18 @@ window.galleryData = {
     stotras: [], 
     events: [], 
     learnings: [
+		{ type: "photo", url: "images/Training5.jpg", caption: "Kids Performance" },
+		{ type: "photo", url: "images/Training6.jpg", caption: "Mantrabyasa Kids Performance" },
+		{ type: "photo", url: "images/Training7.jpg", caption: "Mantrabyasa Kids Performance" },
+		{ type: "photo", url: "images/Training8.jpg", caption: "Mantrabyasa Kids Performance" },
+		{ type: "photo", url: "images/Training9.jpg", caption: "Mantrabyasa Kids Performance" },
+		{ type: "photo", url: "images/Training10.jpg", caption: "Mantrabyasa Kids Performance" },
 		{ type: "photo", url: "images/Training1.jpg", caption: "Mantrabyasa " },
 		{ type: "photo", url: "images/Training2.jpg", caption: "Sandhya Vandane Training" },
 		{ type: "photo", url: "images/Training3.jpg", caption: "Sandhya Vandane Training" },
-		{ type: "photo", url: "images/Training4.jpg", caption: "Sandhya Vandane Training" }
+		{ type: "photo", url: "images/Training4.jpg", caption: "Sandhya Vandane Training" },
+
+		
 	], 
     seva: [
 	{ type: "photo", url: "images/Seva1.jpg", caption: "Gow Seva" },
