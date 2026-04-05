@@ -230,6 +230,22 @@
 		.transition-transform {
 			transition: transform 0.3s ease;
 		}
+		
+		/* --- CONTACT PAGE ANIMATIONS --- */
+		.animate-fade-in {
+			animation: fadeInSlide 0.5s ease-out forwards;
+		}
+
+		@keyframes fadeInSlide {
+			from { opacity: 0; transform: translateY(15px); }
+			to { opacity: 1; transform: translateY(0); }
+		}
+
+		/* Hover effects for social links */
+		.instagram:hover {
+			background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+		}
+		
     </style>
 </head>
 
