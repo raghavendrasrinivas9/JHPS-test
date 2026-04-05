@@ -62,7 +62,7 @@ window.learningsData = [
     }
 ];
 
-/* --- LEARNINGS RENDERER --- */
+/* --- UPDATED LEARNINGS RENDERER --- */
 function renderLearningsUI() {
     const area = document.getElementById('contentArea');
     const lData = window.learningsData || [];
@@ -72,7 +72,9 @@ function renderLearningsUI() {
         return;
     }
 
-    let html = `<h2 class='text-xl font-bold mb-4 text-orange-800 uppercase tracking-tight'>🎓 Learnings & Tutorials</h2>
+    let html = `<h2 class='text-xl font-bold mb-4 text-orange-800 uppercase tracking-tight flex items-center gap-2'>
+                    <i class="fa-solid fa-graduation-cap"></i> Learnings & Tutorials
+                </h2>
                 <div class='flex flex-col gap-4'>`;
     
     lData.forEach((cat, index) => {
@@ -81,35 +83,71 @@ function renderLearningsUI() {
         <div class="border border-orange-200 rounded-xl overflow-hidden bg-white shadow-sm">
             <div onclick="toggleDropdown('${catId}', 'learning')" class="bg-yellow-50 p-4 cursor-pointer flex justify-between items-center group">
                 <span class="font-bold text-orange-900 group-hover:text-orange-600 transition">✦ ${cat.category}</span>
-                <i id="icon-learning-${catId}" class="fa-solid fa-chevron-down text-orange-400 rotate-icon"></i>
+                <i id="icon-learning-${catId}" class="fa-solid fa-chevron-right text-orange-400 transition-transform duration-300"></i>
             </div>
-            <div id="content-learning-${catId}" class="learning-content space-y-6">`;
+            <div id="content-learning-${catId}" class="dropdown-content bg-white">`;
             
         cat.vedas.forEach(v => {
             const isRig = v.name.toLowerCase().includes('rig');
             const partKey = isRig ? 'rig' : 'yajur';
             const showPartsBtn = (cat.category === "Sandhya Vandana");
 
+            // Extract specific resources for the grid
+            const audioRes = v.resources.find(r => r.audio && r.audio !== '#');
+            const videoRes = v.resources.find(r => r.video && r.video !== '#');
+
             html += `
-                <div class="bg-orange-50 rounded-lg border border-orange-100 overflow-hidden mb-2 mx-2">
-                    <div class="bg-orange-100 px-3 py-2 font-bold text-orange-900 flex justify-between items-center">
-                        <span class="text-sm">📖 ${v.name}</span>
-                        ${showPartsBtn ? `<button onclick="event.stopPropagation(); switchToParts('${partKey}')" class="bg-blue-600 text-white text-[10px] px-4 py-1.5 rounded-full animate-glow shadow-md hover:bg-blue-700 transition-colors">Click here to learn step by step</button>` : ''}
+                <div class="p-4 border-b border-orange-50">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-sm font-bold text-gray-800 uppercase tracking-wide">${v.name}</span>
+                        ${showPartsBtn ? `<button onclick="event.stopPropagation(); switchToParts('${partKey}')" class="bg-blue-600 text-white text-[10px] px-3 py-1.5 rounded-full animate-glow shadow-md hover:bg-blue-700 transition-all">Step-by-Step Guide</button>` : ''}
                     </div>
-                    <table class="w-full text-xs text-left bg-white">
-                        <tbody class="divide-y divide-orange-50">${v.resources.map(r => `
-                            <tr class="hover:bg-orange-50 transition">
-                                <td class="p-3 font-semibold text-gray-700">${r.lang}</td>
-                                <td class="p-3">
-                                    <div class="flex justify-end gap-5 text-lg">
-                                        ${r.audio && r.audio !== '#' ? `<button onclick="playStream('${r.audio}', '${v.name} (${r.lang})')" class="text-blue-600 hover:scale-110 transition"><i class="fa-solid fa-circle-play"></i></button>` : `<i class="fa-solid fa-circle-play text-gray-200"></i>`}
-                                        ${r.video && r.video !== '#' ? `<a href="${r.video}" target="_blank" class="text-red-600 hover:scale-110 transition"><i class="fa-brands fa-youtube"></i></a>` : `<i class="fa-brands fa-youtube text-gray-200"></i>`}
-                                        ${r.pdf && r.pdf !== '#' ? `<a href="${r.pdf}" target="_blank" class="text-green-600 hover:scale-110 transition"><i class="fa-solid fa-file-pdf"></i></a>` : `<i class="fa-solid fa-file-pdf text-gray-200"></i>`}
-                                    </div>
-                                </td>
-                            </tr>`).join('')}
-                        </tbody>
-                    </table>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        
+                        ${audioRes ? 
+                            `<button onclick="playStream('${audioRes.audio}', '${v.name}')" class="flex items-center justify-center gap-2 p-3 bg-blue-50 rounded-xl text-blue-700 hover:bg-blue-100 transition-colors">
+                                <i class="fa-solid fa-circle-play text-lg"></i>
+                                <span class="text-xs font-bold uppercase">Listen</span>
+                            </button>` : 
+                            `<button class="flex items-center justify-center gap-2 p-3 bg-gray-50 rounded-xl text-gray-400 cursor-not-allowed">
+                                <i class="fa-solid fa-circle-play text-lg"></i>
+                                <span class="text-xs font-bold uppercase">Coming Soon</span>
+                            </button>`
+                        }
+
+                        ${videoRes ? 
+                            `<a href="${videoRes.video}" target="_blank" class="flex items-center justify-center gap-2 p-3 bg-red-50 rounded-xl text-red-700 hover:bg-red-100 transition-colors">
+                                <i class="fa-brands fa-youtube text-lg"></i>
+                                <span class="text-xs font-bold uppercase">Watch</span>
+                            </a>` : 
+                            `<button class="flex items-center justify-center gap-2 p-3 bg-gray-50 rounded-xl text-gray-400 cursor-not-allowed">
+                                <i class="fa-brands fa-youtube text-lg"></i>
+                                <span class="text-xs font-bold uppercase">Coming Soon</span>
+                            </button>`
+                        }
+
+                        <div class="flex flex-col gap-2 p-3 bg-green-50 rounded-xl">
+                            <div class="flex items-center justify-center gap-2 text-green-700 mb-1">
+                                <i class="fa-solid fa-file-pdf text-lg"></i>
+                                <span class="text-xs font-bold uppercase">Read PDF</span>
+                            </div>
+                            <div class="flex justify-center flex-wrap gap-2">
+                                ${['Sanskrit', 'Telugu', 'Kannada', 'English'].map(lang => {
+                                    // Look for a resource matching this language in the v.resources array
+                                    const langRes = v.resources.find(r => r.lang === lang && r.pdf && r.pdf !== '#');
+                                    return `
+                                        <button 
+                                            ${langRes ? `onclick="openPDFViewer('${langRes.pdf}', '${v.name} - ${lang}')"` : ''} 
+                                            class="text-[10px] px-2 py-1 rounded border font-bold transition-colors ${langRes 
+                                                ? 'bg-white border-green-200 text-green-800 hover:bg-green-100 shadow-sm' 
+                                                : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed'}">
+                                            ${lang.substring(0,3).toUpperCase()}
+                                        </button>`;
+                                }).join('')}
+                            </div>
+                        </div>
+                    </div>
                 </div>`;
         });
         html += `</div></div>`;
