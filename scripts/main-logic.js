@@ -201,29 +201,44 @@ function toggleAudio() {
    FINAL PDF Viewer Logic (GitHub & Mobile App Optimized)
 ================================================================ */
 function openPDFViewer(pdfUrl, title) {
-    // 1. Detection Logic
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    
-    if (isMobile) {
-        // MOBILE: Pop out of the app to native viewer
-        window.open(pdfUrl, '_blank');
+    // 1. Safety check: If the URL is just a placeholder, don't try to open it
+    if (!pdfUrl || pdfUrl === "#") {
+        alert("This PDF is coming soon!");
         return;
     }
 
-    // DESKTOP: Display inside the window
+    // 2. Detection Logic
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    // 3. FORCE POP-OUT FOR MOBILE (and optionally Desktop)
+    // Mobile browsers almost always fail to render PDFs inside iframes.
+    if (isMobile) {
+        // This opens the PDF in a new tab, allowing the mobile device's 
+        // native PDF viewer (Chrome PDF, Safari, etc.) to take over.
+        const newWindow = window.open(pdfUrl, '_blank');
+        
+        // If the popup was blocked by the browser, alert the user
+        if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+            alert("Please allow pop-ups to view this PDF.");
+        }
+        return;
+    }
+
+    // 4. DESKTOP: Keep the existing internal viewer if preferred, 
+    // or you can remove this and just use window.open for everyone.
     const area = document.getElementById('contentArea');
     if (!area) return;
 
     area.innerHTML = `
         <div class="flex flex-col h-full animate-fade-in bg-white rounded-xl shadow-lg border border-orange-100 overflow-hidden">
             <div class="flex items-center justify-between p-3 bg-orange-800 text-white z-10 shadow-md">
-                <button onclick="closePDFViewer()" class="flex items-center gap-2 bg-blue-700 hover:bg-blue-600 px-4 py-2 rounded-lg transition-all text-sm font-bold shadow-sm">
+                <button onclick="render()" class="flex items-center gap-2 bg-blue-700 hover:bg-blue-600 px-4 py-2 rounded-lg transition-all text-sm font-bold shadow-sm">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>BACK</span>
                 </button>
                 <h3 class="font-bold text-xs uppercase tracking-widest truncate px-4">${title}</h3>
-                <a href="${pdfUrl}" download class="p-2 bg-orange-700 rounded-lg hover:bg-orange-600 transition">
-                    <i class="fa-solid fa-download"></i>
+                <a href="${pdfUrl}" target="_blank" class="p-2 bg-orange-700 rounded-lg hover:bg-orange-600 transition">
+                    <i class="fa-solid fa-up-right-from-square"></i>
                 </a>
             </div>
             
