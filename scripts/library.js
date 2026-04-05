@@ -37,7 +37,7 @@ window.libraryData = {
     "Mani Manjari": {
         title: "Mani Manjari",
         steps: [
-            { id: 1, name: "Sarga-1", desc: "Historical account of the lineage and background.", audio: "#", video: "#", pdfSanskrit: "downloads/mm_s1_sanskrit.pdf", pdfTelugu: "#", pdfKannada: "downloads/mm_s1_kannada.pdf" },
+            { id: 1, name: "Sarga-1", desc: "Historical account of the lineage and background.", audio: "#", video: "https://www.youtube.com/watch?v=EU5sh0Pij3c&t=1082s", pdfSanskrit: "downloads/mm_s1_sanskrit.pdf", pdfTelugu: "#", pdfKannada: "downloads/mm_s1_kannada.pdf" },
 			{ id: 2, name: "Sarga-2", desc: "Historical account of the lineage and background.", audio: "#", video: "#", pdfSanskrit: "#", pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 3, name: "Sarga-3", desc: "Historical account of the lineage and background.", audio: "#", video: "#", pdfSanskrit: "#", pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 4, name: "Sarga-4", desc: "Historical account of the lineage and background.", audio: "#", video: "#", pdfSanskrit: "#", pdfTelugu: "#", pdfKannada: "#" }
@@ -97,7 +97,6 @@ function renderLibraryUI() {
 
     html += `</div></div>`;
 
-    // Filtering Logic for Search
     let displayItems = [];
     if (window.librarySearchQuery) {
         Object.keys(window.libraryData).forEach(catKey => {
@@ -146,21 +145,28 @@ function renderLibraryUI() {
                     <div id="content-lib-${item.id}" class="dropdown-content bg-white">
                         <div class="p-4 border-t border-orange-50">
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                                <button onclick="playStream('${item.audio}', '${item.name}')" class="flex items-center justify-center gap-2 p-3 bg-blue-50 rounded-xl text-blue-700 hover:bg-blue-100 transition-colors">
-                                    <i class="fa-solid fa-circle-play text-lg"></i>
-                                    <span class="text-xs font-bold uppercase">Listen</span>
-                                </button>
+                                
+                                ${item.audio && item.audio !== '#' ? 
+                                    `<button onclick="playStream('${item.audio}', '${item.name}')" class="flex items-center justify-center gap-2 p-3 bg-blue-50 rounded-xl text-blue-700 hover:bg-blue-100 transition-colors">
+                                        <i class="fa-solid fa-circle-play text-lg"></i>
+                                        <span class="text-xs font-bold uppercase">Listen</span>
+                                    </button>` : 
+                                    `<button class="flex items-center justify-center gap-2 p-3 bg-gray-50 rounded-xl text-gray-400 cursor-not-allowed">
+                                        <i class="fa-solid fa-circle-play text-lg"></i>
+                                        <span class="text-xs font-bold uppercase">Coming Soon</span>
+                                    </button>`
+                                }
 
                                 ${item.video && item.video !== '#' ? 
-								`<a href="${item.video}" target="_blank" class="flex items-center justify-center gap-2 p-3 bg-red-50 rounded-xl text-red-700 hover:bg-red-100 transition-colors">
-									<i class="fa-brands fa-youtube text-lg"></i>
-									<span class="text-xs font-bold uppercase">Watch</span>
-								</a>` : 
-								`<button onclick="alert('Video content is coming soon!')" class="flex items-center justify-center gap-2 p-3 bg-gray-50 rounded-xl text-gray-400 cursor-not-allowed">
-									<i class="fa-brands fa-youtube text-lg"></i>
-									<span class="text-xs font-bold uppercase">Coming Soon</span>
-								</button>`
-							}
+                                    `<a href="${item.video}" target="_blank" class="flex items-center justify-center gap-2 p-3 bg-red-50 rounded-xl text-red-700 hover:bg-red-100 transition-colors">
+                                        <i class="fa-brands fa-youtube text-lg"></i>
+                                        <span class="text-xs font-bold uppercase">Watch</span>
+                                    </a>` : 
+                                    `<button class="flex items-center justify-center gap-2 p-3 bg-gray-50 rounded-xl text-gray-400 cursor-not-allowed">
+                                        <i class="fa-brands fa-youtube text-lg"></i>
+                                        <span class="text-xs font-bold uppercase">Coming Soon</span>
+                                    </button>`
+                                }
 
                                 <div class="flex flex-col gap-2 p-3 bg-green-50 rounded-xl">
                                     <div class="flex items-center justify-center gap-2 text-green-700 mb-1">
@@ -168,11 +174,21 @@ function renderLibraryUI() {
                                         <span class="text-xs font-bold uppercase">Read PDF</span>
                                     </div>
                                     <div class="flex justify-center gap-2">
-                                        <button onclick="openPDFViewer('${item.pdfSanskrit}', '${item.name} - Sanskrit')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 transition-colors">Sanskrit</button>
-                                        <button onclick="openPDFViewer('${item.pdfTelugu}', '${item.name} - Telugu')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 transition-colors">Telugu</button>
-                                        <button onclick="openPDFViewer('${item.pdfKannada}', '${item.name} - Kannada')" class="text-[10px] bg-white px-2 py-1 rounded border border-green-200 font-bold hover:bg-green-100 transition-colors">Kannada</button>
+                                        ${['Sanskrit', 'Telugu', 'Kannada'].map(lang => {
+                                            const pdfKey = `pdf${lang}`;
+                                            const hasPdf = item[pdfKey] && item[pdfKey] !== '#';
+                                            return `
+                                                <button 
+                                                    ${hasPdf ? `onclick="openPDFViewer('${item[pdfKey]}', '${item.name} - ${lang}')"` : ''} 
+                                                    class="text-[10px] px-2 py-1 rounded border font-bold transition-colors ${hasPdf 
+                                                        ? 'bg-white border-green-200 text-green-800 hover:bg-green-100' 
+                                                        : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed'}">
+                                                    ${lang}
+                                                </button>`;
+                                        }).join('')}
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -180,8 +196,7 @@ function renderLibraryUI() {
             `;
         });
     }
-	html += `</div>`;
-    html += `<div class="h-40 w-full"></div>`;
+    html += `</div><div class="h-40 w-full"></div>`;
     area.innerHTML = html;
 
     const input = document.getElementById('librarySearchInput');
