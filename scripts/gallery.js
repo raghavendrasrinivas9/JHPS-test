@@ -17,7 +17,7 @@ window.galleryData = {
 		{ type: "photo", url: "images/Training1.jpg", caption: "Mantrabyasa " },
 		{ type: "photo", url: "images/Training2.jpg", caption: "Sandhya Vandane Training" },
 		{ type: "photo", url: "images/Training3.jpg", caption: "Sandhya Vandane Training" },
-		{ type: "photo", url: "images/Training4.jpg", caption: "Sandhya Vandane Training" },
+		{ type: "photo", url: "images/Training4.jpg", caption: "Sandhya Vandane Training" }
 
 		
 	], 
