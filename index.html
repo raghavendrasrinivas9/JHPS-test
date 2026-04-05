@@ -78,9 +78,9 @@
         @media (min-width: 768px) { .motto-text { font-size: 1.35rem; max-width: none; letter-spacing: 0.05em; } }
 
         /* Expansion/Toggle Styles */
-        .dropdown-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; background-color: white; }
+        .dropdown-content { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); background-color: white; visibility: hidden; }
 		.learning-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease; background-color: #fffaf0; }
-        .dropdown-content.open, .learning-content.open { max-height: 2000px; padding: 12px; border: 1px solid #fde68a; border-top: none; }
+        .dropdown-content.open { visibility: visible; border-bottom: 1px solid #fde68a; }
 
         /* Action Buttons */
         .action-btn { display:inline-block; padding:10px 20px; border-radius:10px; color:white; font-weight:bold; text-decoration:none; font-size: 0.9rem; transition: 0.3s; text-align: center; }
