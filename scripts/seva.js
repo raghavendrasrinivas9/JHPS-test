@@ -4,13 +4,11 @@ window.sevaData = {
         { 
             name: "Anna Daana Seva", 
             desc: "#", 
-            impact: "#",
             icon: "fa-bowl-food"
         },
         { 
             name: "Gow Seva", 
             desc: "#", 
-            impact: "#",
             icon: "fa-cow"
         }
     ],
@@ -49,9 +47,6 @@ function renderSevaUI() {
                         <span class="text-[9px] px-2 py-0.5 rounded-full font-bold uppercase bg-green-100 text-green-700">Active</span>
                     </div>
                     <p class="text-sm text-gray-700 mb-2">${seva.desc}</p>
-                    <div class="text-[11px] text-gray-500 font-bold flex items-center gap-1 uppercase tracking-wider">
-                        <i class="fa-solid fa-circle-check text-green-500"></i> Impact: ${seva.impact}
-                    </div>
                 </div>
             </div>`;
     });
