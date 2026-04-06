@@ -47,7 +47,7 @@ window.libraryData = {
     "Sumadhwa Vijaya": {
         title: "Sumadhwa Vijaya",
         steps: [
-            { id: 1, name: "Sarga-1", desc: "Glories and life of Sri Madhvacharya.", audio: "#", video: "#", pdfSanskrit: "downloads/smv-full-sankrit.pdf", pdfTelugu: "downloads/smv-full-telugu.pdf", pdfKannada: "downloads/smv-full-kannada.pdf"},
+            { id: 1, name: "Sarga-1", desc: "Glories and life of Sri Madhvacharya.", audio: "#", video: "#", pdfSanskrit: "downloads/smv-full-sanskrit.pdf", pdfTelugu: "downloads/smv-full-telugu.pdf", pdfKannada: "downloads/smv-full-kannada.pdf"},
 			{ id: 2, name: "Sarga-2", desc: "Glories and life of Sri Madhvacharya.", audio: "#", video: "#", pdfSanskrit: "downloads/smv-full-sanskrit.pdf", pdfTelugu: "downloads/smv-full-telugu.pdf", pdfKannada: "downloads/smv-full-kannada.pdf"},
 			{ id: 3, name: "Sarga-3", desc: "Glories and life of Sri Madhvacharya.", audio: "#", video: "#", pdfSanskrit: "downloads/smv-full-sanskrit.pdf", pdfTelugu: "downloads/smv-full-telugu.pdf", pdfKannada: "downloads/smv-full-kannada.pdf"},
 			{ id: 4, name: "Sarga-4", desc: "Glories and life of Sri Madhvacharya.", audio: "#", video: "#", pdfSanskrit: "downloads/smv-full-sanskrit.pdf", pdfTelugu: "downloads/smv-full-telugu.pdf", pdfKannada: "downloads/smv-full-kannada.pdf"}
