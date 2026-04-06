@@ -48,13 +48,14 @@ function renderContactUI() {
             <div class="mb-6 relative overflow-hidden bg-orange-900 rounded-2xl p-5 text-black shadow-lg border-b-4 border-orange-700">
                 <div class="relative z-10">
                     <p class='text-[10px] font-black uppercase tracking-widest text-orange-300 mb-1'></p>
-                    <h3 class='text-xl font-bold leading-tight mb-3'>${data.organizationName}</h3>
+                    <h3 class='text-xl font-bold leading-tight mb-3 text-black'>${data.organizationName}</h3>
                     
-                    <a href="mailto:${data.mainEmail}" class='inline-flex items-center gap-2 bg-black/30 hover:bg-black/50 transition-colors px-3 py-1.5 rounded-lg text-xs border border-orange/10'>
+                    <a href="mailto:${data.mainEmail}" class='inline-flex items-center gap-2 bg-black/30 hover:bg-black/50 transition-colors px-3 py-1.5 rounded-lg text-xs border border-white/10 text-black'>
                         <i class="fa-solid fa-envelope text-orange-400"></i>
                         <span class="truncate">${data.mainEmail}</span>
                     </a>
-             
+                </div>
+            </div>
 
             <h3 class='text-[10px] font-black text-gray-500 mb-3 uppercase tracking-widest flex items-center gap-2 px-1'>
                 <i class="fa-solid fa-map-pin"></i> Area Coordinators
@@ -70,10 +71,10 @@ function renderContactUI() {
                         
                         <div class="space-y-2">
                             ${area.contacts.map(c => `
-                                <div class='flex items-center justify-between gap-1'>
-                                    <span class='text-[10px] font-medium text-gray-600 truncate'>${c.name}</span>
-                                    <a href="tel:${c.phone}" class="h-6 w-6 flex items-center justify-center rounded-md bg-orange-50 text-orange-600 hover:bg-orange-600 hover:text-white transition-all">
-                                        <i class="fa-solid fa-phone text-[9px]"></i>
+                                <div class='flex flex-col gap-0.5'>
+                                    <span class='text-[10px] font-bold text-gray-800 truncate'>${c.name}</span>
+                                    <a href="tel:${c.phone}" class="text-[10px] font-medium text-orange-600 hover:text-orange-800 transition-colors">
+                                        ${c.phone}
                                     </a>
                                 </div>
                             `).join('')}
