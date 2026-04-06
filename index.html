@@ -67,6 +67,13 @@
         .top-btn { padding:6px 16px; border-radius:9999px; font-weight:bold; margin-right:8px; background-color: #fde68a; font-size: 0.85rem; color: #92400e; transition: 0.3s; border: 1px solid #fcd34d; }
         .top-btn.active { background-color: #ea580c !important; color: white !important; border-color: #9a3412; }
 
+        /* SUB-TAB STYLES */
+        .sub-tab-btn { padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; font-weight: bold; background-color: #fef3c7; border: 1px solid #fcd34d; color: #92400e; transition: 0.2s; white-space: nowrap; }
+        .sub-tab-btn.active { background-color: #d97706; color: white; border-color: #9a3412; }
+
+        .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #fb923c; border-radius: 10px; }
+
         .motto-text { font-weight: 900; color: #7c2d12; text-transform: uppercase; letter-spacing: 0.02em; font-size: 0.65rem; line-height: 1.2; max-width: 60px; display: block; }
         @media (min-width: 768px) { .motto-text { font-size: 1.35rem; max-width: none; letter-spacing: 0.05em; } }
 
@@ -75,13 +82,52 @@
 		.learning-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease; background-color: #fffaf0; }
         .dropdown-content.open { visibility: visible; border-bottom: 1px solid #fde68a; }
 
-        .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #fb923c; border-radius: 10px; }
+        /* Action Buttons */
+        .action-btn { display:inline-block; padding:10px 20px; border-radius:10px; color:white; font-weight:bold; text-decoration:none; font-size: 0.9rem; transition: 0.3s; text-align: center; }
+        .whatsapp { background-color: #16a34a; }
+        .form { background-color: #2563eb; }
+        .animate-glow { animation: pulse-blue 2s infinite; }
+        @keyframes pulse-blue { 0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); } 70% { box-shadow: 0 0 0 8px rgba(37, 99, 235, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); } }
+		
+		/* --- AUDIO ANIMATION --- */
+		.rotating {
+			animation: spin 3s linear infinite;
+		}
 
-		/* --- CONTENT AREA --- */
+		@keyframes spin {
+			from { transform: rotate(0deg); }
+			to { transform: rotate(360deg); }
+		}
+		
+		/* --- PDF Viewer  --- */
+		#pdf-viewer-overlay {
+		position: fixed !important;
+		top: 0 !important;
+		left: 0 !important;
+		width: 100vw !important;
+		height: 100vh !important;
+		}
+
+		/* Fix for mobile Safari height issues */
+		#pdf-viewer-overlay iframe {
+			height: calc(100% - 60px); /* Adjusts for the 60px header we created */
+			width: 100%;
+		}
+
+		.animate-fade-in {
+			animation: pdfFade 0.3s ease-out;
+		}
+
+		@keyframes pdfFade {
+			from { opacity: 0; transform: translateY(10px); }
+			to { opacity: 1; transform: translateY(0); }
+		}
+		
+		/* Ensure the PDF container takes full available height on mobile */
 		#contentArea {
 			display: flex;
 			flex-direction: column;
+			/* Use dvh (Dynamic Viewport Height) for mobile browser address bar compatibility */
 			height: calc(100vh - 80px); 
 			height: calc(100dvh - 80px);
 			overflow-y: auto !important;
@@ -89,38 +135,54 @@
 			padding: 0 !important;
 		}
 
-		@media (max-width: 768px) {
-			#contentArea { height: calc(100vh - 64px); height: calc(100dvh - 64px); }
+		/* Specific fix for the PDF Frame to fit perfectly */
+		#contentArea object, 
+		#contentArea iframe {
+			height: 100% !important;
+			width: 100% !important;
+			display: block;
+			min-height: 500px; /* Force minimum visibility for mobile */
 		}
 
-        /* --- MOBILE MENU OVERRIDES --- */
-        .mobile-menu-trigger {
-            background-color: #7c2d12;
-            color: white;
-            width: 38px;
-            height: 38px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #fde68a;
-            cursor: pointer;
-            margin-right: 8px;
-        }
+		/* Smooth transition when the PDF opens */
+		.animate-fade-in {
+			animation: fadeIn 0.4s ease-out;
+		}
 
+		@keyframes fadeIn {
+			from { opacity: 0; transform: scale(0.98); }
+			to { opacity: 1; transform: scale(1); }
+		}
+
+		/* Mobile specific adjustment: Accounts for smaller mobile headers */
+		@media (max-width: 768px) {
+			#contentArea {
+				height: calc(100vh - 64px); 
+				height: calc(100dvh - 64px);
+			}
+		}
+		/* Ensure PDF takes full space */
+		.pdf-frame {
+			width: 100%;
+			height: 100%;
+			border: none;
+			background: #f3f4f6; /* Gray background while loading */
+		}
+		
+        /* --- MOBILE MENU ALIGNMENT --- */
         @media (max-width: 767px) {
             #sidebar {
                 position: fixed;
-                top: 0; 
+                top: 84px; 
                 left: 0;
-                z-index: 1000;
-                width: 280px;
-                height: 100%;
-                background: #fffbeb;
+                z-index: 100;
+                width: 85%;
+                height: calc(100% - 84px);
+                background: linear-gradient(180deg, #fffbeb 0%, #ffedd5 100%);
                 display: flex;
                 flex-direction: column;
                 padding: 15px;
-                box-shadow: 10px 0 25px rgba(0,0,0,0.2);
+                box-shadow: 4px 0 15px rgba(0,0,0,0.2);
                 transform: translateX(-100%);
                 transition: transform 0.3s ease-in-out;
                 visibility: hidden;
@@ -129,17 +191,61 @@
                 transform: translateX(0); 
                 visibility: visible;
             }
-            .tab-btn { padding: 12px; font-size: 0.95rem; margin-bottom: 8px; }
+        }
+
+        .mobile-menu-btn {
+            background-color: #c2410c; 
+            color: #ffffff;            
+            border: 2px solid #7c2d12;  
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.65rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-top: 4px;
         }
 
         #audioPlayerBar { position: fixed; bottom: 0; left: 0; right: 0; background: #7c2d12; color: white; padding: 12px 20px; z-index: 10000; display: none; align-items: center; justify-content: space-between; border-top: 2px solid #ea580c; }
 		
         /* --- MEDIAN APP OVERRIDES --- */
-        body.is-median-app #centerLogoContainer { display: none !important; }
-        body.is-median-app #mainHeader { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+		body.is-median-app .mobile-menu-btn {
+			display: none !important;
+		}
+
+        body.is-median-app #centerLogoContainer {
+            display: none !important;
+        }
+
+        body.is-median-app #mainHeader {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
 		
-		.animate-fade-in { animation: fadeInSlide 0.5s ease-out forwards; }
-		@keyframes fadeInSlide { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+		/* Rotate expansion arrow */
+		.rotate-90 {
+			transform: rotate(90deg);
+		}
+
+		/* Ensure transition is applied for a smooth spin */
+		.transition-transform {
+			transition: transform 0.3s ease;
+		}
+		
+		/* --- CONTACT PAGE ANIMATIONS --- */
+		.animate-fade-in {
+			animation: fadeInSlide 0.5s ease-out forwards;
+		}
+
+		@keyframes fadeInSlide {
+			from { opacity: 0; transform: translateY(15px); }
+			to { opacity: 1; transform: translateY(0); }
+		}
+
+		/* Hover effects for social links */
+		.instagram:hover {
+			background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+		}
+		
     </style>
 </head>
 
@@ -155,18 +261,18 @@
 
 <header id="mainHeader" class="bg-yellow-100 p-2 md:p-3 shadow-sm shrink-0 border-b border-yellow-200 relative z-50">
     <div class="max-w-6xl mx-auto flex justify-between items-center gap-2">
-        <div class="flex-1 flex items-center">
-            <button onclick="toggleMobileMenu()" class="md:hidden mobile-menu-trigger">
-                <i class="fa-solid fa-bars"></i>
-            </button>
+        <div class="flex-1 flex flex-col items-start gap-1">
             <div class="flex items-center gap-2">
                 <img src="images/Ram.jpg" alt="Ram" class="h-10 w-10 md:h-20 md:w-20 rounded-full border-2 border-orange-400 object-cover shadow-sm shrink-0">
                 <span class="motto-text">Hari Sarvothama</span>
             </div>
+            <button onclick="toggleMobileMenu()" class="md:hidden mobile-menu-btn">
+                <i class="fa-solid fa-bars mr-1"></i> MENU
+            </button>
         </div>
 
         <div id="centerLogoContainer" class="shrink-0">
-            <img src="JHPS.jpg" alt="JHPS Logo" class="h-14 md:h-40 w-auto rounded-xl shadow-lg border-2 border-white bg-white">
+            <img src="JHPS.jpg" alt="JHPS Logo" class="h-16 md:h-40 w-auto rounded-xl shadow-lg border-2 border-white bg-white">
         </div>
 
         <div class="flex-1 flex items-center justify-end gap-2">
@@ -178,9 +284,9 @@
 
 <div class="flex flex-col md:flex-row flex-1 overflow-hidden relative">
     <aside id="sidebar" class="hidden md:flex w-full md:w-60 bg-yellow-100 p-3 md:p-4 border-b md:border-r border-yellow-200 flex-col shrink-0 overflow-x-auto md:overflow-y-auto custom-scroll gap-2">
-        <div class="md:hidden flex justify-between items-center mb-6 border-b border-orange-200 pb-2">
-            <span class="text-lg font-bold text-orange-900">Categories</span>
-            <button onclick="toggleMobileMenu()" class="text-xl text-orange-700 h-10 w-10 flex items-center justify-center rounded-full bg-orange-100"><i class="fa-solid fa-xmark"></i></button>
+        <div class="md:hidden flex justify-between items-center mb-4">
+            <span class="text-md font-bold text-orange-900">Categories</span>
+            <button onclick="toggleMobileMenu()" class="text-xl text-orange-700"><i class="fa-solid fa-xmark"></i></button>
         </div>
         
         <div id="parayanaTab" class="tab-btn active-tab" onclick="handleMenuClick('parayana')">📖 Parayana</div>
@@ -201,7 +307,7 @@
             <button id="lang3Btn" class="top-btn hidden" onclick="handleTopBtn(3)">Sanskrit</button>
         </div>
         <div id="contentArea" class="bg-white p-4 md:p-6 rounded-2xl shadow-md border border-yellow-100 flex-1 overflow-y-auto custom-scroll">
-            </div>
+        </div>
     </main>
 </div>
 
@@ -230,6 +336,7 @@
 <script src="scripts/main-logic.js"></script>
 
 <script>
+    // MEDIAN APP DETECTION
     function detectAppEnvironment() {
         const ua = navigator.userAgent.toLowerCase();
         if (ua.includes('median') || ua.includes('gonative')) {
@@ -237,6 +344,18 @@
         }
     }
     detectAppEnvironment();
+
+    function toggleSection(id, iconId) {
+        const content = document.getElementById(id);
+        const icon = document.getElementById(iconId);
+        if (content && content.classList.contains('open')) {
+            content.classList.remove('open');
+            if(icon) icon.classList.remove('active');
+        } else if (content) {
+            content.classList.add('open');
+            if(icon) icon.classList.add('active');
+        }
+    }
 
     function toggleMobileMenu() {
         const sidebar = document.getElementById('sidebar');
@@ -261,6 +380,17 @@
 			const overlay = document.getElementById('intro-overlay');
 			if (overlay) overlay.remove(); 
 		}, 3500);
+
+		if (window.innerWidth < 768 && !window.sessionStorage.getItem('menuShown')) {
+			setTimeout(() => {
+				const sidebar = document.getElementById('sidebar');
+                // Only show if not in app
+                if (!document.body.classList.contains('is-median-app')) {
+				    sidebar.classList.add('active-mobile');
+				    window.sessionStorage.setItem('menuShown', 'true');
+                }
+			}, 3600);
+		}
 	});
 </script>
 
