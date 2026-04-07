@@ -190,8 +190,8 @@ async function renderBhajanaUI() {
                         </div>
                     </div>
 
-                    <div class="w-8 h-8 rounded-full flex items-center justify-center bg-yellow-100 group-hover:bg-yellow-400 transition-all shadow-sm">
-                        <i class="fa-solid fa-chevron-right text-[10px] text-yellow-600 group-hover:text-white transition-transform group-hover:translate-x-1"></i>
+                    <div class="w-8 h-8 flex items-center justify-center transition-all">
+                        <i class="fa-solid fa-chevron-right text-[12px] text-black transition-transform group-hover:translate-x-1"></i>
                     </div>
                 </div>`;
         });
