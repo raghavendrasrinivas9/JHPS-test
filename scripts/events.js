@@ -76,7 +76,7 @@ function renderEventsUI() {
         // Removed h-[160px] and used h-auto to prevent cropping.
         // Added flex-col on mobile and flex-row on larger screens for the main layout.
         return `
-            <div class="h-auto w-full max-w-xl ${isPast ? 'bg-gray-50 opacity-70 border-gray-200' : 'bg-white border-red-100 shadow-sm'} p-5 rounded-xl border border-l-4 ${borderClass} flex flex-col sm:flex-row items-start gap-4 sm:gap-6 transition-all">
+            <div class="h-auto w-full max-w-xl ${isPast ? 'bg-gray-50 opacity-70 border-gray-200' : 'bg-white border-green-100 shadow-sm'} p-5 rounded-xl border border-l-4 ${borderClass} flex flex-col sm:flex-row items-start gap-4 sm:gap-6 transition-all">
 
                 <div class="flex-shrink-0">
                     <img src="${ev.img || 'default.png'}" 
