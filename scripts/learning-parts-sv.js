@@ -114,7 +114,7 @@ async function renderSVParts() {
             <i class="fa-solid fa-arrow-left"></i> Back
         </button>
         
-        <h2 class="text-xl font-black text-orange-900 border-b-4 border-orange-500 pb-2 mb-6 uppercase tracking-tight">
+        <h2 class="text-xl font-black text-orange-900 border-b-4 border-red-800 pb-2 mb-6 uppercase tracking-tight">
             ${partData.title}
         </h2>
 
