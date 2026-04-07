@@ -31,7 +31,7 @@ window.libraryData = {
                 video: "https://www.youtube.com/watch?v=SM-VPFvNvEU", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 16, name: "Chapter-16", desc: "Daivasura-Sampad-Vibhaga Yoga - The Divine and Demoniac Natures.", audio: "#", video: "https://www.youtube.com/watch?v=zoc8OseMp1A", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 17, name: "Chapter-17", desc: "Shraddhatraya-Vibhaga Yoga - The Three Divisions of Faith.", audio: "#", video: "https://www.youtube.com/watch?v=3vhc6pFfuMU", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
-			{ id: 18, name: "Chapter-18", desc: "Moksha-Sanyasa Yoga - The Yoga of Liberation and Renunciation.", audio: "#", video: "#", pdfSanskrit: "https://www.youtube.com/watch?v=mzuG5L3Tj_U",   pdfTelugu: "#", pdfKannada: "#" }
+			{ id: 18, name: "Chapter-18", desc: "Moksha-Sanyasa Yoga - The Yoga of Liberation and Renunciation.", audio: "#", video: "https://www.youtube.com/watch?v=mzuG5L3Tj_U", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" }
         ]
     },
     "Mani Manjari": {
