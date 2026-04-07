@@ -6,32 +6,32 @@ window.libraryData = {
         title: "Bhagavad Gita",
         steps: [
             { id: 1, name: "Chapter-1", desc: "Arjuna Vishada Yoga - The distress of Arjuna.", audio: "#", 
-                video: "https://www.youtube.com/watch?v=5n56B6AyUy4", pdfSanskrit: "downloads/bg-ch1-sanskrit.pdf",   pdfTelugu: "downloads/bg-ch1-telugu.pdf", pdfKannada: "downloads/bg-ch1-kannada.pdf" },
+                video: "https://www.youtube.com/watch?v=3pkNX_78sAI", pdfSanskrit: "downloads/bg-ch1-sanskrit.pdf",   pdfTelugu: "downloads/bg-ch1-telugu.pdf", pdfKannada: "downloads/bg-ch1-kannada.pdf" },
 			{ id: 2, name: "Chapter-2", desc: "Sankhya Yoga - The Yoga of Knowledge.", audio: "#", 
-                video: "https://www.youtube.com/watch?v=kv44D_lgd_c", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+                video: "https://www.youtube.com/watch?v=RRUytOK7GJY", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 3, name: "Chapter-3", desc: "Karma Yoga - The Yoga of Action.", audio: "#", 
-                video: "https://www.youtube.com/watch?v=cO8ujXDy9xk", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
-			{ id: 4, name: "Chapter-4", desc: "Jnana-Karma-Sanyasa Yoga - Knowledge and Disciplined Action.", audio: "#", video: "https://www.youtube.com/watch?v=Ll4_kxc0Wug", pdfSanskrit: "#", pdfTelugu: "#", pdfKannada: "#" },
+                video: "https://www.youtube.com/watch?v=uTcvZIvRbko", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+			{ id: 4, name: "Chapter-4", desc: "Jnana-Karma-Sanyasa Yoga - Knowledge and Disciplined Action.", audio: "#", video: "https://www.youtube.com/watch?v=oC2tVO9FcLo", pdfSanskrit: "#", pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 5, name: "Chapter-5", desc: "Karma-Sanyasa Yoga - Action with Renunciation.", audio: "#", 
-                video: "https://www.youtube.com/watch?v=362HmA38rUQ", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+                video: "https://www.youtube.com/watch?v=pcQ0q--TCNQ", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 6, name: "Chapter-6", desc: "Atma-Samyama Yoga - The Yoga of Self-Control.", audio: "#", 
-                video: "https://www.youtube.com/watch?v=3DOzP3tnOSs", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+                video: "https://www.youtube.com/watch?v=vA3dYxA1-AA", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 7, name: "Chapter-7", desc: "Jnana-Vijnana Yoga - Knowledge of the Ultimate Truth.", audio: "#", 
-                video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
-			{ id: 8, name: "Chapter-8", desc: "Akshara-Brahma Yoga - The Yoga of the Imperishable Brahman.", audio: "#", video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
-			{ id: 9, name: "Chapter-9", desc: "Raja-Vidya-Raja-Guhya Yoga - The Most Confidential Knowledge.", audio: "#", video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+                video: "https://www.youtube.com/watch?v=2wuvfRgV-lo", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+			{ id: 8, name: "Chapter-8", desc: "Akshara-Brahma Yoga - The Yoga of the Imperishable Brahman.", audio: "#", video: "https://www.youtube.com/watch?v=_aK-dQvBays", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+			{ id: 9, name: "Chapter-9", desc: "Raja-Vidya-Raja-Guhya Yoga - The Most Confidential Knowledge.", audio: "#", video: "https://www.youtube.com/watch?v=iBzByVKgmnM", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 10, name: "Chapter-10", desc: "Vibhuti Yoga - The Yoga of Divine Glories.", audio: "#", 
-                video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
-			{ id: 11, name: "Chapter-11", desc: "Vishwarupa-Darshana Yoga - The Vision of the Universal Form.", audio: "#", video: "#", pdfSanskrit: "#", pdfTelugu: "#", pdfKannada: "#" },
+                video: "https://www.youtube.com/watch?v=cXao89Md7UQ", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+			{ id: 11, name: "Chapter-11", desc: "Vishwarupa-Darshana Yoga - The Vision of the Universal Form.", audio: "#", video: "https://www.youtube.com/watch?v=XicmMeeyHwU", pdfSanskrit: "#", pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 12, name: "Chapter-12", desc: "Bhakti Yoga - The Yoga of Devotion.", audio: "#", 
-                video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
-			{ id: 13, name: "Chapter-13", desc: "Kshetra-Kshetrajna Vibhaga Yoga - The Field and the Knower of the Field.", audio: "#", video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
-			{ id: 14, name: "Chapter-14", desc: "Gunatraya-Vibhaga Yoga - The Three Modes of Material Nature.", audio: "#", video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+                video: "https://www.youtube.com/watch?v=kJ-lrgDYatk", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+			{ id: 13, name: "Chapter-13", desc: "Kshetra-Kshetrajna Vibhaga Yoga - The Field and the Knower of the Field.", audio: "#", video: "https://www.youtube.com/watch?v=nBDtpS31q7c", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+			{ id: 14, name: "Chapter-14", desc: "Gunatraya-Vibhaga Yoga - The Three Modes of Material Nature.", audio: "#", video: "https://www.youtube.com/watch?v=WMfL_rbep-w", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 15, name: "Chapter-15", desc: "Purushottama Yoga - The Yoga of the Supreme Person.", audio: "#", 
-                video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
-			{ id: 16, name: "Chapter-16", desc: "Daivasura-Sampad-Vibhaga Yoga - The Divine and Demoniac Natures.", audio: "#", video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
-			{ id: 17, name: "Chapter-17", desc: "Shraddhatraya-Vibhaga Yoga - The Three Divisions of Faith.", audio: "#", video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
-			{ id: 18, name: "Chapter-18", desc: "Moksha-Sanyasa Yoga - The Yoga of Liberation and Renunciation.", audio: "#", video: "#", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" }
+                video: "https://www.youtube.com/watch?v=SM-VPFvNvEU", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+			{ id: 16, name: "Chapter-16", desc: "Daivasura-Sampad-Vibhaga Yoga - The Divine and Demoniac Natures.", audio: "#", video: "https://www.youtube.com/watch?v=zoc8OseMp1A", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+			{ id: 17, name: "Chapter-17", desc: "Shraddhatraya-Vibhaga Yoga - The Three Divisions of Faith.", audio: "#", video: "https://www.youtube.com/watch?v=3vhc6pFfuMU", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+			{ id: 18, name: "Chapter-18", desc: "Moksha-Sanyasa Yoga - The Yoga of Liberation and Renunciation.", audio: "#", video: "#", pdfSanskrit: "https://www.youtube.com/watch?v=mzuG5L3Tj_U",   pdfTelugu: "#", pdfKannada: "#" }
         ]
     },
     "Mani Manjari": {
@@ -47,10 +47,18 @@ window.libraryData = {
     "Sumadhwa Vijaya": {
         title: "Sumadhwa Vijaya",
         steps: [
-            { id: 1, name: "Sarga-1", desc: "Glories and life of Sri Madhvacharya.", audio: "#", video: "#", pdfSanskrit: "downloads/smv-full-sanskrit.pdf", pdfTelugu: "downloads/smv-full-telugu.pdf", pdfKannada: "downloads/smv-full-kannada.pdf"},
-			{ id: 2, name: "Sarga-2", desc: "Glories and life of Sri Madhvacharya.", audio: "#", video: "#", pdfSanskrit: "downloads/smv-full-sanskrit.pdf", pdfTelugu: "downloads/smv-full-telugu.pdf", pdfKannada: "downloads/smv-full-kannada.pdf"},
-			{ id: 3, name: "Sarga-3", desc: "Glories and life of Sri Madhvacharya.", audio: "#", video: "#", pdfSanskrit: "downloads/smv-full-sanskrit.pdf", pdfTelugu: "downloads/smv-full-telugu.pdf", pdfKannada: "downloads/smv-full-kannada.pdf"},
-			{ id: 4, name: "Sarga-4", desc: "Glories and life of Sri Madhvacharya.", audio: "#", video: "#", pdfSanskrit: "downloads/smv-full-sanskrit.pdf", pdfTelugu: "downloads/smv-full-telugu.pdf", pdfKannada: "downloads/smv-full-kannada.pdf"}
+            { id: 1, name: "Sarga-1", desc: "Glories and life of Sri Madhvacharya.", audio: "#", video: "https://www.youtube.com/watch?v=dYytMs1KKeo", pdfSanskrit: "downloads/smv-full-sanskrit.pdf", pdfTelugu: "downloads/smv-full-telugu.pdf", pdfKannada: "downloads/smv-full-kannada.pdf"},
+			{ id: 2, name: "Sarga-2", desc: "Glories and life of Sri Madhvacharya.", audio: "#", video: "https://www.youtube.com/watch?v=jzNHuoPAeh8", pdfSanskrit: "downloads/smv-full-sanskrit.pdf", pdfTelugu: "downloads/smv-full-telugu.pdf", pdfKannada: "downloads/smv-full-kannada.pdf"},
+			{ id: 3, name: "Sarga-3", desc: "Glories and life of Sri Madhvacharya.", audio: "#", video: "https://www.youtube.com/watch?v=doBgG4t-uLQ", pdfSanskrit: "downloads/smv-full-sanskrit.pdf", pdfTelugu: "downloads/smv-full-telugu.pdf", pdfKannada: "downloads/smv-full-kannada.pdf"},
+			{ id: 4, name: "Sarga-4", desc: "Glories and life of Sri Madhvacharya.", audio: "#", video: "https://www.youtube.com/watch?v=_F00EnNgolQ", pdfSanskrit: "downloads/smv-full-sanskrit.pdf", pdfTelugu: "downloads/smv-full-telugu.pdf", pdfKannada: "downloads/smv-full-kannada.pdf"},
+			{ id: 5, name: "Sarga-5", desc: "Glories and life of Sri Madhvacharya.", audio: "#", video: "https://www.youtube.com/watch?v=BD04WwSTfR8", pdfSanskrit: "downloads/smv-full-sanskrit.pdf", pdfTelugu: "downloads/smv-full-telugu.pdf", pdfKannada: "downloads/smv-full-kannada.pdf"},
+			{ id: 6, name: "Sarga-6", desc: "Glories and life of Sri Madhvacharya.", audio: "#", video: "https://www.youtube.com/watch?v=81DaSkFG0do", pdfSanskrit: "downloads/smv-full-sanskrit.pdf", pdfTelugu: "downloads/smv-full-telugu.pdf", pdfKannada: "downloads/smv-full-kannada.pdf"},
+			{ id: 7, name: "Sarga-7", desc: "Glories and life of Sri Madhvacharya.", audio: "#", video: "https://www.youtube.com/watch?v=MKjKU_7X9lc", pdfSanskrit: "downloads/smv-full-sanskrit.pdf", pdfTelugu: "downloads/smv-full-telugu.pdf", pdfKannada: "downloads/smv-full-kannada.pdf"},
+			{ id: 8, name: "Sarga-8", desc: "Glories and life of Sri Madhvacharya.", audio: "#", video: "https://www.youtube.com/watch?v=iBcTnlBCt0U", pdfSanskrit: "downloads/smv-full-sanskrit.pdf", pdfTelugu: "downloads/smv-full-telugu.pdf", pdfKannada: "downloads/smv-full-kannada.pdf"},
+			{ id: 9, name: "Sarga-9", desc: "Glories and life of Sri Madhvacharya.", audio: "#", video: "https://www.youtube.com/watch?v=pTx4KUKEIcQ", pdfSanskrit: "downloads/smv-full-sanskrit.pdf", pdfTelugu: "downloads/smv-full-telugu.pdf", pdfKannada: "downloads/smv-full-kannada.pdf"},
+			{ id: 10, name: "Sarga-10", desc: "Glories and life of Sri Madhvacharya.", audio: "#", video: "https://www.youtube.com/watch?v=pK9GgnvSWGM", pdfSanskrit: "downloads/smv-full-sanskrit.pdf", pdfTelugu: "downloads/smv-full-telugu.pdf", pdfKannada: "downloads/smv-full-kannada.pdf"},
+			{ id: 11, name: "Sarga-11", desc: "Glories and life of Sri Madhvacharya.", audio: "#", video: "https://www.youtube.com/watch?v=Z2IHjU_aOIc", pdfSanskrit: "downloads/smv-full-sanskrit.pdf", pdfTelugu: "downloads/smv-full-telugu.pdf", pdfKannada: "downloads/smv-full-kannada.pdf"},
+			{ id: 12, name: "Sarga-12", desc: "Glories and life of Sri Madhvacharya.", audio: "#", video: "https://www.youtube.com/watch?v=sTfLc6ApJ2U", pdfSanskrit: "downloads/smv-full-sanskrit.pdf", pdfTelugu: "downloads/smv-full-telugu.pdf", pdfKannada: "downloads/smv-full-kannada.pdf"}
             
         ]
     }
