@@ -45,7 +45,7 @@ function renderContactUI() {
                 <i class="fa-solid fa-address-book text-sm"></i> Contact Us
             </h2>
             
-            <div class="mb-6 relative overflow-hidden bg-orange-900 rounded-2xl p-5 text-black shadow-lg border-b-4 border-orange-700">
+            <div class="mb-6 relative overflow-hidden bg-orange-900 rounded-2xl p-5 text-black shadow-lg border-b-4 border-red-800">
                 <div class="relative z-10">
                     <p class='text-[10px] font-black uppercase tracking-widest text-orange-300 mb-1'></p>
                     <h3 class='text-xl font-bold leading-tight mb-3 text-black'>${data.organizationName}</h3>
@@ -63,8 +63,8 @@ function renderContactUI() {
 
             <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8">
                 ${data.areas.map(area => `
-                    <div class='bg-white border border-orange-100 rounded-xl p-3 shadow-sm'>
-                        <div class='flex items-center gap-1.5 mb-2 pb-1.5 border-b border-orange-50'>
+                    <div class='bg-white border-2 border-red-800 rounded-xl p-3 shadow-sm'>
+                        <div class='flex items-center gap-1.5 mb-2 pb-1.5 border-b border-red-100'>
                             <div class="w-1.5 h-3 bg-orange-500 rounded-full"></div>
                             <span class='font-bold text-[11px] text-gray-800 truncate'>${area.name}</span>
                         </div>
