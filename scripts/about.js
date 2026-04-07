@@ -9,7 +9,7 @@ function renderAboutUI() {
                 <i class="fa-solid fa-circle-info"></i> About Us
             </h2>
 
-            <div class="bg-white border border-orange-100 rounded-3xl p-6 shadow-sm mb-8 leading-relaxed text-gray-800">
+            <div class="bg-white border border-red-600 rounded-3xl p-6 shadow-sm mb-8 leading-relaxed text-gray-800">
                 <div class="space-y-4">
                     <p class="font-semibold text-orange-900 text-lg border-b border-orange-50 pb-2">
                         Jaya Hari Parayana Sangha
@@ -44,14 +44,14 @@ function renderAboutUI() {
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-orange-900 text-black p-6 rounded-2xl shadow-lg border-b-4 border-orange-950">
+                <div class="bg-orange-900 text-black p-6 rounded-2xl shadow-lg border-b-4 border-red-800">
                     <h4 class="font-bold text-xs uppercase tracking-widest mb-3 text-orange-300 flex items-center gap-2">
                         <i class="fa-solid fa-eye"></i> Our Vision
                     </h4>
                     <p class="text-xs leading-relaxed opacity-90">Spreading the sacred teachings of Hari Sarvothama and Vayu Jeevothama through community parayana.</p>
                 </div>
                 
-                <div class="bg-orange-600 text-black p-6 rounded-2xl shadow-lg border-b-4 border-orange-800">
+                <div class="bg-orange-600 text-black p-6 rounded-2xl shadow-lg border-b-4 border-red-800">
                     <h4 class="font-bold text-xs uppercase tracking-widest mb-3 text-orange-200 flex items-center gap-2">
                         <i class="fa-solid fa-bullseye"></i> Our Goal
                     </h4>
