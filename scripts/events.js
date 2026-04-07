@@ -63,37 +63,50 @@ function renderEventsUI() {
 
     const createCard = (ev, type) => {
         const isPast = type === 'past';
-        const greenStatuses = ["On-Going", "Active"];
-		const statusColor = greenStatuses.includes(ev.status)
-			? "bg-green-100 text-green-700" 
-			: "bg-orange-100 text-orange-700";
+        const isLive = ["On-Going", "Active"].includes(ev.status);
+        
+        // Color Logic: Green for Active/On-Going, Red for others, Gray for Past
+        const borderClass = isPast 
+            ? 'border-l-gray-400' 
+            : (isLive ? 'border-l-green-600' : 'border-l-red-600');
 
-        // Layout updated to Flexbox for side-by-side view
+        const statusColor = isLive
+            ? "bg-green-100 text-green-700" 
+            : "bg-orange-100 text-orange-700";
+
+        // Increased max-w-xl for more width
+        // Changed h-[160px] to min-h-[160px] so text never gets cut off
         return `
-            <div class="${isPast ? 'bg-gray-50 opacity-70 border-gray-200' : 'bg-white border-orange-100 shadow-sm border-l-4 border-l-orange-500'} p-4 rounded-xl border mb-3 flex items-start gap-4">
+            <div class="min-h-[160px] w-full max-w-xl ${isPast ? 'bg-gray-50 opacity-70 border-gray-200' : 'bg-white border-green-100 shadow-sm'} p-5 rounded-xl border border-l-4 ${borderClass} flex items-center gap-6 transition-all">
 
                 <div class="flex-shrink-0">
                     <img src="${ev.img || 'default.png'}" 
                          alt="${ev.name}" 
-                         class="w-16 h-16 object-cover rounded-lg shadow-sm border border-gray-100" />
+                         class="w-24 h-24 object-cover rounded-lg shadow-sm border border-gray-100" />
                 </div>
 
-                <div class="flex-grow">
-                    <div class="flex justify-between items-start mb-1">
-                        <h4 class="font-bold text-sm ${isPast ? 'text-gray-600' : 'text-orange-900'}">${ev.name}</h4>
-                        <span class="text-[8px] px-1.5 py-0.5 rounded-full font-bold uppercase ${isPast ? 'bg-gray-200 text-gray-500' : statusColor}">
+                <div class="flex-grow flex flex-col min-w-0 py-1">
+                    <div class="flex justify-between items-start mb-2 gap-2">
+                        <h4 class="font-bold text-base leading-tight ${isPast ? 'text-gray-600' : 'text-orange-900'}">
+                            ${ev.name}
+                        </h4>
+                        <span class="whitespace-nowrap text-[9px] px-2 py-0.5 rounded-full font-bold uppercase ${isPast ? 'bg-gray-200 text-gray-500' : statusColor}">
                             ${ev.status}
                         </span>
                     </div>
 
-                    <p class="text-xs text-gray-700 mb-2 leading-snug">${ev.desc}</p>
+                    <p class="text-sm text-gray-700 mb-3 leading-relaxed">
+                        ${ev.desc}
+                    </p>
 
-                    <div class="grid grid-cols-1 gap-1">
-                        <div class="text-[10px] text-gray-500 flex items-center gap-2">
-                            <i class="fa-solid fa-clock text-orange-400 w-3 text-center"></i> ${ev.time}
+                    <div class="space-y-1.5 mt-auto">
+                        <div class="text-xs text-gray-500 flex items-center gap-2">
+                            <i class="fa-solid fa-clock text-orange-400 w-4 text-center"></i> 
+                            <span>${ev.time}</span>
                         </div>
-                        <div class="text-[10px] text-gray-500 flex items-center gap-2">
-                            <i class="fa-solid fa-location-dot text-orange-400 w-3 text-center"></i> ${ev.loc}
+                        <div class="text-xs text-gray-500 flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-orange-400 w-4 text-center"></i> 
+                            <span>${ev.loc}</span>
                         </div>
                     </div>
                 </div>
@@ -104,51 +117,30 @@ function renderEventsUI() {
         if (!events || events.length === 0) return '';
 
         return `
-            <h3 class="text-xs font-black ${colorClass} uppercase tracking-widest mb-3 flex items-center gap-2">
-                <i class="fa-solid ${icon}"></i> ${title}
-            </h3>
-            <div class="mb-8">
-                ${events.map(e => createCard(e, type)).join('')}
+            <div class="mb-12">
+                <h3 class="text-xs font-black ${colorClass} uppercase tracking-widest mb-5 flex items-center gap-2">
+                    <i class="fa-solid ${icon}"></i> ${title}
+                </h3>
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 justify-items-start">
+                    ${events.map(e => createCard(e, type)).join('')}
+                </div>
             </div>
         `;
     };
 
     let html = `
-        <h2 class='text-xl font-bold mb-6 text-orange-800 uppercase tracking-tight flex items-center gap-2'>
-            <i class="fa-solid fa-calendar-check"></i> Events & Activities
-        </h2>
+        <div class="animate-fade-in pl-8 pr-6 max-w-full">
+            <h2 class='text-xl font-bold mb-10 text-orange-800 uppercase tracking-tight flex items-center gap-2'>
+                <i class="fa-solid fa-calendar-check"></i> Events & Activities
+            </h2>
     `;
 
-    // Weekly
-    html += renderSection(
-        "Weekly Events",
-        "fa-rotate",
-        data.weekly,
-        "weekly",
-        "text-orange-600"
-    );
+    html += renderSection("Weekly Events", "fa-rotate", data.weekly, "weekly", "text-orange-600");
+    html += renderSection("Regular Classes", "fa-calendar-days", data.regular, "weekly", "text-orange-600");
+    html += renderSection("Past Events", "fa-history", data.past, "past", "text-gray-400");
 
-    // Regular
-    html += renderSection(
-        "Regular Classes",
-        "fa-calendar-days",
-        data.regular,
-        "weekly",
-        "text-orange-600"
-    );
-
-    // Past
-    html += renderSection(
-        "Past Events",
-        "fa-history",
-        data.past,
-        "past",
-        "text-gray-400"
-    );
-
-    area.innerHTML = html + `<div class="pb-20"></div>`;
+    area.innerHTML = html + `<div class="pb-20"></div></div>`;
 }
-
 
 /* --- AUTO LOAD --- */
 document.addEventListener("DOMContentLoaded", renderEventsUI);
