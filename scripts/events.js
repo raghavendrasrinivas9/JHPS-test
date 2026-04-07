@@ -17,7 +17,7 @@ window.eventsData = {
             desc: "Mani Manjari - Pata (online)", 
             time: "Every Mon-Thu-Fri at 9:30pm-10pm", 
             loc: "Online (Zoom). Contact WhatsApp 9573313511", 
-            status: "On-Going",
+            status: "Active",
             img: "images/mm.jpg"
         }
     ],
@@ -63,9 +63,10 @@ function renderEventsUI() {
 
     const createCard = (ev, type) => {
         const isPast = type === 'past';
-        const statusColor = ev.status === "On-Going" 
-            ? "bg-green-100 text-green-700" 
-            : "bg-orange-100 text-orange-700";
+        const greenStatuses = ["On-Going", "Active"];
+		const statusColor = greenStatuses.includes(ev.status)
+			? "bg-green-100 text-green-700" 
+			: "bg-orange-100 text-orange-700";
 
         // Layout updated to Flexbox for side-by-side view
         return `
