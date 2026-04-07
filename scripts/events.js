@@ -73,8 +73,10 @@ function renderEventsUI() {
             ? "bg-green-100 text-green-700" 
             : "bg-orange-100 text-orange-700";
 
+        // Removed h-[160px] and used h-auto to prevent cropping.
+        // Added flex-col on mobile and flex-row on larger screens for the main layout.
         return `
-            <div class="min-h-[160px] w-full max-w-xl ${isPast ? 'bg-gray-50 opacity-70 border-gray-200' : 'bg-white border-green-100 shadow-sm'} p-5 rounded-xl border border-l-4 ${borderClass} flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 transition-all">
+            <div class="h-auto w-full max-w-xl ${isPast ? 'bg-gray-50 opacity-70 border-gray-200' : 'bg-white border-red-100 shadow-sm'} p-5 rounded-xl border border-l-4 ${borderClass} flex flex-col sm:flex-row items-start gap-4 sm:gap-6 transition-all">
 
                 <div class="flex-shrink-0">
                     <img src="${ev.img || 'default.png'}" 
@@ -83,7 +85,7 @@ function renderEventsUI() {
                 </div>
 
                 <div class="flex-grow flex flex-col min-w-0 w-full">
-                    <div class="flex justify-between items-start mb-2 gap-2">
+                    <div class="flex flex-wrap justify-between items-start mb-2 gap-2">
                         <h4 class="font-bold text-sm sm:text-base leading-tight ${isPast ? 'text-gray-600' : 'text-orange-900'}">
                             ${ev.name}
                         </h4>
@@ -92,18 +94,18 @@ function renderEventsUI() {
                         </span>
                     </div>
 
-                    <p class="text-xs sm:text-sm text-gray-700 mb-3 leading-relaxed">
+                    <p class="text-xs sm:text-sm text-gray-700 mb-4 leading-relaxed">
                         ${ev.desc}
                     </p>
 
-                    <div class="space-y-1.5 mt-auto">
-                        <div class="text-[10px] sm:text-xs text-gray-500 flex items-center gap-2">
-                            <i class="fa-solid fa-clock text-orange-400 w-4 text-center"></i> 
-                            <span class="truncate">${ev.time}</span>
+                    <div class="space-y-2 mt-auto">
+                        <div class="text-[10px] sm:text-xs text-gray-500 flex items-start gap-2">
+                            <i class="fa-solid fa-clock text-orange-400 w-4 mt-0.5 text-center"></i> 
+                            <span class="break-words">${ev.time}</span>
                         </div>
-                        <div class="text-[10px] sm:text-xs text-gray-500 flex items-center gap-2">
-                            <i class="fa-solid fa-location-dot text-orange-400 w-4 text-center"></i> 
-                            <span class="truncate">${ev.loc}</span>
+                        <div class="text-[10px] sm:text-xs text-gray-500 flex items-start gap-2">
+                            <i class="fa-solid fa-location-dot text-orange-400 w-4 mt-0.5 text-center"></i> 
+                            <span class="break-words">${ev.loc}</span>
                         </div>
                     </div>
                 </div>
@@ -118,7 +120,7 @@ function renderEventsUI() {
                 <h3 class="text-xs font-black ${colorClass} uppercase tracking-widest mb-5 flex items-center gap-2">
                     <i class="fa-solid ${icon}"></i> ${title}
                 </h3>
-                <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8 justify-items-start">
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 justify-items-start">
                     ${events.map(e => createCard(e, type)).join('')}
                 </div>
             </div>
