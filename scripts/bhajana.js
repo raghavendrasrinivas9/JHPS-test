@@ -86,8 +86,8 @@ async function renderBhajanaUI() {
                         <i class="fa-solid fa-circle-arrow-left text-xl"></i> Back to List
                     </button>
 
-                    <div class="bg-white border border-red-100 rounded-3xl p-6 md:p-10 shadow-sm border-t-8 border-t-red-800">
-                        <h2 class="text-2xl font-bold text-orange-900 mb-6 border-b border-red-100 pb-4 italic">
+                    <div class="bg-white border border-red-800 rounded-3xl p-6 md:p-10 shadow-sm border-t-8 border-t-red-800">
+                        <h2 class="text-2xl font-bold text-orange-900 mb-6 border-b border-red-800 pb-4 italic">
                             ${song.title}
                         </h2>
                         <div class="stotra-content whitespace-pre-wrap italic text-lg md:text-xl leading-relaxed text-gray-800">
