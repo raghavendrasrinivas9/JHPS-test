@@ -26,10 +26,18 @@ window.eventsData = {
     festivals: [], 
 
     past: [
+	        { 
+            name: "Akshaya Tritiya", 
+            desc: "Akshaya Tritiya Vishesha Parayana", 
+            time: "20th April 2026, 8:30 AM", 
+            loc: "Sri Krishna Matha, Bhaghyanagar Kondapur", 
+            status: "Completed",
+            img: "images/AkshayaTritiya.jpg"
+        },
         { 
             name: "Shree Rama Navami", 
             desc: "Vishesha Sundarakanda Parayana", 
-            time: "27th March 2025, 8:30 AM", 
+            time: "27th March 2026, 8:30 AM", 
             loc: "Sri Krishna Matha, Bhaghyanagar Kondapur", 
             status: "Completed",
             img: "images/ramanavami.jpg"
@@ -37,7 +45,7 @@ window.eventsData = {
         { 
             name: "Workshops", 
             desc: "Sandhyavandana and Deva pooja vidhana Workshop", 
-            time: "21st and 22nd March 2025, 9:00 AM", 
+            time: "21st and 22nd March 2026, 9:00 AM", 
             loc: "Sri Krishna Matha, Bhaghyanagar Kondapur", 
             status: "Completed",
             img: "images/sv.jpg"
@@ -45,7 +53,7 @@ window.eventsData = {
         { 
             name: "Ugadi", 
             desc: "Vishesha Parayana", 
-            time: "19th March 2025, 8:00 AM", 
+            time: "19th March 2026, 8:00 AM", 
             loc: "Sri Krishna Matha, Bhaghyanagar Kondapur", 
             status: "Completed",
             img: "images/yugadi.jpg"
