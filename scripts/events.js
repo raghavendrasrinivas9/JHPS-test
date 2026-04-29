@@ -22,7 +22,17 @@ window.eventsData = {
         }
     ],
 
-    upcoming: [], 
+    upcoming: [
+	 { 
+            name: "Shri Narasimha Jayanthi", 
+            desc: "Shri Narasimha Jayanthi Utsava", 
+            time: "30th April 2026, 7:30 AM", 
+            loc: "Sri Krishna Matha, Bhaghyanagar Kondapur", 
+            status: "Upcoming",
+            img: "images/narasimhajayanthi.jpg"
+        }
+	], 
+	
     festivals: [], 
 
     past: [
@@ -71,7 +81,7 @@ function renderEventsUI() {
 
     const createCard = (ev, type) => {
         const isPast = type === 'past';
-        const isLive = ["On-Going", "Active"].includes(ev.status);
+        const isLive = ["On-Going", "Active", "Upcoming"].includes(ev.status);
         
         const borderClass = isPast 
             ? 'border-l-gray-400' 
@@ -144,6 +154,7 @@ function renderEventsUI() {
 
     html += renderSection("Weekly Events", "fa-rotate", data.weekly, "weekly", "text-orange-600");
     html += renderSection("Regular Classes", "fa-calendar-days", data.regular, "weekly", "text-orange-600");
+	html += renderSection("Upcoming", "fa-angle-up", data.upcoming, "weekly", "text-orange-600");
     html += renderSection("Past Events", "fa-history", data.past, "past", "text-gray-400");
 
     area.innerHTML = html + `<div class="pb-20"></div></div>`;
