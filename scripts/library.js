@@ -37,8 +37,8 @@ window.libraryData = {
     "Mani Manjari": {
         title: "Mani Manjari",
         steps: [
-            { id: 1, name: "Sarga-1", desc: "Historical account of the lineage and background.", audio: "#", video: "https://www.youtube.com/watch?v=EU5sh0Pij3c&t=1082s", pdfSanskrit: "downloads/mm-s1-sanskrit.pdf", pdfTelugu: "#", pdfKannada: "downloads/mm-s1-kannada.pdf" },
-			{ id: 2, name: "Sarga-2", desc: "Historical account of the lineage and background.", audio: "#", video: "#", pdfSanskrit: "#", pdfTelugu: "#", pdfKannada: "downloads/mm-s2-kannada.pdf" },
+            { id: 1, name: "Sarga-1", desc: "Historical account of the lineage and background.", audio: "#", video: "https://www.youtube.com/playlist?list=PLmggQwwEs0GilaFcOtPYFo-s063DP6QYg", pdfSanskrit: "downloads/mm-s1-sanskrit.pdf", pdfTelugu: "#", pdfKannada: "downloads/mm-s1-kannada.pdf" },
+			{ id: 2, name: "Sarga-2", desc: "Historical account of the lineage and background.", audio: "#", video: "https://www.youtube.com/live/maBE8ieOFx4?si=OxeXViTWunEpR_6Z", pdfSanskrit: "#", pdfTelugu: "#", pdfKannada: "downloads/mm-s2-kannada.pdf" },
 			{ id: 3, name: "Sarga-3", desc: "Historical account of the lineage and background.", audio: "#", video: "#", pdfSanskrit: "#", pdfTelugu: "#", pdfKannada: "downloads/mm-s3-kannada.pdf" },
 			{ id: 4, name: "Sarga-4", desc: "Historical account of the lineage and background.", audio: "#", video: "#", pdfSanskrit: "#", pdfTelugu: "#", pdfKannada: "#" }
            
