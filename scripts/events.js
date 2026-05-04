@@ -23,20 +23,21 @@ window.eventsData = {
     ],
 
     upcoming: [
-	 { 
-            name: "Shri Narasimha Jayanthi", 
-            desc: "Shri Narasimha Jayanthi Utsava", 
-            time: "30th April 2026, 7:30 AM", 
-            loc: "Sri Krishna Matha, Bhaghyanagar Kondapur", 
-            status: "Upcoming",
-            img: "images/narasimhajayanthi.jpg"
-        }
+
 	], 
 	
     festivals: [], 
 
     past: [
-	        { 
+	    { 
+            name: "Shri Narasimha Jayanthi", 
+            desc: "Shri Narasimha Jayanthi Utsava", 
+            time: "30th April 2026, 7:30 AM", 
+            loc: "Sri Krishna Matha, Bhaghyanagar Kondapur", 
+            status: "Completed",
+            img: "images/narasimhajayanthi.jpg"
+        },
+		{ 
             name: "Akshaya Tritiya", 
             desc: "Akshaya Tritiya Vishesha Parayana", 
             time: "20th April 2026, 8:30 AM", 
