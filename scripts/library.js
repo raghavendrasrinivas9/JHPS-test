@@ -61,7 +61,14 @@ window.libraryData = {
 			{ id: 12, name: "Sarga-12", desc: "Glories and life of Sri Madhvacharya.", audio: "#", video: "https://www.youtube.com/watch?v=sTfLc6ApJ2U", pdfSanskrit: "downloads/smv-full-sanskrit.pdf", pdfTelugu: "downloads/smv-full-telugu.pdf", pdfKannada: "downloads/smv-full-kannada.pdf"}
             
         ]
-    }
+    },
+	"Purushothama Stotram": {
+        title: "Purushothama Stotram",
+        steps: [
+            { id: 1, name: "Purushothama Stotram", desc: "Yama Kruta", audio: "#", video: "https://www.youtube.com/watch?v=ygOIZH2msY0", pdfSanskrit: "downloads/purushottama-stotram-sanskrit.pdf", pdfTelugu: "downloads/purushottama-stotram-telugu.pdf", pdfKannada: "downloads/purushottama-stotram-kannada.pdf" },
+			         
+        ]
+	}
 };
 
 window.activeLibrarySubTab = window.activeLibrarySubTab || "Bhagavad Gita";
