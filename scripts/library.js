@@ -28,7 +28,7 @@ window.libraryData = {
 			{ id: 13, name: "Chapter-13", desc: "Kshetra-Kshetrajna Vibhaga Yoga - The Field and the Knower of the Field.", audio: "#", video: "https://www.youtube.com/watch?v=nBDtpS31q7c", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 14, name: "Chapter-14", desc: "Gunatraya-Vibhaga Yoga - The Three Modes of Material Nature.", audio: "#", video: "https://www.youtube.com/watch?v=WMfL_rbep-w", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 15, name: "Chapter-15", desc: "Purushottama Yoga - The Yoga of the Supreme Person.", audio: "#", 
-                video: "https://www.youtube.com/watch?v=SM-VPFvNvEU", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
+            video: "https://www.youtube.com/watch?v=SM-VPFvNvEU", pdfSanskrit: "downloads/bg-ch15-sanskrit.pdf",   pdfTelugu: "downloads/bg-ch15-telugu.pdf", pdfKannada: "downloads/bg-ch15-kannada.pdf" },
 			{ id: 16, name: "Chapter-16", desc: "Daivasura-Sampad-Vibhaga Yoga - The Divine and Demoniac Natures.", audio: "#", video: "https://www.youtube.com/watch?v=zoc8OseMp1A", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 17, name: "Chapter-17", desc: "Shraddhatraya-Vibhaga Yoga - The Three Divisions of Faith.", audio: "#", video: "https://www.youtube.com/watch?v=3vhc6pFfuMU", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" },
 			{ id: 18, name: "Chapter-18", desc: "Moksha-Sanyasa Yoga - The Yoga of Liberation and Renunciation.", audio: "#", video: "https://www.youtube.com/watch?v=mzuG5L3Tj_U", pdfSanskrit: "#",   pdfTelugu: "#", pdfKannada: "#" }
@@ -38,7 +38,7 @@ window.libraryData = {
         title: "Mani Manjari",
         steps: [
             { id: 1, name: "Sarga-1", desc: "Historical account of the lineage and background.", audio: "#", video: "https://www.youtube.com/playlist?list=PLmggQwwEs0GilaFcOtPYFo-s063DP6QYg", pdfSanskrit: "downloads/mm-s1-sanskrit.pdf", pdfTelugu: "#", pdfKannada: "downloads/mm-s1-kannada.pdf" },
-			{ id: 2, name: "Sarga-2", desc: "Historical account of the lineage and background.", audio: "#", video: "https://www.youtube.com/live/maBE8ieOFx4?si=OxeXViTWunEpR_6Z", pdfSanskrit: "#", pdfTelugu: "#", pdfKannada: "downloads/mm-s2-kannada.pdf" },
+			{ id: 2, name: "Sarga-2", desc: "Historical account of the lineage and background.", audio: "#", video: "https://youtube.com/playlist?list=PLmggQwwEs0GgryAaUSVQ22sZcY_VZ-azu&si=-509MatsmAjLUTXX", pdfSanskrit: "#", pdfTelugu: "#", pdfKannada: "downloads/mm-s2-kannada.pdf" },
 			{ id: 3, name: "Sarga-3", desc: "Historical account of the lineage and background.", audio: "#", video: "#", pdfSanskrit: "#", pdfTelugu: "#", pdfKannada: "downloads/mm-s3-kannada.pdf" },
 			{ id: 4, name: "Sarga-4", desc: "Historical account of the lineage and background.", audio: "#", video: "#", pdfSanskrit: "#", pdfTelugu: "#", pdfKannada: "#" }
            
