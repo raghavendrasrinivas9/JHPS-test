@@ -65,7 +65,7 @@ window.libraryData = {
 	"Purushothama Stotram": {
         title: "Purushothama Stotram",
         steps: [
-            { id: 1, name: "Purushothama Stotram", desc: "Yama Kruta", audio: "#", video: "https://www.youtube.com/watch?v=ygOIZH2msY0", pdfSanskrit: "downloads/purushottama-stotram-sanskrit.pdf", pdfTelugu: "downloads/purushottama-stotram-telugu.pdf", pdfKannada: "downloads/purushottama-stotram-kannada.pdf" },
+            { id: 1, name: "Purushothama Stotram", desc: "Yama Kruta", audio: "media/purushottamastotram.mp3", video: "https://www.youtube.com/watch?v=ygOIZH2msY0", pdfSanskrit: "downloads/purushottama-stotram-sanskrit.pdf", pdfTelugu: "downloads/purushottama-stotram-telugu.pdf", pdfKannada: "downloads/purushottama-stotram-kannada.pdf" },
 			         
         ]
 	}
