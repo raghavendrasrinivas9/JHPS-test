@@ -11,16 +11,16 @@ window.eventsData = {
         }
     ],
 
-/*    regular: [
+	regular: [
         { 
-            name: "Mani Manjari", 
-            desc: "Mani Manjari - Pata (online)", 
+            name: "Sumadhwa Vijaya", 
+            desc: "Sumadhwa Vijaya - Pata (online)", 
             time: "Every Mon-Thu-Fri at 9:30pm-10pm", 
             loc: "Online (Zoom). Contact WhatsApp 9573313511", 
             status: "Active",
-            img: "images/mm.jpg"
+            img: "images/sumadhwavijaya.jpg"
         }
-    ], */
+    ], 
 
     upcoming: [
 
