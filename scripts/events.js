@@ -11,7 +11,7 @@ window.eventsData = {
         }
     ],
 
-    regular: [
+/*    regular: [
         { 
             name: "Mani Manjari", 
             desc: "Mani Manjari - Pata (online)", 
@@ -20,7 +20,7 @@ window.eventsData = {
             status: "Active",
             img: "images/mm.jpg"
         }
-    ],
+    ], */
 
     upcoming: [
 
@@ -30,6 +30,14 @@ window.eventsData = {
 
     past: [
 	    { 
+            name: "Mani Manjari", 
+            desc: "Mani Manjari - Pata (online)", 
+            time: "Every Mon-Thu-Fri at 9:30pm-10pm", 
+            loc: "Online (Zoom). Contact WhatsApp 9573313511", 
+            status: "Completed",
+            img: "images/mm.jpg"
+        },
+		{ 
             name: "Shri Narasimha Jayanthi", 
             desc: "Shri Narasimha Jayanthi Utsava", 
             time: "30th April 2026, 7:30 AM", 
