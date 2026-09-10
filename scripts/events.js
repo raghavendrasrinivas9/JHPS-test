@@ -29,14 +29,7 @@ window.eventsData = {
     festivals: [], 
 
     past: [
-	    { 
-            name: "Mani Manjari", 
-            desc: "Mani Manjari - Pata (online)", 
-            time: "Every Mon-Thu-Fri at 9:30pm-10pm", 
-            loc: "Online (Zoom). Contact WhatsApp 9573313511", 
-            status: "Completed",
-            img: "images/mm.jpg"
-        },
+
 		{ 
             name: "Shri Narasimha Jayanthi", 
             desc: "Shri Narasimha Jayanthi Utsava", 
